@@ -449,6 +449,30 @@ h1,h2,h3,h4 { font-weight: 700; line-height: 1.15; }
 }
 .social:hover { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.3); color: #fff; transform: translateY(-2px); }
 
+/* ------- CONTACT INFO ------- */
+.cta__contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+.cta__contact-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .9rem;
+  color: rgba(226,232,240,0.7);
+}
+.cta__contact-item a {
+  color: #93c5fd;
+  text-decoration: none;
+  transition: color .2s;
+}
+.cta__contact-item a:hover {
+  color: #fff;
+}
+
 /* ------- FOOTER ------- */
 .footer {
   border-top: 1px solid rgba(255,255,255,0.07);
