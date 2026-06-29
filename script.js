@@ -2,6 +2,32 @@
    script.js — Critical Developer Portfolio
    ============================================= */
 
+// ---- HELPERS ----
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+function throttle(func, limit) {
+  let inThrottle;
+  return function executedFunction() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
 // ---- RAIN CANVAS ----
 (function initRain() {
   const canvas = document.getElementById('rain-canvas');
@@ -67,7 +93,7 @@
   }
 
   function loop() { draw(); requestAnimationFrame(loop); }
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', debounce(resize, 200));
   resize();
   loop();
 })();
@@ -182,10 +208,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     border-radius:50%;transform:translate(-50%,-50%);transition:opacity .3s;
   `;
   document.body.appendChild(glow);
-  document.addEventListener('mousemove', e => {
+  document.addEventListener('mousemove', throttle(e => {
     glow.style.left = e.clientX + 'px';
     glow.style.top = e.clientY + 'px';
-  });
+  }, 16));
 })();
 
 // ---- 3D FLOATING SHAPES ----
@@ -223,11 +249,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   // Smooth mouse parallax effect
   if (window.matchMedia('(pointer: fine)').matches) {
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', throttle((e) => {
       const x = (window.innerWidth - e.pageX * 2) / 80;
       const y = (window.innerHeight - e.pageY * 2) / 80;
       container.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    });
+    }, 16));
   }
 })();
 

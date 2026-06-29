@@ -19,8 +19,30 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="styles.css" />
+        <meta name="theme-color" content="#0a0a0f">
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Omik",
+          "url": "https://omik.dev/",
+          "sameAs": [
+            "https://github.com/rootdev2000-sudo",
+            "https://linkedin.com/in/omik-dev",
+            "https://twitter.com/omik_dev"
+          ],
+          "jobTitle": "Web Developer & AI Builder",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bogura",
+            "addressRegion": "Rajshahi Division",
+            "addressCountry": "BD"
+          }
+        }
+        </script>
     </head>
     <body>
+        <a href="#main-content" class="skip-link">Skip to main content</a>
         <div class="shapes-container" id="shapes-container"></div>
         <canvas id="rain-canvas"></canvas>
         <div class="bg-glow"></div>
@@ -55,7 +77,7 @@
                         >Let's talk</a
                     >
                 </div>
-                <button class="hamburger" id="hamburger" aria-label="Menu">
+                <button class="hamburger" id="hamburger" aria-label="Menu" aria-controls="mobile-nav" aria-expanded="false">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -70,7 +92,7 @@
             </div>
         </header>
 
-        <main>
+        <main id="main-content">
             <!-- HERO -->
             <section class="hero" id="hero">
                 <div class="container">
@@ -78,7 +100,7 @@
                     <h1 class="hero__h1" id="hero-heading">Omik</h1>
                     <div class="hero__role">
                         &lt;
-                        <span class="hero__accent" id="rotating-text"
+                        <span class="hero__accent" id="rotating-text" aria-live="polite" aria-atomic="true"
                             >Web Developer</span
                         >
                         /&gt;
