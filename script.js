@@ -130,7 +130,7 @@
 
 // ---- SCROLL REVEAL ----
 (function initReveal() {
-  const items = document.querySelectorAll('.card, .section__h2, .about__p, .about__text h2, .ref-card, .project-card, .section__tag, .hero__h1, .hero__sub, .hero__btns, .hero__available');
+  const items = document.querySelectorAll('.card, .section__h2, .about__p, .about__text h2, .ref-card, .project-card, .section__tag, .hero__h1, .hero__sub, .hero__btns');
   items.forEach(el => el.classList.add('reveal'));
 
   const io = new IntersectionObserver((entries) => {

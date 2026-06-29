@@ -159,39 +159,6 @@ h1,h2,h3,h4 { font-weight: 700; line-height: 1.15; }
   display: flex; align-items: center;
   padding: 120px 0 80px;
 }
-.hero__badges {
-  display: flex; gap: .8rem; flex-wrap: wrap;
-  margin-bottom: 1.8rem;
-}
-.hero__available {
-  display: inline-flex; align-items: center; gap: .6rem;
-  background: rgba(59,130,246,0.1);
-  border: 1px solid rgba(59,130,246,0.25);
-  border-radius: 999px;
-  padding: .35rem 1rem;
-  font-size: .82rem; font-weight: 500; color: #93c5fd;
-}
-.hero__eth {
-  display: inline-flex; align-items: center; gap: .6rem;
-  background: rgba(16,185,129,0.1);
-  border: 1px solid rgba(16,185,129,0.25);
-  border-radius: 999px;
-  padding: .35rem 1rem;
-  font-size: .82rem; font-weight: 500; color: #6ee7b7;
-}
-.eth-dot {
-  width: 8px; height: 8px;
-  background: #10b981; border-radius: 50%;
-}
-.pulse-dot {
-  width: 8px; height: 8px;
-  background: #3b82f6; border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(59,130,246,.6); }
-  50%      { box-shadow: 0 0 0 6px rgba(59,130,246,0); }
-}
 .hero__hello {
   font-size: 1.1rem; color: rgba(226,232,240,0.6);
   margin-bottom: .3rem; font-weight: 400;
