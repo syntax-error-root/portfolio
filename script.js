@@ -230,3 +230,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
   }
 })();
+
+
+// ---- EMAIL PROTECTION (bot-resistant) ----
+(function initEmailProtection() {
+  const links = document.querySelectorAll('[data-email]');
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const email = atob(this.dataset.email);
+      window.location.href = 'mailto:' + email;
+    });
+  });
+})();
