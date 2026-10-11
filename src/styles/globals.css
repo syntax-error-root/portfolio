@@ -2,46 +2,36 @@
 
 @layer base {
   :root {
-    --bg-main: #0a0a0c;
-    --bg-surface: #101216;
-    --bg-cell: #13171e;
-    --border-grid: #1e242f;
-    --border-active: #38bdf8;
-    --text-high: #f1f5f9;
-    --text-mid: #94a3b8;
-    --text-dim: #475569;
-    --accent-red: #ff2a2a;
-    --accent-cyan: #38bdf8;
-    --accent-amber: #f59e0b;
-    --accent-green: #22c55e;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border-radius: 0px !important; /* Industrial Brutalism: 90 degree corners strictly */
+    --bg-main: #05070e;
+    --bg-surface: #0a0f1d;
+    --bg-card: rgba(13, 20, 38, 0.7);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-glow: rgba(56, 189, 248, 0.3);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --cyan-glow: #00f2fe;
+    --violet-glow: #818cf8;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--bg-main);
-    color: var(--text-high);
+    background-color: #05070e;
+    color: #f8fafc;
     font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   }
 
   body {
     overflow-x: hidden;
-    background: #0a0a0c;
+    background: #05070e;
     min-height: 100vh;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: #f8fafc;
   }
 
-  /* Structural Typography */
   h1, h2, h3, .font-heading {
     font-family: 'Syne', 'Space Grotesk', sans-serif;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
+    letter-spacing: -0.03em;
   }
 
   code, pre, .font-mono, samp, kbd {
@@ -49,64 +39,79 @@
   }
 
   ::selection {
-    background: #ff2a2a;
+    background: rgba(56, 189, 248, 0.4);
     color: #ffffff;
   }
 }
 
-/* Custom Tactical Scrollbar */
+/* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0c;
+  background: #05070e;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e242f;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff2a2a;
+  background: rgba(56, 189, 248, 0.5);
 }
 
-/* Tactical Crosshairs & Technical Grid */
-.blueprint-grid {
+/* High-End Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(10, 15, 29, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+  background: rgba(13, 20, 38, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Precision Sci-Fi Subtle Grid */
+.cyber-grid {
   background-image: 
-    linear-gradient(#1e242f 1px, transparent 1px),
-    linear-gradient(90deg, #1e242f 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-.crt-scanlines {
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.25) 2px,
-    rgba(0, 0, 0, 0.25) 4px
-  );
+.cyber-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Ambient Radial Glow */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
   pointer-events: none;
+  opacity: 0.25;
 }
 
-/* Utilitarian Hard Borders */
-.border-tactical {
-  border: 1px solid #1e242f;
+/* Shimmer Button Effect */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
 }
 
-.border-tactical-active {
-  border: 1px solid #38bdf8;
-}
-
-.border-hazard {
-  border: 1px solid #ff2a2a;
-}
-
-/* Hazard Warning Tape pattern */
-.hazard-stripe {
-  background: repeating-linear-gradient(
-    -45deg,
-    #ff2a2a,
-    #ff2a2a 8px,
-    #0a0a0c 8px,
-    #0a0a0c 16px
-  );
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
 }

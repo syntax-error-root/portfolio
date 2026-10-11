@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Shield, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Terminal, Menu, X, ArrowUpRight, Cpu } from 'lucide-react';
 
 interface NavbarProps {
   onToggleTerminal: () => void;
@@ -9,65 +9,60 @@ interface NavbarProps {
 export function Navbar({ onToggleTerminal, isTerminalOpen }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [timeUTC, setTimeUTC] = useState('');
 
   useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTimeUTC(now.toISOString().substring(11, 19) + ' UTC');
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: '[01] OVERVIEW', href: '#hero' },
-    { label: '[02] SPECS', href: '#about' },
-    { label: '[03] MATRIX', href: '#expertise' },
-    { label: '[04] DEPLOYMENTS', href: '#projects' },
-    { label: '[05] LAB', href: '#architecture' },
-    { label: '[06] CONTACT', href: '#contact' },
+    { label: 'About', href: '#about' },
+    { label: 'Expertise', href: '#expertise' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Architecture', href: '#architecture' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0c] border-b border-[#1e242f]">
-      {/* Top Telemetry Ticker Strip */}
-      <div className="hidden lg:flex items-center justify-between px-6 py-1 bg-[#101216] border-b border-[#1e242f] text-[10px] font-mono text-slate-400">
-        <div className="flex items-center gap-4">
-          <span className="flex items-center gap-1.5 text-emerald-400">
-            <span className="w-1.5 h-1.5 bg-emerald-400"></span>
-            SYS_ONLINE // 99.99% PROD
-          </span>
-          <span className="text-slate-600">|</span>
-          <span>LOCATION: 24.8465° N, 89.3777° E (BD)</span>
-          <span className="text-slate-600">|</span>
-          <span>CLUSTER: SRE-NODE-01</span>
-        </div>
-        <div className="flex items-center gap-4 font-mono">
-          <span>{timeUTC}</span>
-          <span className="text-red-500 font-bold">SEC_LEVEL: 0</span>
-        </div>
-      </div>
-
-      {/* Main Tactical Nav Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
-        {/* Brand Unit Tag */}
-        <a href="#hero" className="flex items-center gap-3 font-mono text-xs tracking-wider">
-          <span className="px-2 py-0.5 bg-red-600 text-white font-bold tracking-widest text-[10px]">
-            UNIT / D-01
-          </span>
-          <span className="text-white font-bold tracking-tight">OMIK.SYS</span>
-          <span className="text-slate-500 hidden sm:inline">[PLATFORM ARCHITECT]</span>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'py-3 bg-[#05070e]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl shadow-cyan-950/20'
+          : 'py-5 bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        
+        {/* Brand Identity */}
+        <a href="#hero" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-500/30 flex items-center justify-center group-hover:border-cyan-400 transition-all shadow-lg shadow-cyan-500/10">
+            <Cpu className="w-4 h-4 text-cyan-400 group-hover:rotate-45 transition-transform duration-300" />
+          </div>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <span className="font-heading font-bold text-white text-base tracking-tight">
+                OMIK
+              </span>
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                v2.4
+              </span>
+            </div>
+            <span className="text-[10px] font-mono text-slate-400 tracking-wider">
+              DEVOPS &amp; CLOUD ARCHITECT
+            </span>
+          </div>
         </a>
 
-        {/* Desktop Nav Items */}
-        <nav className="hidden md:flex items-center gap-1 font-mono text-xs">
+        {/* Center Nav Pill */}
+        <nav className="hidden md:flex items-center gap-1 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md shadow-inner">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-[#13171e] transition-colors border-r border-[#1e242f] last:border-r-0"
+              className="px-4 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all"
             >
               {link.label}
             </a>
@@ -75,30 +70,30 @@ export function Navbar({ onToggleTerminal, isTerminalOpen }: NavbarProps) {
         </nav>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2 font-mono text-xs">
+        <div className="flex items-center gap-3">
           <button
             onClick={onToggleTerminal}
-            className={`flex items-center gap-2 px-3 py-1 border transition-all ${
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono transition-all border ${
               isTerminalOpen
-                ? 'bg-red-600 text-white border-red-600'
-                : 'bg-[#101216] border-[#1e242f] text-slate-300 hover:border-slate-500'
+                ? 'bg-cyan-500 text-black border-cyan-400 font-bold shadow-lg shadow-cyan-500/30'
+                : 'bg-white/[0.04] border-white/[0.1] text-slate-300 hover:border-cyan-500/40 hover:text-white'
             }`}
           >
-            <Terminal className="w-3.5 h-3.5 text-red-500" />
-            <span className="hidden sm:inline">CONSOLE</span>
+            <Terminal className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="hidden sm:inline">Terminal</span>
           </button>
 
           <a
             href="#contact"
-            className="hidden sm:flex items-center gap-1 px-3 py-1 bg-white text-black font-bold uppercase hover:bg-slate-200 transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold text-xs tracking-wide transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02]"
           >
-            TRANSMIT
+            <span>Let's Connect</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 text-slate-400 hover:text-white border border-[#1e242f]"
+            className="md:hidden p-2 rounded-lg bg-white/[0.04] border border-white/[0.1] text-slate-300 hover:text-white"
           >
             {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
@@ -107,17 +102,24 @@ export function Navbar({ onToggleTerminal, isTerminalOpen }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0a0a0c] border-b border-[#1e242f] p-4 flex flex-col gap-2 font-mono text-xs">
+        <div className="md:hidden mt-3 mx-4 p-4 rounded-2xl bg-[#0a0f1d]/95 border border-white/10 backdrop-blur-2xl flex flex-col gap-2 shadow-2xl">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 px-3 text-slate-300 hover:bg-[#13171e] border-b border-[#1e242f] last:border-b-0"
+              className="py-2.5 px-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/[0.06] hover:text-cyan-400 transition-colors"
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="mt-2 text-center py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-semibold text-xs"
+          >
+            Let's Connect
+          </a>
         </div>
       )}
     </header>

@@ -1,115 +1,150 @@
 import React from 'react';
 import { profileConfig } from '../../config';
-import { Shield, Server, Cpu, CheckCircle2 } from 'lucide-react';
+import { Shield, Server, Cpu, CheckCircle2, Layers, GitBranch } from 'lucide-react';
 
 export function About() {
+  const architectureLayers = [
+    {
+      title: 'Edge Ingress & Zero-Trust TLS',
+      desc: 'Nginx, Caddy, Cloudflare, automated ACME certificates with hardened SSL ciphers.',
+      badge: 'INGRESS',
+      color: 'text-cyan-400',
+      border: 'border-cyan-500/20',
+      bg: 'bg-cyan-500/10',
+      icon: Shield,
+    },
+    {
+      title: 'Containerized Compute & Orchestration',
+      desc: 'Docker, Compose, Kubernetes clusters with resource limits and health probes.',
+      badge: 'COMPUTE',
+      color: 'text-indigo-400',
+      border: 'border-indigo-500/20',
+      bg: 'bg-indigo-500/10',
+      icon: Server,
+    },
+    {
+      title: 'Real-time Telemetry & Alerting',
+      desc: 'Prometheus metrics scraping, structured log routing, and Grafana dashboards.',
+      badge: 'OBSERVE',
+      color: 'text-purple-400',
+      border: 'border-purple-500/20',
+      bg: 'bg-purple-500/10',
+      icon: Cpu,
+    },
+    {
+      title: 'Automated CI/CD Delivery Pipeline',
+      desc: 'GitOps workflows, self-healing rollbacks, and automated container releases.',
+      badge: 'DELIVERY',
+      color: 'text-emerald-400',
+      border: 'border-emerald-500/20',
+      bg: 'bg-emerald-500/10',
+      icon: GitBranch,
+    },
+  ];
+
   return (
-    <section id="about" className="py-24 border-b border-[#1e242f] bg-[#0a0a0c]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="about" className="relative py-28 bg-[#05070e] border-t border-white/[0.06] overflow-hidden">
+      
+      {/* Background Subtle Grid */}
+      <div className="absolute inset-0 cyber-grid opacity-30 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         
-        {/* Section Stamp Header */}
-        <div className="flex items-center justify-between border-b border-[#1e242f] pb-3 mb-12 font-mono text-xs text-slate-400">
-          <div className="flex items-center gap-2 text-red-500 font-bold">
-            <span>[02]</span>
-            <span className="text-white">SYSTEM PHILOSOPHY &amp; SPECIFICATIONS</span>
-          </div>
-          <span>SECTION // PHIL-ARCH</span>
+        {/* Section Pill Badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4">
+          <Layers className="w-3.5 h-3.5" />
+          <span>ENGINEER PROFILE &amp; PHILOSOPHY</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mt-4">
           
-          {/* Main Statement */}
+          {/* Main Statement Column */}
           <div className="lg:col-span-7 space-y-6">
-            <h2 className="text-4xl sm:text-6xl font-black text-white uppercase font-heading leading-[0.95]">
-              Beyond Deployment. <br />
-              <span className="text-red-500">Into Reliability.</span>
+            <h2 className="text-4xl sm:text-6xl font-black text-white font-heading leading-tight">
+              Beyond deployment. <br />
+              <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+                Into reliability.
+              </span>
             </h2>
 
-            <p className="text-lg text-slate-300 font-normal leading-relaxed border-l-2 border-red-600 pl-4 bg-[#101216] p-4">
+            <p className="text-lg text-slate-300 font-normal leading-relaxed">
               {profileConfig.aboutPhilosophy}
             </p>
 
-            <p className="text-sm text-slate-400 leading-relaxed font-normal">
+            <p className="text-base text-slate-400 leading-relaxed font-normal">
               High-availability systems aren't built on hope; they are engineered through strict failure isolation, deterministic state recovery, and automated verification. Every node, proxy, and container boundary is treated as a security and reliability perimeter.
             </p>
 
-            {/* Checklist Matrix */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#1e242f] border border-[#1e242f] pt-0">
+            {/* Core Capability Checklist */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
               {profileConfig.aboutHighlights.map((highlight, idx) => (
-                <div key={idx} className="bg-[#101216] p-3.5 font-mono text-xs text-slate-300 flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold">»</span>
-                  <span>{highlight}</span>
+                <div
+                  key={idx}
+                  className="glass-card rounded-xl p-3.5 flex items-start gap-3 border border-white/[0.06]"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                  <span className="text-sm font-medium text-slate-200">{highlight}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Technical Architecture Topology Blueprint */}
-          <div className="lg:col-span-5 border border-[#1e242f] bg-[#101216] p-6 font-mono">
-            <div className="flex justify-between items-center border-b border-[#1e242f] pb-3 mb-5 text-xs">
-              <span className="text-white font-bold">[ SYSTEM ISOLATION MAP ]</span>
-              <span className="text-red-500">REV 3.2</span>
-            </div>
-
-            <div className="space-y-3 text-xs">
+          {/* Interactive Topology Stack Column */}
+          <div className="lg:col-span-5">
+            <div className="glass-card rounded-2xl p-6 border border-white/[0.08] relative">
               
-              {/* Layer 1 */}
-              <div className="p-3 border border-[#1e242f] bg-[#0d0e12] flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Shield className="w-4 h-4 text-red-500" />
-                  <div>
-                    <div className="text-white font-bold">EDGE REVERSE PROXY // TLS</div>
-                    <div className="text-[10px] text-slate-500">Nginx / Caddy · ACME Automated</div>
-                  </div>
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-5">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-cyan-400" />
+                  <span className="text-xs font-mono font-bold text-white tracking-wider">
+                    SYSTEM ISOLATION TOPOLOGY
+                  </span>
                 </div>
-                <span className="text-[10px] bg-red-950/60 text-red-400 px-2 py-0.5 border border-red-900">
-                  INGRESS
+                <span className="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">
+                  4-TIER ARCH
                 </span>
               </div>
 
-              <div className="text-center text-slate-600 text-xs font-mono">│ │</div>
-
-              {/* Layer 2 */}
-              <div className="p-3 border border-[#1e242f] bg-[#0d0e12] flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Server className="w-4 h-4 text-cyan-400" />
-                  <div>
-                    <div className="text-white font-bold">CONTAINERIZED RUNTIME</div>
-                    <div className="text-[10px] text-slate-500">Docker · Docker Compose · K8s</div>
-                  </div>
-                </div>
-                <span className="text-[10px] bg-cyan-950/60 text-cyan-400 px-2 py-0.5 border border-cyan-900">
-                  COMPUTE
-                </span>
+              {/* Layer Cards */}
+              <div className="space-y-3">
+                {architectureLayers.map((layer, idx) => {
+                  const Icon = layer.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-cyan-500/30 transition-all group"
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center gap-2.5">
+                          <Icon className={`w-4 h-4 ${layer.color}`} />
+                          <span className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">
+                            {layer.title}
+                          </span>
+                        </div>
+                        <span className={`text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full ${layer.bg} ${layer.color} border ${layer.border}`}>
+                          {layer.badge}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-400 leading-relaxed pl-6.5">
+                        {layer.desc}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
 
-              <div className="text-center text-slate-600 text-xs font-mono">│ │</div>
-
-              {/* Layer 3 */}
-              <div className="p-3 border border-[#1e242f] bg-[#0d0e12] flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Cpu className="w-4 h-4 text-emerald-400" />
-                  <div>
-                    <div className="text-white font-bold">CONTROL &amp; OBSERVABILITY</div>
-                    <div className="text-[10px] text-slate-500">Prometheus · Grafana · n8n</div>
-                  </div>
-                </div>
-                <span className="text-[10px] bg-emerald-950/60 text-emerald-400 px-2 py-0.5 border border-emerald-900">
-                  METRICS
-                </span>
+              <div className="mt-5 pt-3.5 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span>CONVERGENCE TIME</span>
+                <span className="text-cyan-400 font-bold">&lt; 120ms</span>
               </div>
 
-            </div>
-
-            <div className="mt-5 pt-3 border-t border-[#1e242f] text-[10px] text-slate-500 flex justify-between">
-              <span>FAILOVER: DETERMINISTIC</span>
-              <span>ZERO-POINT-OF-FAILURE</span>
             </div>
           </div>
 
         </div>
 
       </div>
+
     </section>
   );
 }

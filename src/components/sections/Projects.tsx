@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { projectsConfig } from '../../config';
 import { ProjectItem } from '../../types';
-import { ArrowUpRight, Shield, Terminal } from 'lucide-react';
+import { ArrowUpRight, Shield, FolderGit2, CheckCircle2 } from 'lucide-react';
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -13,71 +13,79 @@ export function Projects() {
   const [activeProject, setActiveProject] = useState<ProjectItem>(projectsConfig[0]);
 
   return (
-    <section id="projects" className="py-24 border-b border-[#1e242f] bg-[#0a0a0c]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="projects" className="relative py-28 bg-[#05070e] border-t border-white/[0.06] overflow-hidden">
+      
+      {/* Background Subtle Grid */}
+      <div className="absolute inset-0 cyber-grid opacity-30 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         
-        {/* Section Header */}
-        <div className="flex items-center justify-between border-b border-[#1e242f] pb-3 mb-10 font-mono text-xs text-slate-400">
-          <div className="flex items-center gap-2 text-red-500 font-bold">
-            <span>[04]</span>
-            <span className="text-white">DEPLOYED PRODUCTION CASE STUDIES</span>
-          </div>
-          <span>LOG // PROJ-DEPLOY</span>
+        {/* Section Pill Badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4">
+          <FolderGit2 className="w-3.5 h-3.5" />
+          <span>PRODUCTION CASE STUDIES</span>
         </div>
 
         <div className="mb-10">
-          <h2 className="text-4xl sm:text-6xl font-black text-white uppercase font-heading tracking-tight mb-2">
-            Systems That Stay Online.
+          <h2 className="text-4xl sm:text-6xl font-black text-white font-heading tracking-tight mb-3">
+            Systems that stay online.
           </h2>
-          <p className="text-sm font-mono text-slate-400">
-            Real architectural blueprints focusing on survivability, isolation, and automated delivery.
+          <p className="text-base text-slate-400 max-w-2xl">
+            Real architectural case studies focusing on high availability, automated recovery, and container isolation.
           </p>
         </div>
 
-        {/* Blueprint Selector Tab Array */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#1e242f] border border-[#1e242f] mb-8 font-mono">
+        {/* Project Selector Navigation Pills */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
           {projectsConfig.map((p) => {
             const isSelected = activeProject.id === p.id;
             return (
               <button
                 key={p.id}
                 onClick={() => setActiveProject(p)}
-                className={`p-5 text-left transition-colors ${
+                className={`p-5 rounded-2xl text-left transition-all border ${
                   isSelected
-                    ? 'bg-[#161a23] text-white border-b-2 md:border-b-0 md:border-l-2 border-red-600'
-                    : 'bg-[#101216] text-slate-400 hover:text-white hover:bg-[#13171e]'
+                    ? 'bg-gradient-to-br from-cyan-950/50 to-slate-900 border-cyan-400/50 shadow-xl shadow-cyan-950/30'
+                    : 'glass-card border-white/[0.06] hover:border-white/20'
                 }`}
               >
-                <div className="text-[10px] text-red-500 font-bold uppercase mb-1">[{p.badge}]</div>
-                <div className="text-sm font-bold text-white uppercase leading-snug">{p.title}</div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 uppercase">
+                    {p.badge}
+                  </span>
+                  <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-cyan-400 animate-pulse' : 'bg-slate-700'}`} />
+                </div>
+                <div className="text-base font-bold text-white leading-snug">
+                  {p.title}
+                </div>
               </button>
             );
           })}
         </div>
 
-        {/* Case Study Deep-Dive Terminal Pane */}
-        <div className="border border-[#1e242f] bg-[#101216] p-6 sm:p-10 font-mono">
+        {/* Selected Project Deep-Dive Showcase Card */}
+        <div className="glass-card rounded-3xl p-6 sm:p-10 border border-white/[0.08] shadow-2xl relative overflow-hidden">
           
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#1e242f] pb-6 mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-6 mb-8">
             <div>
-              <span className="text-xs text-red-500 font-bold uppercase tracking-widest block mb-1">
-                BLUEPRINT SPECIFICATION :: {activeProject.badge}
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-black text-white uppercase font-heading">
+              <div className="text-xs font-mono text-cyan-400 font-semibold tracking-wider uppercase mb-1">
+                ARCHITECTURAL SPECIFICATION :: {activeProject.badge}
+              </div>
+              <h3 className="text-2xl sm:text-4xl font-black text-white font-heading">
                 {activeProject.title}
               </h3>
             </div>
 
-            <div className="flex items-center gap-2 text-xs">
+            <div className="flex items-center gap-3">
               {activeProject.githubUrl && (
                 <a
                   href={activeProject.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1.5 border border-[#1e242f] bg-[#0d0e12] text-slate-300 hover:text-white hover:border-slate-400"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/10 text-xs font-mono transition-all"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
-                  <span>REPOSITORY</span>
+                  <span>Repository</span>
                 </a>
               )}
               {activeProject.liveUrl && (
@@ -85,9 +93,9 @@ export function Projects() {
                   href={activeProject.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-red-600 text-white font-bold hover:bg-red-500"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-xs tracking-wide transition-all shadow-lg shadow-cyan-500/20"
                 >
-                  <span>LIVE PROD</span>
+                  <span>Live Preview</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               )}
@@ -96,74 +104,79 @@ export function Projects() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            {/* Left: Problem & Solution */}
+            {/* Left Column: Problem & Architecture */}
             <div className="lg:col-span-7 space-y-6">
+              
               <div>
-                <h4 className="text-xs font-bold text-red-500 uppercase tracking-wider mb-2">
-                  [01] PROBLEM STATEMENT
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                  Problem Statement
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                <p className="text-sm text-slate-300 leading-relaxed bg-white/[0.02] p-4 rounded-xl border border-white/[0.05]">
                   {activeProject.problemStatement}
                 </p>
               </div>
 
               <div>
-                <h4 className="text-xs font-bold text-red-500 uppercase tracking-wider mb-2">
-                  [02] ARCHITECTURE &amp; SOLUTION
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                  Architectural Solution
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                <p className="text-sm text-slate-300 leading-relaxed bg-white/[0.02] p-4 rounded-xl border border-white/[0.05]">
                   {activeProject.architectureSolution}
                 </p>
               </div>
 
               <div>
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
-                  DEPLOYED TECHNOLOGIES
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-2">
+                  <Shield className="w-3.5 h-3.5 text-cyan-400" />
+                  Reliability &amp; Security Isolation
                 </h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {activeProject.technologies.map((t) => (
+                <div className="space-y-1.5 bg-white/[0.02] p-4 rounded-xl border border-white/[0.05]">
+                  {activeProject.securityConsiderations.map((sec, idx) => (
+                    <div key={idx} className="text-xs text-slate-300 flex items-start gap-2">
+                      <span className="text-cyan-400 font-bold">›</span>
+                      <span>{sec}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Column: Stack & Decisions */}
+            <div className="lg:col-span-5 space-y-6">
+              
+              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+                  Technology Stack
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {activeProject.technologies.map((tech, idx) => (
                     <span
-                      key={t}
-                      className="px-2.5 py-1 bg-[#0a0a0c] border border-[#1e242f] text-xs text-cyan-400"
+                      key={idx}
+                      className="px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 text-xs font-mono font-medium"
                     >
-                      {t}
+                      {tech}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Right: Technical Decisions & Security Isolation */}
-            <div className="lg:col-span-5 space-y-4">
-              <div className="p-4 border border-[#1e242f] bg-[#0d0e12]">
-                <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <Terminal className="w-3.5 h-3.5 text-red-500" />
-                  KEY ENGINEERING DECISIONS
+              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+                  Key Engineering Decisions
                 </h4>
-                <ul className="space-y-2 text-xs text-slate-300 font-sans">
-                  {activeProject.engineeringDecisions.map((dec, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-red-500 font-mono">»</span>
-                      <span>{dec}</span>
+                <ul className="space-y-2.5 text-xs text-slate-300">
+                  {activeProject.engineeringDecisions.map((decision, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                      <span>{decision}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="p-4 border border-[#1e242f] bg-[#0d0e12]">
-                <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <Shield className="w-3.5 h-3.5 text-emerald-400" />
-                  SECURITY &amp; ISOLATION CONTROLS
-                </h4>
-                <ul className="space-y-2 text-xs text-slate-300 font-sans">
-                  {activeProject.securityConsiderations.map((sec, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-emerald-400 font-mono">»</span>
-                      <span>{sec}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
 
           </div>
@@ -171,6 +184,7 @@ export function Projects() {
         </div>
 
       </div>
+
     </section>
   );
 }

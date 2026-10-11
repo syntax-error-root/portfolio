@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { Mail, ArrowUpRight, MessageSquare, ShieldCheck } from 'lucide-react';
 import { profileConfig } from '../../config';
 
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -18,77 +18,80 @@ export function Contact() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <section id="contact" className="py-24 border-b border-[#1e242f] bg-[#0a0a0c]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="contact" className="relative py-28 bg-[#05070e] border-t border-white/[0.06] overflow-hidden">
+      
+      {/* Background Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         
-        {/* Section Header */}
-        <div className="flex items-center justify-between border-b border-[#1e242f] pb-3 mb-10 font-mono text-xs text-slate-400">
-          <div className="flex items-center gap-2 text-red-500 font-bold">
-            <span>[06]</span>
-            <span className="text-white">COMMUNICATION TRANSMISSION COORDINATES</span>
-          </div>
-          <span>END // DISPATCH</span>
+        {/* Section Pill Badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4">
+          <MessageSquare className="w-3.5 h-3.5" />
+          <span>DIRECT DISPATCH &amp; CHANNELS</span>
         </div>
 
         {/* Transmission Container */}
-        <div className="border border-[#1e242f] bg-[#101216] p-8 sm:p-12 mb-16">
+        <div className="glass-card rounded-3xl p-8 sm:p-14 mb-16 border border-white/[0.08] shadow-2xl relative overflow-hidden">
+          
           <div className="max-w-3xl">
-            <div className="text-xs font-mono text-red-500 font-bold uppercase tracking-widest mb-3">
-              /// DISPATCH PROTOCOL ARMED
+            <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 font-semibold tracking-wider uppercase mb-3">
+              <ShieldCheck className="w-4 h-4" />
+              <span>Direct Communication Channel</span>
             </div>
             
-            <h2 className="text-4xl sm:text-6xl font-black text-white uppercase font-heading tracking-tight mb-4">
-              Have An Infrastructure Challenge?
+            <h2 className="text-4xl sm:text-6xl font-black text-white font-heading tracking-tight mb-4">
+              Have an infrastructure challenge?
             </h2>
             
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8 border-l-2 border-red-600 pl-4">
-              Available for distributed architecture reviews, Kubernetes platform hardening, and mission-critical cloud deployments.
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8">
+              Available for distributed systems architecture reviews, automated CI/CD pipeline modernization, and zero-downtime platform engineering.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href="mailto:default13789@gmail.com"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-bold uppercase tracking-wider hover:bg-red-500 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-sm tracking-wide transition-all shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5"
               >
                 <Mail className="w-4 h-4" />
-                <span>DISPATCH EMAIL</span>
+                <span>Send An Email</span>
               </a>
 
               <a
                 href="https://github.com/syntax-error-root"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-[#1e242f] bg-[#0d0e12] text-slate-300 hover:text-white hover:border-slate-400 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/10 hover:border-white/20 font-medium text-sm transition-all"
               >
                 <GithubIcon className="w-4 h-4" />
-                <span>GITHUB</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
+                <span>GitHub</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
               </a>
 
               <a
                 href="https://linkedin.com/in/omik-dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-[#1e242f] bg-[#0d0e12] text-slate-300 hover:text-white hover:border-slate-400 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/10 hover:border-white/20 font-medium text-sm transition-all"
               >
                 <LinkedinIcon className="w-4 h-4" />
-                <span>LINKEDIN</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
+                <span>LinkedIn</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Tactical Footer */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500 border-t border-[#1e242f] pt-6">
+        {/* Modern Footer */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500 border-t border-white/[0.06] pt-8">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-emerald-500"></span>
-            <span>© {currentYear} {profileConfig.name} — BOGURA, BANGLADESH</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>© {currentYear} {profileConfig.name} · All systems operational</span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <span>UPTIME: 99.99%</span>
-            <span>SPEC: INDUSTRIAL BRUTALIST UI</span>
+            <span>LOC: BOGURA, BD</span>
           </div>
         </div>
 

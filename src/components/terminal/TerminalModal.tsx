@@ -17,9 +17,9 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
   const [history, setHistory] = useState<CommandHistoryItem[]>([
     {
       command: 'init',
-      output: `[OMIK-DEVOPS-KERNEL v3.0.0-PROD]
-Subsystem operational. Security clearance: LEVEL 0.
-Type 'help' for command matrix.`
+      output: `[OMIK-DEVOPS-KERNEL v2.4.0-PROD]
+Cluster subsystem operational. All services healthy.
+Type 'help' for available commands.`
     }
   ]);
   const [isMaximized, setIsMaximized] = useState(false);
@@ -55,32 +55,36 @@ Type 'help' for command matrix.`
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-black/80 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md">
       <div
-        className={`bg-[#0a0a0c] border border-[#1e242f] flex flex-col font-mono shadow-2xl transition-all duration-150 ${
+        className={`glass-panel rounded-2xl flex flex-col font-mono shadow-2xl transition-all duration-200 overflow-hidden ${
           isMaximized ? 'w-full h-full' : 'w-full max-w-3xl h-[520px]'
         }`}
       >
         {/* Terminal Header */}
-        <div className="flex items-center justify-between px-4 py-2 bg-[#101216] border-b border-[#1e242f] text-xs">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-red-600"></span>
-            <span className="text-white font-bold tracking-wider">
-              ROOT@OMIK-SRE-NODE01:~ (ZSH)
+        <div className="flex items-center justify-between px-4 py-3 bg-white/[0.03] border-b border-white/[0.08] text-xs">
+          <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-1.5">
+              <span className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer" onClick={onClose} />
+              <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+              <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            </div>
+            <span className="text-slate-300 font-semibold tracking-wide ml-2 text-[11px]">
+              omik@infrastructure-core:~ (zsh)
             </span>
           </div>
 
-          <div className="flex items-center gap-1 text-slate-400">
+          <div className="flex items-center gap-2 text-slate-400">
             <button
               onClick={() => setIsMaximized(!isMaximized)}
-              className="p-1 hover:text-white"
+              className="p-1 hover:text-white transition-colors"
               title={isMaximized ? 'Restore' : 'Maximize'}
             >
               {isMaximized ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
             </button>
             <button
               onClick={onClose}
-              className="p-1 hover:text-red-500"
+              className="p-1 hover:text-red-400 transition-colors"
               title="Close"
             >
               <X className="w-4 h-4" />
@@ -89,14 +93,14 @@ Type 'help' for command matrix.`
         </div>
 
         {/* Terminal Output */}
-        <div className="flex-1 p-4 overflow-y-auto text-xs text-slate-300 space-y-3 bg-[#08090b]">
+        <div className="flex-1 p-5 overflow-y-auto text-xs text-slate-300 space-y-4 bg-[#05070e]/95">
           {history.map((item, idx) => (
-            <div key={idx} className="space-y-1">
-              <div className="flex items-center gap-2 text-red-500">
-                <span className="text-slate-500">root@edge:~$</span>
+            <div key={idx} className="space-y-1.5">
+              <div className="flex items-center gap-2 text-cyan-400">
+                <span className="text-slate-500 font-mono">user@cluster:~$</span>
                 <span className="text-white font-bold">{item.command}</span>
               </div>
-              <pre className="text-slate-300 whitespace-pre-wrap text-xs leading-relaxed pl-2 border-l border-red-900/50">
+              <pre className="text-slate-300 whitespace-pre-wrap text-xs leading-relaxed pl-3 border-l-2 border-cyan-500/30">
                 {item.output}
               </pre>
             </div>
@@ -104,19 +108,25 @@ Type 'help' for command matrix.`
           <div ref={bottomRef} />
         </div>
 
-        {/* Command Line Input */}
-        <form onSubmit={handleCommandSubmit} className="flex items-center gap-2 px-3 py-2.5 bg-[#101216] border-t border-[#1e242f]">
-          <span className="text-red-500 text-xs">root@edge:~$</span>
+        {/* Terminal Input Bar */}
+        <form
+          onSubmit={handleCommandSubmit}
+          className="flex items-center gap-2 px-4 py-3 bg-white/[0.02] border-t border-white/[0.08]"
+        >
+          <span className="text-cyan-400 text-xs font-bold font-mono">user@cluster:~$</span>
           <input
             ref={inputRef}
             type="text"
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
-            placeholder="help, skills, projects, architecture, contact, clear..."
-            className="flex-1 bg-transparent text-xs text-white outline-none placeholder:text-slate-600"
+            placeholder="Type 'help' for available commands..."
+            className="flex-1 bg-transparent text-white text-xs font-mono outline-none placeholder:text-slate-600"
           />
-          <button type="submit" className="text-slate-500 hover:text-white">
-            <CornerDownLeft className="w-4 h-4" />
+          <button
+            type="submit"
+            className="p-1.5 text-cyan-400 hover:text-cyan-300 transition-colors"
+          >
+            <CornerDownLeft className="w-3.5 h-3.5" />
           </button>
         </form>
       </div>

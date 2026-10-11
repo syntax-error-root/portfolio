@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { InfrastructureHeroScene } from '../../three/scenes/InfrastructureHeroScene';
 import { profileConfig } from '../../config';
-import { ArrowRight, Terminal, Activity, Crosshair } from 'lucide-react';
+import { ArrowRight, Terminal, Sparkles, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onOpenTerminal: () => void;
@@ -10,12 +10,19 @@ interface HeroProps {
 
 export function Hero({ onOpenTerminal }: HeroProps) {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-24 pb-16 border-b border-[#1e242f] bg-[#0a0a0c]">
+    <section id="hero" className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-[#05070e]">
       
-      {/* 3D WebGL Background Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-auto opacity-75">
+      {/* Background Ambient Radial Glows */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[160px] pointer-events-none" />
+
+      {/* Subtle Precision Cyber Grid */}
+      <div className="absolute inset-0 cyber-grid opacity-40 pointer-events-none" />
+
+      {/* 3D WebGL Infrastructure Scene Layer */}
+      <div className="absolute inset-0 z-0 pointer-events-auto">
         <Canvas
-          camera={{ position: [0, 0, 10], fov: 45 }}
+          camera={{ position: [0, 0, 9.5], fov: 45 }}
           dpr={[1, 2]}
           gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         >
@@ -25,114 +32,130 @@ export function Hero({ onOpenTerminal }: HeroProps) {
         </Canvas>
       </div>
 
-      {/* Blueprint Grid & CRT scanlines */}
-      <div className="absolute inset-0 z-1 pointer-events-none blueprint-grid opacity-30" />
-      <div className="absolute inset-0 z-1 pointer-events-none crt-scanlines" />
-
       {/* Hero Foreground Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pointer-events-none">
         
-        {/* Top Mechanical Header Stamp */}
-        <div className="flex items-center justify-between border-b border-[#1e242f] pb-3 mb-8 text-xs font-mono text-slate-400">
-          <div className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-red-600"></span>
-            <span className="text-white font-bold tracking-widest">[ DEPLOYMENT // PROD ]</span>
-            <span className="text-slate-600">///</span>
-            <span>SYSTEM IDENTIFIER: OM-928</span>
-          </div>
-          <div className="hidden sm:block text-slate-500">
-            SPECIFICATION: DEVOPS &amp; DISTRIBUTED ARCHITECTURE
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Main Macro-Typography Column */}
-          <div className="lg:col-span-8 flex flex-col items-start">
+          {/* Main Headline & Narrative */}
+          <div className="lg:col-span-7 flex flex-col items-start pointer-events-auto">
             
-            <div className="text-xs font-mono uppercase tracking-widest text-red-500 mb-3 flex items-center gap-2">
-              <span>///</span>
-              <span>{profileConfig.eyebrow}</span>
+            {/* Pill Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-md mb-6 shadow-lg shadow-cyan-500/5">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="text-xs font-mono font-medium tracking-wider text-cyan-300">
+                {profileConfig.eyebrow}
+              </span>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[0.92] tracking-tighter uppercase font-heading mb-6">
+            {/* Editorial Macro Headline */}
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[1.02] tracking-tight font-heading mb-6">
               Engineering <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: '2px #ffffff' }}>
-                The Invisible.
+              <span className="bg-gradient-to-r from-cyan-400 via-sky-200 to-indigo-400 bg-clip-text text-transparent">
+                the invisible.
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed mb-8 border-l-2 border-red-600 pl-4 bg-[#101216]/60 backdrop-blur-sm py-2">
+            {/* Supporting Copy */}
+            <p className="text-base sm:text-xl text-slate-300 max-w-xl font-normal leading-relaxed mb-8">
               {profileConfig.supportingCopy}
             </p>
 
-            {/* Tactical Actions */}
-            <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
+            {/* Call to Actions */}
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-bold uppercase tracking-wider hover:bg-red-500 transition-colors"
+                className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-sm tracking-wide transition-all shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5"
               >
-                DEPLOYMENTS_LOG
-                <ArrowRight className="w-4 h-4" />
+                <span>Explore My Work</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 
               <a
-                href="#architecture"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-[#1e242f] bg-[#101216] text-white hover:border-slate-400 transition-colors uppercase"
+                href="#contact"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-white/20 font-medium text-sm transition-all backdrop-blur-md hover:-translate-y-0.5"
               >
-                ARCH_LAB [3D]
+                <span>Let's Connect</span>
               </a>
 
               <button
                 onClick={onOpenTerminal}
-                className="inline-flex items-center gap-2 px-4 py-3 border border-[#1e242f] bg-[#101216] text-slate-300 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 text-slate-300 hover:text-cyan-400 border border-white/10 hover:border-cyan-500/30 text-sm font-mono transition-all backdrop-blur-md"
               >
-                <Terminal className="w-3.5 h-3.5 text-red-500" />
-                <span>SHELL</span>
+                <Terminal className="w-4 h-4 text-cyan-400" />
+                <span className="hidden sm:inline">Shell</span>
               </button>
             </div>
           </div>
 
-          {/* Tactical Telemetry Readout Box */}
-          <div className="lg:col-span-4 w-full">
-            <div className="border border-[#1e242f] bg-[#101216]/90 p-5 font-mono text-xs backdrop-blur-md">
+          {/* Interactive Live Telemetry HUD Panel */}
+          <div className="lg:col-span-5 w-full pointer-events-auto">
+            <div className="glass-card rounded-2xl p-6 shadow-2xl border border-white/[0.08] relative overflow-hidden">
               
-              <div className="flex items-center justify-between border-b border-[#1e242f] pb-2 mb-4 text-slate-400">
-                <span className="text-white font-bold flex items-center gap-1.5">
-                  <Activity className="w-3.5 h-3.5 text-red-500" />
-                  TELEMETRY_FEED
-                </span>
-                <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 border border-emerald-800">
-                  MON_ACTIVE
+              {/* Card Header */}
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping opacity-75" />
+                  <span className="text-xs font-mono font-semibold text-slate-200">
+                    INFRASTRUCTURE TELEMETRY
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                  LIVE CLUSTER
                 </span>
               </div>
 
-              <div className="space-y-2 text-slate-300 text-[11px]">
-                <div className="flex justify-between border-b border-[#1e242f]/50 pb-1">
-                  <span className="text-slate-500">KERNEL_VER</span>
-                  <span className="text-white">6.8.0-GENERIC</span>
+              {/* Simulated Terminal Status Messages */}
+              <div className="space-y-2.5 font-mono text-xs mb-5">
+                <div className="flex items-start gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-cyan-400 font-bold">[SYS]</span> Infrastructure initialized
+                  </div>
                 </div>
-                <div className="flex justify-between border-b border-[#1e242f]/50 pb-1">
-                  <span className="text-slate-500">CONTAINERS</span>
-                  <span className="text-emerald-400">42 RUNNING // 0 FAILED</span>
+                <div className="flex items-start gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-indigo-400 font-bold">[NET]</span> Distributed systems mesh active
+                  </div>
                 </div>
-                <div className="flex justify-between border-b border-[#1e242f]/50 pb-1">
-                  <span className="text-slate-500">PROMETHEUS</span>
-                  <span className="text-white">15s SCRAPE INTERVAL</span>
+                <div className="flex items-start gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-emerald-400 font-bold">[CI/CD]</span> Automated deployment pipeline ready
+                  </div>
                 </div>
-                <div className="flex justify-between border-b border-[#1e242f]/50 pb-1">
-                  <span className="text-slate-500">GATEWAY_EDGE</span>
-                  <span className="text-cyan-400">TLS 1.3 / mTLS</span>
-                </div>
-                <div className="flex justify-between pt-1 text-slate-400">
-                  <span>LOAD_AVG</span>
-                  <span className="text-white">0.42 0.38 0.29</span>
+                <div className="flex items-start gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-amber-400 font-bold">[OBS]</span> Monitoring telemetry streams healthy
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-[#1e242f] flex justify-between items-center text-[10px] text-slate-500">
-                <span>STATION: BOGURA_BD</span>
-                <span className="text-red-500 font-bold">STATUS: ARMED</span>
+              {/* Cluster Health Metrics Grid */}
+              <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/[0.08] text-xs font-mono">
+                <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                  <div className="text-[10px] text-slate-500 mb-0.5">INGRESS LATENCY</div>
+                  <div className="text-sm font-bold text-white flex items-center gap-1.5">
+                    <span>14.2 ms</span>
+                    <span className="text-[9px] text-emerald-400 font-normal">p99</span>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                  <div className="text-[10px] text-slate-500 mb-0.5">AVAILABILITY SLA</div>
+                  <div className="text-sm font-bold text-emerald-400">99.99%</div>
+                </div>
+              </div>
+
+              {/* Footer Interactive Hint */}
+              <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-slate-400">
+                <span className="flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-cyan-400" />
+                  Interactive 3D viewport
+                </span>
+                <span className="font-mono text-[10px] text-slate-500">Move cursor to orbit</span>
               </div>
             </div>
           </div>
@@ -140,6 +163,7 @@ export function Hero({ onOpenTerminal }: HeroProps) {
         </div>
 
       </div>
+
     </section>
   );
 }
