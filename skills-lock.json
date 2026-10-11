@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "3d-web-experience": {
+      "source": "../../../../../../tmp/skills-repo",
+      "sourceType": "local",
+      "computedHash": "e9ab44e2dd01d6dc161eb7433d0459d2100814d01d844c57b9e2f9226cf36a90"
+    }
+  }
+}

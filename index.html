@@ -43,9 +43,11 @@
     </head>
     <body>
         <a href="#main-content" class="skip-link">Skip to main content</a>
-        <div class="shapes-container" id="shapes-container"></div>
-        <canvas id="rain-canvas"></canvas>
+        <div class="webgl-canvas-container" id="webgl-container">
+            <canvas id="webgl-bg-canvas"></canvas>
+        </div>
         <div class="bg-glow"></div>
+        <div class="cyber-grid-overlay"></div>
 
         <!-- HEADER -->
         <header class="header" id="header">
@@ -96,76 +98,117 @@
             <!-- HERO -->
             <section class="hero" id="hero">
                 <div class="container">
-                    <p class="hero__hello" id="hero-hello">Hello, I'm</p>
-                    <h1 class="hero__h1" id="hero-heading">Omik</h1>
-                    <div class="hero__role">
-                        &lt;
-                        <span class="hero__accent" id="rotating-text" aria-live="polite" aria-atomic="true"
-                            >DevOps Engineer</span
-                        >
-                        /&gt;
-                    </div>
-                    <p class="hero__sub" id="hero-sub">
-                        Transforming Ideas into Intelligent Solutions through AI
-                        Innovation
-                    </p>
-                    <div class="hero__btns" id="hero-btns">
-                        <a href="#projects" class="btn btn--white" id="btn-work"
-                            >View Projects</a
-                        >
-                        <a
-                            href="#contact"
-                            class="btn btn--ghost"
-                            id="btn-contact"
-                            >Contact</a
-                        >
-                    </div>
-                    <div class="hero__socials">
-                        <a
-                            href="#"
-                            class="social"
-                            id="soc-gh"
-                            aria-label="GitHub"
-                            ><svg
-                                width="22"
-                                height="22"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
-                                /></svg
-                        ></a>
-                        <a
-                            href="#"
-                            class="social"
-                            id="soc-li"
-                            aria-label="LinkedIn"
-                            ><svg
-                                width="22"
-                                height="22"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                                /></svg
-                        ></a>
-                        <a
-                            href="#"
-                            class="social"
-                            id="soc-tw"
-                            aria-label="Twitter/X"
-                            ><svg
-                                width="22"
-                                height="22"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                                /></svg
-                        ></a>
+                    <div class="hero__layout">
+                        <div class="hero__content">
+                            <div class="hero__badge"><span class="pulse-dot"></span> Next-Gen DevOps &amp; AI Systems</div>
+                            <p class="hero__hello" id="hero-hello">Hello, I'm</p>
+                            <h1 class="hero__h1" id="hero-heading">Omik</h1>
+                            <div class="hero__role">
+                                &lt;
+                                <span class="hero__accent" id="rotating-text" aria-live="polite" aria-atomic="true"
+                                    >DevOps Engineer</span
+                                >
+                                /&gt;
+                            </div>
+                            <p class="hero__sub" id="hero-sub">
+                                Transforming Ideas into Intelligent Solutions through AI
+                                Innovation and resilient cloud-native architectures.
+                            </p>
+                            <div class="hero__btns" id="hero-btns">
+                                <a href="#projects" class="btn btn--white" id="btn-work"
+                                    >Explore Work <span class="btn__icon">⚡</span></a
+                                >
+                                <a
+                                    href="#contact"
+                                    class="btn btn--ghost"
+                                    id="btn-contact"
+                                    >Initiate Contact</a
+                                >
+                            </div>
+                            <div class="hero__socials">
+                                <a
+                                    href="#"
+                                    class="social"
+                                    id="soc-gh"
+                                    aria-label="GitHub"
+                                    ><svg
+                                        width="22"
+                                        height="22"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+                                        /></svg
+                                ></a>
+                                <a
+                                    href="#"
+                                    class="social"
+                                    id="soc-li"
+                                    aria-label="LinkedIn"
+                                    ><svg
+                                        width="22"
+                                        height="22"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                        /></svg
+                                ></a>
+                                <a
+                                    href="#"
+                                    class="social"
+                                    id="soc-tw"
+                                    aria-label="Twitter/X"
+                                    ><svg
+                                        width="22"
+                                        height="22"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                                        /></svg
+                                ></a>
+                            </div>
+                        </div>
+
+                        <!-- 3D Interactive Centerpiece / Artwork Card -->
+                        <div class="hero__artwork-wrap" id="artwork-container">
+                            <div class="artwork-card glass-panel" id="hero-3d-card">
+                                <div class="artwork-card__header">
+                                    <span class="artwork-tag"><span class="live-dot"></span> REAL-TIME 3D QUANTUM CORE</span>
+                                    <span class="artwork-coord" id="artwork-coords">X: 0.00 Y: 0.00</span>
+                                </div>
+                                <div class="artwork-stage" id="hero-stage-canvas">
+                                    <canvas id="three-core-canvas"></canvas>
+                                    <div class="artwork-overlay-hint">
+                                        <span>Click &amp; Drag to Rotate 3D Core</span>
+                                    </div>
+                                    <!-- 3D Artwork Switcher Pills -->
+                                    <div class="artwork-controls">
+                                        <button class="artwork-mode-btn active" data-mode="quantum" title="Quantum Core">Quantum</button>
+                                        <button class="artwork-mode-btn" data-mode="hypercube" title="Hypercube Matrix">Tesseract</button>
+                                        <button class="artwork-mode-btn" data-mode="supernova" title="Supernova Stars">Nebula</button>
+                                    </div>
+                                </div>
+                                <div class="artwork-metrics">
+                                    <div class="metric-item">
+                                        <span class="metric-val" id="render-fps">60 FPS</span>
+                                        <span class="metric-lbl">WebGL Pipeline</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-val" id="render-poly-count">18.6k</span>
+                                        <span class="metric-lbl">Vertices</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-val" id="render-shader-mode">METALLIC PBR</span>
+                                        <span class="metric-lbl">Shader Core</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Status Cards -->
@@ -256,12 +299,15 @@
                         <div class="about__right">
                             <div class="card about__card" id="about-card">
                                 <div class="about__avatar-wrap">
-                                    <img
-                                        src="avatar.png"
-                                        alt="Omik — DevOps Engineer & AI Architect"
-                                        class="about__photo"
-                                        id="about-photo"
-                                    />
+                                    <div class="avatar-holo-container">
+                                        <canvas id="avatar-holo-canvas" width="160" height="160"></canvas>
+                                        <img
+                                            src="avatar.png"
+                                            alt="Omik — DevOps Engineer & AI Architect"
+                                            class="about__photo"
+                                            id="about-photo"
+                                        />
+                                    </div>
                                 </div>
                                 <div class="about__name-tag">
                                     <span class="about__name-title">Omik</span>
@@ -825,6 +871,7 @@
             </div>
         </footer>
 
+        <script src="three.min.js"></script>
         <script src="script.js"></script>
     </body>
 </html>
