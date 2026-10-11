@@ -9,7 +9,7 @@ interface Props {
   onSelectNode: (node: ArchitectureNode) => void;
 }
 
-function ArchBlock({
+function ArchMonolith({
   node,
   isSelected,
   onSelect,
@@ -19,24 +19,19 @@ function ArchBlock({
   onSelect: () => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
-  const glowMatRef = useRef<THREE.MeshBasicMaterial>(null);
+  const wireMatRef = useRef<THREE.MeshBasicMaterial>(null);
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Gentle floating animation
-      groupRef.current.position.y = node.position[1] + Math.sin(state.clock.elapsedTime * 1.2 + node.position[0]) * 0.15;
+      groupRef.current.position.y = node.position[1] + Math.sin(state.clock.elapsedTime * 1.0 + node.position[0]) * 0.12;
       if (isSelected) {
-        groupRef.current.rotation.y += 0.015;
+        groupRef.current.rotation.y += 0.01;
       }
     }
-    if (glowMatRef.current) {
-      glowMatRef.current.opacity = isSelected
-        ? 0.85 + Math.sin(state.clock.elapsedTime * 6) * 0.15
-        : 0.25;
+    if (wireMatRef.current) {
+      wireMatRef.current.opacity = isSelected ? 0.8 : 0.25;
     }
   });
-
-  const nodeColor = isSelected ? '#38bdf8' : '#818cf8';
 
   return (
     <group
@@ -53,32 +48,31 @@ function ArchBlock({
         document.body.style.cursor = 'auto';
       }}
     >
-      {/* Node Physical Body */}
+      {/* Monolith Body */}
       <mesh>
-        <boxGeometry args={[1.6, 1.2, 1.6]} />
+        <boxGeometry args={[1.6, 1.4, 1.6]} />
         <meshStandardMaterial
-          color={isSelected ? '#1e293b' : '#0f172a'}
-          metalness={0.9}
-          roughness={0.2}
+          color={isSelected ? '#1a1d24' : '#0b0c0f'}
+          metalness={0.92}
+          roughness={0.15}
         />
       </mesh>
 
-      {/* Wireframe Outline */}
+      {/* Industrial Cage Wireframe */}
       <mesh>
-        <boxGeometry args={[1.64, 1.24, 1.64]} />
+        <boxGeometry args={[1.62, 1.42, 1.62]} />
         <meshBasicMaterial
-          ref={glowMatRef}
-          color={nodeColor}
+          ref={wireMatRef}
+          color={isSelected ? '#ff2a2a' : '#38bdf8'}
           wireframe
           transparent
-          opacity={0.3}
         />
       </mesh>
 
-      {/* Pulsing indicator orb on top */}
+      {/* Target Crosshair Marker on Top */}
       <mesh position={[0, 0.85, 0]}>
-        <sphereGeometry args={[0.18, 16, 16]} />
-        <meshBasicMaterial color={isSelected ? '#38bdf8' : '#34d399'} />
+        <boxGeometry args={[0.2, 0.2, 0.2]} />
+        <meshBasicMaterial color={isSelected ? '#ff2a2a' : '#38bdf8'} />
       </mesh>
     </group>
   );
@@ -89,15 +83,14 @@ export function ArchitectureLabScene({ selectedNodeId, onSelectNode }: Props) {
 
   useFrame((state) => {
     if (!rootRef.current) return;
-    // subtle tilt on pointer
-    rootRef.current.rotation.y = state.pointer.x * 0.25;
+    rootRef.current.rotation.y = state.pointer.x * 0.2;
   });
 
   return (
     <group ref={rootRef}>
       <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 10]} intensity={1.5} />
-      <pointLight position={[0, 4, 2]} intensity={2.0} color="#38bdf8" />
+      <directionalLight position={[10, 10, 10]} intensity={1.6} />
+      <pointLight position={[0, 3, 2]} intensity={2.5} color="#ff2a2a" />
 
       {/* Pipeline Connector Lines */}
       {architectureNodes.map((n, i) => {
@@ -112,14 +105,14 @@ export function ArchitectureLabScene({ selectedNodeId, onSelectNode }: Props) {
         return (
           // @ts-ignore
           <line key={`line-${n.id}`} geometry={lineGeo}>
-            <lineBasicMaterial color="#38bdf8" transparent opacity={0.3} />
+            <lineBasicMaterial color="#38bdf8" transparent opacity={0.35} />
           </line>
         );
       })}
 
-      {/* Render Architecture Component Blocks */}
+      {/* Monolith Blocks */}
       {architectureNodes.map((node) => (
-        <ArchBlock
+        <ArchMonolith
           key={node.id}
           node={node}
           isSelected={node.id === selectedNodeId}

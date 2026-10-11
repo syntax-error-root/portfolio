@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, ArrowUpRight, Terminal, CheckCircle2 } from 'lucide-react';
+import { Mail, ArrowUpRight } from 'lucide-react';
 import { profileConfig } from '../../config';
 
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -18,69 +18,77 @@ export function Contact() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <section id="contact" className="py-28 relative z-10 border-t border-white/5 bg-[#07090e]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 border-b border-[#1e242f] bg-[#0a0a0c]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
-        {/* Callout Card */}
-        <div className="glass-panel-glow rounded-3xl p-8 sm:p-14 border border-white/10 relative overflow-hidden mb-16">
+        {/* Section Header */}
+        <div className="flex items-center justify-between border-b border-[#1e242f] pb-3 mb-10 font-mono text-xs text-slate-400">
+          <div className="flex items-center gap-2 text-red-500 font-bold">
+            <span>[06]</span>
+            <span className="text-white">COMMUNICATION TRANSMISSION COORDINATES</span>
+          </div>
+          <span>END // DISPATCH</span>
+        </div>
+
+        {/* Transmission Container */}
+        <div className="border border-[#1e242f] bg-[#101216] p-8 sm:p-12 mb-16">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-sky-400 font-mono text-xs uppercase tracking-widest mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              DEPLOYMENT COMPLETE :: READY FOR DISCUSSIONS
+            <div className="text-xs font-mono text-red-500 font-bold uppercase tracking-widest mb-3">
+              /// DISPATCH PROTOCOL ARMED
             </div>
             
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-              Have an infrastructure challenge?
+            <h2 className="text-4xl sm:text-6xl font-black text-white uppercase font-heading tracking-tight mb-4">
+              Have An Infrastructure Challenge?
             </h2>
             
-            <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed mb-8">
-              Let's engineer systems that are reliable, observable, and designed to scale under extreme production load.
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8 border-l-2 border-red-600 pl-4">
+              Available for distributed architecture reviews, Kubernetes platform hardening, and mission-critical cloud deployments.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
               <a
                 href="mailto:default13789@gmail.com"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-bold uppercase tracking-wider hover:bg-red-500 transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>Initiate Contact</span>
+                <span>DISPATCH EMAIL</span>
               </a>
 
               <a
                 href="https://github.com/syntax-error-root"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-white/5 text-white font-semibold text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-[#1e242f] bg-[#0d0e12] text-slate-300 hover:text-white hover:border-slate-400 transition-colors"
               >
                 <GithubIcon className="w-4 h-4" />
-                <span>GitHub Profile</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+                <span>GITHUB</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
               </a>
 
               <a
                 href="https://linkedin.com/in/omik-dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-white/5 text-white font-semibold text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-[#1e242f] bg-[#0d0e12] text-slate-300 hover:text-white hover:border-slate-400 transition-colors"
               >
                 <LinkedinIcon className="w-4 h-4" />
-                <span>LinkedIn</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+                <span>LINKEDIN</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Footer info & system motifs */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 font-mono text-xs text-slate-400">
+        {/* Tactical Footer */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500 border-t border-[#1e242f] pt-6">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>© {currentYear} {profileConfig.name} — Bogura, Bangladesh</span>
+            <span className="w-2 h-2 bg-emerald-500"></span>
+            <span>© {currentYear} {profileConfig.name} — BOGURA, BANGLADESH</span>
           </div>
 
-          <div className="flex items-center gap-4 text-slate-400">
+          <div className="flex items-center gap-4">
             <span>UPTIME: 99.99%</span>
-            <span>STACK: VITE · REACT · THREE.JS · TAILWIND</span>
+            <span>SPEC: INDUSTRIAL BRUTALIST UI</span>
           </div>
         </div>
 

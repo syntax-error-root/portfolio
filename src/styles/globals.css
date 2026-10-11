@@ -2,104 +2,111 @@
 
 @layer base {
   :root {
-    --bg-primary: #07090e;
-    --bg-secondary: #0c1017;
-    --bg-tertiary: #131922;
+    --bg-main: #0a0a0c;
+    --bg-surface: #101216;
+    --bg-cell: #13171e;
+    --border-grid: #1e242f;
+    --border-active: #38bdf8;
+    --text-high: #f1f5f9;
+    --text-mid: #94a3b8;
+    --text-dim: #475569;
+    --accent-red: #ff2a2a;
     --accent-cyan: #38bdf8;
-    --accent-violet: #818cf8;
-    --accent-emerald: #34d399;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border-subtle: rgba(255, 255, 255, 0.08);
+    --accent-amber: #f59e0b;
+    --accent-green: #22c55e;
   }
 
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border-radius: 0px !important; /* Industrial Brutalism: 90 degree corners strictly */
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    background-color: var(--bg-main);
+    color: var(--text-high);
     font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   }
 
   body {
     overflow-x: hidden;
-    background: #07090e;
+    background: #0a0a0c;
     min-height: 100vh;
-    line-height: 1.6;
-    selection-background-color: #38bdf8;
-    selection-color: #07090e;
+    line-height: 1.5;
   }
 
-  h1, h2, h3, .font-display {
-    font-family: 'Syne', sans-serif;
+  /* Structural Typography */
+  h1, h2, h3, .font-heading {
+    font-family: 'Syne', 'Space Grotesk', sans-serif;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
   }
 
-  code, pre, .font-mono {
+  code, pre, .font-mono, samp, kbd {
     font-family: 'JetBrains Mono', monospace;
   }
 
   ::selection {
-    background: #38bdf8;
-    color: #07090e;
+    background: #ff2a2a;
+    color: #ffffff;
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Tactical Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #07090e;
+  background: #0a0a0c;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 2px;
+  background: #1e242f;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(56, 189, 248, 0.5);
+  background: #ff2a2a;
 }
 
-/* Cyber Technical Grid Overlay */
-.cyber-grid {
+/* Tactical Crosshairs & Technical Grid */
+.blueprint-grid {
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(#1e242f 1px, transparent 1px),
+    linear-gradient(90deg, #1e242f 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Glass Panels with Precision Borders */
-.glass-panel {
-  background: rgba(12, 16, 23, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
-
-.glass-panel-glow {
-  background: rgba(12, 16, 23, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.08);
-}
-
-/* Subtle scanline motif */
-.scanlines {
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.25) 50%
-  ), linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.03),
-    rgba(0, 255, 0, 0.01),
-    rgba(0, 0, 255, 0.03)
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.25) 2px,
+    rgba(0, 0, 0, 0.25) 4px
   );
-  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Utilitarian Hard Borders */
+.border-tactical {
+  border: 1px solid #1e242f;
+}
+
+.border-tactical-active {
+  border: 1px solid #38bdf8;
+}
+
+.border-hazard {
+  border: 1px solid #ff2a2a;
+}
+
+/* Hazard Warning Tape pattern */
+.hazard-stripe {
+  background: repeating-linear-gradient(
+    -45deg,
+    #ff2a2a,
+    #ff2a2a 8px,
+    #0a0a0c 8px,
+    #0a0a0c 16px
+  );
 }

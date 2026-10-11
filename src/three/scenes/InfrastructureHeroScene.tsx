@@ -2,8 +2,8 @@ import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-// Data packet moving along network line with trailing glow
-function NetworkEdge({
+// Procedural Network Data Cable with Pulse
+function NetworkBeam({
   start,
   end,
   speed = 1,
@@ -24,90 +24,85 @@ function NetworkEdge({
 
   useFrame((state) => {
     if (!packetRef.current) return;
-    const t = (state.clock.elapsedTime * speed * 0.45) % 1;
+    const t = (state.clock.elapsedTime * speed * 0.4) % 1;
     packetRef.current.position.lerpVectors(startVec, endVec, t);
   });
 
   return (
     <group>
-      {/* Network Light Conduit */}
       {/* @ts-ignore */}
       <line geometry={lineGeometry}>
-        <lineBasicMaterial color={color} transparent opacity={0.4} />
+        <lineBasicMaterial color={color} transparent opacity={0.35} />
       </line>
-
-      {/* High-intensity Light Packet */}
       <mesh ref={packetRef}>
-        <sphereGeometry args={[0.09, 16, 16]} />
+        <boxGeometry args={[0.08, 0.08, 0.08]} />
         <meshBasicMaterial color="#ffffff" />
       </mesh>
     </group>
   );
 }
 
-// Compute Server Rack / High-Detail Monolithic Node Module
-function ServerRack({
+// Tactical Server Monolith Node
+function TacticalNode({
   position,
   label,
-  isCore = false
+  isCore = false,
+  code
 }: {
   position: [number, number, number],
   label: string,
-  isCore?: boolean
+  isCore?: boolean,
+  code: string
 }) {
-  const meshRef = useRef<THREE.Group>(null);
-  const pulseRef = useRef<THREE.MeshBasicMaterial>(null);
+  const groupRef = useRef<THREE.Group>(null);
+  const beaconRef = useRef<THREE.MeshBasicMaterial>(null);
 
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.75 + position[0]) * 0.15;
+    if (groupRef.current) {
+      groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.6 + position[0]) * 0.1;
     }
-    if (pulseRef.current) {
-      pulseRef.current.opacity = 0.4 + Math.sin(state.clock.elapsedTime * 3.5 + position[0]) * 0.5;
+    if (beaconRef.current) {
+      beaconRef.current.opacity = 0.3 + Math.sin(state.clock.elapsedTime * 4 + position[0]) * 0.6;
     }
   });
 
   return (
-    <group ref={meshRef} position={position}>
-      {/* Main Server Chassis Monolith */}
+    <group ref={groupRef} position={position}>
+      {/* Monolithic Server Body */}
       <mesh>
-        <boxGeometry args={[1.3, 2.0, 1.3]} />
+        <boxGeometry args={[1.4, 2.4, 1.4]} />
         <meshStandardMaterial
-          color={isCore ? '#111827' : '#090d16'}
-          metalness={0.92}
-          roughness={0.18}
+          color={isCore ? '#121214' : '#0d0e12'}
+          metalness={0.95}
+          roughness={0.15}
         />
       </mesh>
 
-      {/* Precision Structural Wireframe Outer Shell */}
+      {/* Industrial Cage Wireframe */}
       <mesh>
-        <boxGeometry args={[1.32, 2.02, 1.32]} />
+        <boxGeometry args={[1.42, 2.42, 1.42]} />
         <meshBasicMaterial
-          color={isCore ? '#a855f7' : '#38bdf8'}
+          color={isCore ? '#ff2a2a' : '#38bdf8'}
           wireframe
           transparent
           opacity={0.35}
         />
       </mesh>
 
-      {/* Internal Blade Server Ribs */}
-      {[-0.6, -0.2, 0.2, 0.6].map((offsetY, idx) => (
-        <mesh key={idx} position={[0, offsetY, 0.66]}>
-          <boxGeometry args={[1.0, 0.04, 0.02]} />
-          <meshBasicMaterial
-            color={idx % 2 === 0 ? '#38bdf8' : '#34d399'}
-            transparent
-            opacity={0.8}
-          />
+      {/* Horizontal Rack Blades */}
+      {[-0.8, -0.4, 0, 0.4, 0.8].map((y, idx) => (
+        <mesh key={idx} position={[0, y, 0.72]}>
+          <boxGeometry args={[1.2, 0.05, 0.02]} />
+          <meshBasicMaterial color={idx === 2 ? '#ff2a2a' : '#38bdf8'} transparent opacity={0.7} />
         </mesh>
       ))}
 
-      {/* Server Status Telemetry LED Array */}
-      <mesh position={[0.4, 0.82, 0.67]}>
-        <sphereGeometry args={[0.04, 8, 8]} />
+      {/* Tactical Status LED */}
+      <mesh position={[0.5, 1.0, 0.73]}>
+        <boxGeometry args={[0.08, 0.08, 0.02]} />
         <meshBasicMaterial
-          ref={pulseRef}
-          color={isCore ? '#c084fc' : '#38bdf8'}
+          ref={beaconRef}
+          color={isCore ? '#ff2a2a' : '#22c55e'}
           transparent
         />
       </mesh>
@@ -115,120 +110,109 @@ function ServerRack({
   );
 }
 
-// Atmospheric Ambient Data Particles
-function AtmosphericDust({ count = 350 }: { count?: number }) {
-  const pointsRef = useRef<THREE.Points>(null);
-
-  const geometry = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const col = new Float32Array(count * 3);
-    const colorCyan = new THREE.Color('#38bdf8');
-    const colorViolet = new THREE.Color('#818cf8');
-    const colorWhite = new THREE.Color('#ffffff');
-
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 40;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 30;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 25;
-
-      const rand = Math.random();
-      const c = rand > 0.6 ? colorCyan : (rand > 0.3 ? colorViolet : colorWhite);
-      col[i * 3] = c.r;
-      col[i * 3 + 1] = c.g;
-      col[i * 3 + 2] = c.b;
-    }
-
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-    return geo;
-  }, [count]);
+// Tactical Radar Rings
+function RadarRings() {
+  const r1 = useRef<THREE.Mesh>(null);
+  const r2 = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
-    if (!pointsRef.current) return;
-    pointsRef.current.rotation.y = state.clock.elapsedTime * 0.015;
-    pointsRef.current.rotation.x = state.clock.elapsedTime * 0.008;
+    if (r1.current) r1.current.rotation.z = state.clock.elapsedTime * 0.2;
+    if (r2.current) r2.current.rotation.z = -state.clock.elapsedTime * 0.15;
   });
 
   return (
-    <points ref={pointsRef} geometry={geometry}>
-      <pointsMaterial
-        size={0.14}
-        vertexColors
-        transparent
-        opacity={0.7}
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-      />
+    <group position={[0, -0.2, 0]}>
+      {/* Radar Ring 1 */}
+      <mesh ref={r1} rotation={[Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[4.2, 4.24, 64]} />
+        <meshBasicMaterial color="#1e242f" side={THREE.DoubleSide} transparent opacity={0.6} />
+      </mesh>
+
+      {/* Radar Ring 2 */}
+      <mesh ref={r2} rotation={[Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[6.5, 6.54, 64]} />
+        <meshBasicMaterial color="#ff2a2a" side={THREE.DoubleSide} transparent opacity={0.3} />
+      </mesh>
+    </group>
+  );
+}
+
+// Low-density High-Performance Dust Matrix
+function TechnicalDust() {
+  const ref = useRef<THREE.Points>(null);
+
+  const geo = useMemo(() => {
+    const count = 220;
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      pos[i * 3] = (Math.random() - 0.5) * 36;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 24;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 20;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    return g;
+  }, []);
+
+  useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.y = state.clock.elapsedTime * 0.01;
+    }
+  });
+
+  return (
+    <points ref={ref} geometry={geo}>
+      <pointsMaterial size={0.08} color="#94a3b8" transparent opacity={0.4} />
     </points>
   );
 }
 
 export function InfrastructureHeroScene() {
   const rootGroupRef = useRef<THREE.Group>(null);
-  const ring1Ref = useRef<THREE.Mesh>(null);
-  const ring2Ref = useRef<THREE.Mesh>(null);
 
-  // Smooth pointer-based parallax
   useFrame((state) => {
     if (!rootGroupRef.current) return;
-    const targetX = state.pointer.x * 0.45;
-    const targetY = state.pointer.y * 0.3;
+    const targetX = state.pointer.x * 0.35;
+    const targetY = state.pointer.y * 0.25;
     rootGroupRef.current.rotation.y += (targetX - rootGroupRef.current.rotation.y) * 0.04;
     rootGroupRef.current.rotation.x += (-targetY - rootGroupRef.current.rotation.x) * 0.04;
-
-    if (ring1Ref.current) ring1Ref.current.rotation.z += 0.006;
-    if (ring2Ref.current) ring2Ref.current.rotation.x += 0.008;
   });
 
-  // Architectural Nodes in 3D Space
-  const nodes: { pos: [number, number, number]; label: string; isCore?: boolean }[] = [
-    { pos: [0, 0, 0], label: "Core Control Plane", isCore: true },
-    { pos: [-3.6, 1.6, -1.2], label: "Ingress Gateway" },
-    { pos: [3.6, 1.8, -1.0], label: "K8s Worker Node" },
-    { pos: [-3.0, -1.9, 1.4], label: "Observability Telemetry" },
-    { pos: [3.2, -1.6, 1.5], label: "Persistent State DB" },
-    { pos: [0, 3.2, -2.5], label: "Anycast DNS Edge" },
-    { pos: [0, -2.8, -2.2], label: "CI/CD Auto-Rollout" },
+  const nodes: { pos: [number, number, number]; label: string; code: string; isCore?: boolean }[] = [
+    { pos: [0, 0, 0], label: "CONTROL PLANE", code: "CTRL-00", isCore: true },
+    { pos: [-4.0, 1.4, -1.0], label: "EDGE INGRESS", code: "ING-01" },
+    { pos: [4.0, 1.6, -1.2], label: "CONTAINER CLUSTER", code: "POD-X4" },
+    { pos: [-3.4, -1.8, 1.2], label: "TELEMETRY EXPORTER", code: "PROM-9" },
+    { pos: [3.4, -1.6, 1.4], label: "PERSISTENT DB", code: "WAL-02" },
+    { pos: [0, 3.2, -2.4], label: "ANYCAST DNS", code: "DNS-53" },
   ];
 
   return (
     <group ref={rootGroupRef}>
-      {/* Dynamic Lighting Setup */}
-      <ambientLight intensity={0.45} />
-      <directionalLight position={[10, 12, 10]} intensity={1.5} color="#ffffff" />
-      <pointLight position={[0, 0, 3]} intensity={3.0} color="#38bdf8" distance={18} />
-      <pointLight position={[-5, 3, -2]} intensity={2.2} color="#818cf8" distance={15} />
-      <pointLight position={[5, -3, 2]} intensity={2.5} color="#34d399" distance={15} />
+      {/* Precision Illumination */}
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[12, 16, 12]} intensity={1.8} color="#ffffff" />
+      <pointLight position={[0, 0, 2.5]} intensity={2.5} color="#ff2a2a" distance={15} />
+      <pointLight position={[-4, 2, -1]} intensity={2.0} color="#38bdf8" distance={15} />
 
-      {/* Atmospheric Star Dust */}
-      <AtmosphericDust count={350} />
+      {/* Radar concentric rings */}
+      <RadarRings />
 
-      {/* Central Quantum Orbital Rings surrounding Core */}
-      <group position={[0, 0, 0]}>
-        <mesh ref={ring1Ref} rotation={[Math.PI / 3, 0, 0]}>
-          <torusGeometry args={[2.4, 0.035, 16, 80]} />
-          <meshBasicMaterial color="#38bdf8" transparent opacity={0.65} />
-        </mesh>
-        <mesh ref={ring2Ref} rotation={[-Math.PI / 4, Math.PI / 3, 0]}>
-          <torusGeometry args={[2.7, 0.025, 16, 80]} />
-          <meshBasicMaterial color="#c084fc" transparent opacity={0.55} />
-        </mesh>
-      </group>
+      {/* Ambient Data Grid Particles */}
+      <TechnicalDust />
 
-      {/* Render High-Detail Server Monoliths */}
+      {/* Render Server Monoliths */}
       {nodes.map((n, i) => (
-        <ServerRack key={i} position={n.pos} label={n.label} isCore={n.isCore} />
+        <TacticalNode key={i} position={n.pos} label={n.label} code={n.code} isCore={n.isCore} />
       ))}
 
-      {/* Interconnecting Network Beams with Moving Packets */}
-      <NetworkEdge start={nodes[1].pos} end={nodes[0].pos} speed={1.2} color="#38bdf8" />
-      <NetworkEdge start={nodes[0].pos} end={nodes[2].pos} speed={1.4} color="#38bdf8" />
-      <NetworkEdge start={nodes[0].pos} end={nodes[3].pos} speed={0.9} color="#818cf8" />
-      <NetworkEdge start={nodes[0].pos} end={nodes[4].pos} speed={1.1} color="#34d399" />
-      <NetworkEdge start={nodes[5].pos} end={nodes[1].pos} speed={1.5} color="#38bdf8" />
-      <NetworkEdge start={nodes[6].pos} end={nodes[0].pos} speed={1.3} color="#c084fc" />
-      <NetworkEdge start={nodes[3].pos} end={nodes[4].pos} speed={0.8} color="#818cf8" />
+      {/* Network Pathways */}
+      <NetworkBeam start={nodes[1].pos} end={nodes[0].pos} speed={1.2} color="#38bdf8" />
+      <NetworkBeam start={nodes[0].pos} end={nodes[2].pos} speed={1.4} color="#38bdf8" />
+      <NetworkBeam start={nodes[0].pos} end={nodes[3].pos} speed={0.9} color="#ff2a2a" />
+      <NetworkBeam start={nodes[0].pos} end={nodes[4].pos} speed={1.1} color="#38bdf8" />
+      <NetworkBeam start={nodes[5].pos} end={nodes[1].pos} speed={1.5} color="#38bdf8" />
+      <NetworkBeam start={nodes[3].pos} end={nodes[4].pos} speed={0.7} color="#94a3b8" />
     </group>
   );
 }
