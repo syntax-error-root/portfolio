@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { InfrastructureHeroScene } from '../../three/scenes/InfrastructureHeroScene';
 import { profileConfig } from '../../config';
-import { ArrowRight, Terminal, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Terminal } from 'lucide-react';
 
 interface HeroProps {
   onOpenTerminal: () => void;
@@ -35,129 +35,53 @@ export function Hero({ onOpenTerminal }: HeroProps) {
       {/* Hero Foreground Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pointer-events-none">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="max-w-3xl flex flex-col items-start pointer-events-auto">
           
-          {/* Main Headline & Narrative */}
-          <div className="lg:col-span-7 flex flex-col items-start pointer-events-auto">
-            
-            {/* Pill Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-md mb-6 shadow-lg shadow-cyan-500/5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-xs font-mono font-medium tracking-wider text-cyan-300">
-                {profileConfig.eyebrow}
-              </span>
-            </div>
-
-            {/* Editorial Macro Headline */}
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[1.02] tracking-tight font-heading mb-6">
-              Engineering <br />
-              <span className="bg-gradient-to-r from-cyan-400 via-sky-200 to-indigo-400 bg-clip-text text-transparent">
-                the invisible.
-              </span>
-            </h1>
-
-            {/* Supporting Copy */}
-            <p className="text-base sm:text-xl text-slate-300 max-w-xl font-normal leading-relaxed mb-8">
-              {profileConfig.supportingCopy}
-            </p>
-
-            {/* Call to Actions */}
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#projects"
-                className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-sm tracking-wide transition-all shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5"
-              >
-                <span>Explore My Work</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-white/20 font-medium text-sm transition-all backdrop-blur-md hover:-translate-y-0.5"
-              >
-                <span>Let's Connect</span>
-              </a>
-
-              <button
-                onClick={onOpenTerminal}
-                className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 text-slate-300 hover:text-cyan-400 border border-white/10 hover:border-cyan-500/30 text-sm font-mono transition-all backdrop-blur-md"
-              >
-                <Terminal className="w-4 h-4 text-cyan-400" />
-                <span className="hidden sm:inline">Shell</span>
-              </button>
-            </div>
+          {/* Pill Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-md mb-6 shadow-lg shadow-cyan-500/5">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-xs font-mono font-medium tracking-wider text-cyan-300">
+              {profileConfig.eyebrow}
+            </span>
           </div>
 
-          {/* Interactive Live Telemetry HUD Panel */}
-          <div className="lg:col-span-5 w-full pointer-events-auto">
-            <div className="glass-card rounded-2xl p-6 shadow-2xl border border-white/[0.08] relative overflow-hidden">
-              
-              {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-white/[0.08] pb-3 mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping opacity-75" />
-                  <span className="text-xs font-mono font-semibold text-slate-200">
-                    INFRASTRUCTURE TELEMETRY
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                  LIVE CLUSTER
-                </span>
-              </div>
+          {/* Editorial Macro Headline */}
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[1.02] tracking-tight font-heading mb-6">
+            Engineering <br />
+            <span className="bg-gradient-to-r from-cyan-400 via-sky-200 to-indigo-400 bg-clip-text text-transparent">
+              the invisible.
+            </span>
+          </h1>
 
-              {/* Simulated Terminal Status Messages */}
-              <div className="space-y-2.5 font-mono text-xs mb-5">
-                <div className="flex items-start gap-2 text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-cyan-400 font-bold">[SYS]</span> Infrastructure initialized
-                  </div>
-                </div>
-                <div className="flex items-start gap-2 text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-indigo-400 font-bold">[NET]</span> Distributed systems mesh active
-                  </div>
-                </div>
-                <div className="flex items-start gap-2 text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-emerald-400 font-bold">[CI/CD]</span> Automated deployment pipeline ready
-                  </div>
-                </div>
-                <div className="flex items-start gap-2 text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-amber-400 font-bold">[OBS]</span> Monitoring telemetry streams healthy
-                  </div>
-                </div>
-              </div>
+          {/* Supporting Copy */}
+          <p className="text-base sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed mb-8">
+            {profileConfig.supportingCopy}
+          </p>
 
-              {/* Cluster Health Metrics Grid */}
-              <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/[0.08] text-xs font-mono">
-                <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                  <div className="text-[10px] text-slate-500 mb-0.5">INGRESS LATENCY</div>
-                  <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                    <span>14.2 ms</span>
-                    <span className="text-[9px] text-emerald-400 font-normal">p99</span>
-                  </div>
-                </div>
+          {/* Call to Actions */}
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="#projects"
+              className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-sm tracking-wide transition-all shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5"
+            >
+              <span>Explore My Work</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
 
-                <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                  <div className="text-[10px] text-slate-500 mb-0.5">AVAILABILITY SLA</div>
-                  <div className="text-sm font-bold text-emerald-400">99.99%</div>
-                </div>
-              </div>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-white/20 font-medium text-sm transition-all backdrop-blur-md hover:-translate-y-0.5"
+            >
+              <span>Let's Connect</span>
+            </a>
 
-              {/* Footer Interactive Hint */}
-              <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-slate-400">
-                <span className="flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-cyan-400" />
-                  Interactive 3D viewport
-                </span>
-                <span className="font-mono text-[10px] text-slate-500">Move cursor to orbit</span>
-              </div>
-            </div>
+            <button
+              onClick={onOpenTerminal}
+              className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 text-slate-300 hover:text-cyan-400 border border-white/10 hover:border-cyan-500/30 text-sm font-mono transition-all backdrop-blur-md"
+            >
+              <Terminal className="w-4 h-4 text-cyan-400" />
+              <span className="hidden sm:inline">Shell</span>
+            </button>
           </div>
 
         </div>
