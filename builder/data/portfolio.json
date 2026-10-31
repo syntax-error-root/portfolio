@@ -2,138 +2,150 @@
   "profile": {
     "name": "Omik",
     "handle": "syntax-error-root",
-    "role": "DevOps & Platform Systems Engineer",
-    "headline": "Engineering fault-tolerant cloud platforms, reproducible CI/CD delivery pipelines, and low-latency telemetry infrastructure.",
+    "role": "DevOps Engineer · Platform Automation & AI Systems",
+    "headline": "I automate server infrastructure with Terraform and Prometheus, train domain-specific AI models, and integrate autonomous agents directly into production.",
     "avatar": "avatar.png",
     "location": "Bogura, Bangladesh",
     "timezone": "Asia/Dhaka",
     "utc_offset": "UTC+6",
-    "status": "Available for Platform Engineering, SRE Contracts & Infrastructure Migrations",
+    "status": "Available for Remote DevOps Roles, Terraform Stacks & AI Agent Deployments",
     "about": [
-      "I am a DevOps and Platform Systems Engineer operating from Bogura, Bangladesh (UTC+6). My engineering work centers on eliminating single points of failure, turning infrastructure into deterministic code, and designing systems that survive production stress without manual intervention.",
-      "Rather than relying on brittle cloud consoles and opaque managed services, I build platforms from the kernel and network up: reproducible state via SaltStack and Docker, hardened Layer-4/Layer-7 ingress with HAProxy and Nginx, robust CI/CD delivery pipelines, and deep observability stacks (Prometheus, Grafana, Alertmanager) that surface failure signals before users notice.",
-      "This portfolio itself is compiled directly in Rust using Maud macros with inlined critical CSS — delivering a single-pass ~27KB payload with zero render-blocking JavaScript and sub-30ms first contentful paint."
+      "I am a DevOps and platform systems engineer from Bogura, Bangladesh (UTC+6). Most of my working day involves writing clean Terraform configurations, setting up Prometheus metric scraping and alert rules, hardening Linux hosts, and integrating autonomous AI agents into live production environments.",
+      "I don't believe in manual server clicks, opaque dashboards, or brittle deployments. Everything I build is driven by code: reproducible cloud infrastructure through Terraform and SaltStack, zero-downtime container rollouts via Docker, real-time telemetry with Prometheus and Grafana, and purpose-built AI agents running as systemd daemons to triage incidents before they cascade into outages.",
+      "Beyond standard infrastructure, I train and fine-tune open AI models on specific, curated datasets so they understand domain-specific codebases and operational procedures without hallucinating. This portfolio itself is compiled in native Rust via Maud with inlined critical CSS — a single-pass ~35KB payload with zero client-side JavaScript delay and sub-30ms first paint."
     ],
     "now": {
-      "focus": "Automating zero-downtime container deployments, expanding SaltStack state formulas (wp-saltstack), and building automated incident triage agents.",
-      "reading": "Linux networking internals, TCP socket buffer starvation under high concurrency, and eBPF tracing with bpftool.",
-      "location_note": "Bogura, Bangladesh (UTC+6) — operating globally across distributed remote engineering teams."
+      "focus": "Automating multi-node VPS provisioning with Terraform, training custom LoRA models on engineering logs, and deploying self-healing Linux triage agents.",
+      "reading": "eBPF tracepoints in the Linux 6.x kernel, low-overhead Prometheus metric scraping at scale, and dataset distillation techniques.",
+      "location_note": "Bogura, Bangladesh (UTC+6) — collaborating with distributed engineering teams worldwide."
     }
   },
   "domains": [
     {
-      "title": "Infrastructure & Linux Systems",
-      "summary": "Low-level Linux systems administration, kernel parameter optimization, storage layout, and resilient ingress architecture.",
+      "title": "Server Automation & IaC (Terraform & SaltStack)",
+      "summary": "Writing clean, declarative infrastructure-as-code to spin up, configure, and maintain production fleets automatically.",
       "skills": [
-        { "name": "Kernel & Sysctl Tuning", "note": "TCP window scaling, somaxconn backlog buffers, file-max limits, vm.swappiness, dirty page writeback tuning." },
-        { "name": "Linux Storage & Filesystems", "note": "LVM volume management, ext4/XFS filesystem tuning, I/O schedulers, disk saturation troubleshooting with iostat." },
-        { "name": "systemd & Service Isolation", "note": "Custom unit definitions, watchdog supervision, cgroups v2 resource quotas, slice-based process isolation." },
-        { "name": "Reverse Proxies & Ingress", "note": "Nginx edge caching, HAProxy Layer-4/Layer-7 load balancing, keepalived VIP failover, Let's Encrypt automated ACME renewal." },
-        { "name": "Hardening & Access Control", "note": "Strict firewall rules via nftables/UFW, SSH key infrastructure with Ed25519, fail2ban rate-limiting, least-privilege Unix permissions." }
+        { "name": "Terraform Cloud & Bare-Metal Provisioning", "note": "HCL architecture, reusable modules (VPC, compute, security groups), remote state locking with S3/DynamoDB, and clean rollback paths." },
+        { "name": "SaltStack Configuration Management", "note": "Declarative SLS state formulas (wp-saltstack), pillar secrets, and automated configuration convergence across bare-metal and cloud nodes." },
+        { "name": "Linux Kernel & System Administration", "note": "TCP socket window tuning (somaxconn), cgroups v2 resource slicing, systemd service units, and automated firewall rules via nftables." },
+        { "name": "POSIX Shell Automation", "note": "Defensive Bash scripting (set -euo pipefail) for cold-start bootstrapping, zero-dependency server provisioning, and automated backup rotation." }
       ]
     },
     {
-      "title": "Containers & Orchestration",
-      "summary": "Deterministic container packaging, runtime isolation, minimal base images, and service mesh connectivity.",
+      "title": "Observability & SRE (Prometheus & Grafana)",
+      "summary": "Building end-to-end monitoring pipelines that alert on real operational risks before users notice downtime.",
       "skills": [
-        { "name": "Docker Engine & Multi-Stage Builds", "note": "Scratch/Alpine minimal footprint images, BuildKit layer caching, reproducible OCI container artifacts." },
-        { "name": "Container Security & Isolation", "note": "Rootless container execution, read-only root filesystems, Linux capabilities dropping, Trivy CVE scanning." },
-        { "name": "Docker Compose & Local Stacks", "note": "Declarative multi-container topologies, custom bridge networks, volume persistence, healthcheck dependencies." },
-        { "name": "Podman & OCI Standards", "note": "Daemonless container runtime execution, systemd quadlet integration, container-to-host socket delegation." },
-        { "name": "Registry & Image Lifecycle", "note": "Self-hosted private registry instances, image retention policies, immutable semantic digest tagging." }
+        { "name": "Prometheus & Exporter Ecosystem", "note": "Node Exporter, cAdvisor, Blackbox probes, custom application metric instrumentation, and tuned scrape intervals to minimize server overhead." },
+        { "name": "PromQL & Alert Rule Engineering", "note": "Writing accurate PromQL queries for CPU throttling, memory headroom, disk I/O wait times, error budgets, and high-percentile latency distributions." },
+        { "name": "Alertmanager Routing & Deduplication", "note": "Grouping rules, route trees, notification dispatch to Slack/Discord/webhooks, and silencing flapping alerts during maintenance windows." },
+        { "name": "Grafana Production Dashboards", "note": "Golden signal dashboards (traffic, errors, latency, saturation) designed for rapid troubleshooting rather than confusing visual noise." }
       ]
     },
     {
-      "title": "Automation & Delivery (CI/CD & IaC)",
-      "summary": "Idempotent state provisioning, automated build pipelines, and deterministic deployment rollbacks.",
+      "title": "AI Model Training & Specific Datasets",
+      "summary": "Curating domain datasets, fine-tuning open weights, and deploying quantized models for real-world engineering tasks.",
       "skills": [
-        { "name": "SaltStack Configuration Management", "note": "Declarative SLS state formulas (wp-saltstack), pillar encryption, idempotent node convergence across bare-metal fleets." },
-        { "name": "CI/CD Pipeline Engineering", "note": "GitHub Actions workflow automation, automated lint/build/test stages, conditional matrix deployment pipelines." },
-        { "name": "POSIX Shell & Script Automation", "note": "Defensive Bash scripting (set -euo pipefail), automated database dump rotations, automated DR restore verification." },
-        { "name": "GitOps & Version-Controlled State", "note": "Everything-as-code: infrastructure topologies, proxy definitions, environment templates, and reproducible manifests." },
-        { "name": "Zero-Downtime Deployment Strategies", "note": "Blue-green container swapping, canary traffic routing, pre-flight healthcheck verification with instant automated rollback." }
+        { "name": "Dataset Preparation & Curation", "note": "Cleaning, tokenizing, and structuring custom instruction-tuning datasets (JSONL, Q&A pairs) from technical documentation, logs, and git histories." },
+        { "name": "Model Fine-Tuning (LoRA / QLoRA)", "note": "Parameter-efficient fine-tuning on open foundation models (Llama, Mistral, Qwen) to achieve domain-specific technical accuracy and eliminate hallucinations." },
+        { "name": "Retrieval-Augmented Generation (RAG)", "note": "Vector embeddings, hybrid BM25 + semantic similarity search, and source-grounded prompt pipelines using vector stores." },
+        { "name": "Inference Optimization & Serving", "note": "Model quantization (GGUF, AWQ), running local inference engines (vLLM, Ollama), and building low-latency asynchronous FastAPI microservices." }
       ]
     },
     {
-      "title": "Observability, Telemetry & SRE",
-      "summary": "Golden-signals metrics scraping, structured log correlation, SLO enforcement, and low-latency incident response.",
+      "title": "Production Server AI Agent Integration",
+      "summary": "Wiring autonomous AI agents directly into production Linux environments with strict security boundaries.",
       "skills": [
-        { "name": "Prometheus & Exporters", "note": "Node Exporter, cAdvisor, custom Prometheus metric instrumentations, PromQL aggregation rules." },
-        { "name": "Grafana Dashboards & Visualization", "note": "Real-time node saturation matrices, request latency distributions, visual alerting panels." },
-        { "name": "Alertmanager & Incident Routing", "note": "Alert deduplication, route trees, notification dispatch to Slack/Discord/webhook receivers, flapping alert inhibition." },
-        { "name": "Log Aggregation & Kernel Tracing", "note": "Structured journald log ingestion, syslog forwarding, strace/perf diagnostics, socket inspection with ss." },
-        { "name": "Server-Side Tracking Telemetry", "note": "Server-side GTM containers, GA4 Measurement Protocol, Meta CAPI event deduplication, Redis payload buffering." }
+        { "name": "Supervised Server Agent Daemons", "note": "Running agents as supervised systemd services listening to Alertmanager webhooks and system signals with least-privilege security controls." },
+        { "name": "Automated Incident Triage Pipelines", "note": "Agent gathers non-destructive diagnostic context (ss, dmesg, journalctl, memory saturation), correlates the root cause, and drafts the runbook." },
+        { "name": "Docker & Zero-Downtime Rollouts", "note": "Multi-stage minimal image packaging, healthcheck dependency probes, blue-green container swaps, and automated rollback upon failed deploy." },
+        { "name": "Server-Side Tracking Pipelines", "note": "Server-Side GTM containers, Meta Conversions API (CAPI), and GA4 Measurement Protocol with Redis deduplication to preserve conversion telemetry." }
       ]
     }
   ],
   "projects": [
     {
+      "id": "terraform-prometheus-infra",
+      "category": "INFRASTRUCTURE AS CODE",
+      "title": "Automated Multi-Node Cloud Platform with Terraform & Prometheus",
+      "headline": "Declarative Terraform HCL modules spinning up hardened Linux hosts, paired with automated Prometheus metric collectors and Alertmanager routing.",
+      "problem": "Setting up new servers was previously done via manual SSH sessions, forgotten firewall configurations, and inconsistent packages. When services degraded under load, the team only found out after customer complaints.",
+      "solution": "Wrote clean, modular Terraform configurations to provision VPS instances, private networking, and firewall rules in minutes. Automated the deployment of Prometheus and Node Exporter via cloud-init, streaming real-time system metrics to Grafana. Configured Alertmanager to notify on-call engineers within 15 seconds if disk I/O saturates or CPU throttles.",
+      "stack": [
+        "Terraform",
+        "Prometheus",
+        "Grafana",
+        "Alertmanager",
+        "Node Exporter",
+        "Ubuntu Linux",
+        "HCL"
+      ],
+      "link": "https://github.com/syntax-error-root/portfolio",
+      "linkLabel": "Inspect Terraform & Prometheus Configs"
+    },
+    {
+      "id": "custom-ai-training",
+      "category": "AI MODEL TRAINING",
+      "title": "Domain-Specific AI Model Training on Custom Engineering Datasets",
+      "headline": "Fine-tuning open weights on internal documentation and system logs for accurate, zero-hallucination technical assistance.",
+      "problem": "Generic foundation models routinely hallucinated proprietary API endpoints, outdated configuration parameters, and internal command syntax when queried by team members.",
+      "solution": "Curated and cleaned thousands of structured instruction-tuning pairs in JSONL format from internal technical documentation and commit histories. Fine-tuned an open-source model using parameter-efficient LoRA techniques, quantized the weights for fast inference, and wrapped the model in an asynchronous FastAPI service. Reduced technical hallucination to near zero on internal workflows.",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "LoRA / QLoRA",
+        "Hugging Face",
+        "FastAPI",
+        "Docker",
+        "JSONL Datasets"
+      ],
+      "link": "https://github.com/syntax-error-root",
+      "linkLabel": "View Training Pipeline"
+    },
+    {
+      "id": "production-agent-integration",
+      "category": "SERVER AUTOMATION & AI AGENTS",
+      "title": "Production Server AI Agent with Automated Incident Triage",
+      "headline": "A background Python daemon connecting Alertmanager webhooks to an autonomous AI agent for instant failure diagnosis on live servers.",
+      "problem": "Waking up at 3 AM to SSH into servers, manually running dmesg, ss, and journalctl, and figuring out why a worker died costs valuable time during production outages.",
+      "solution": "Engineered an event-driven daemon running as a systemd service. When Prometheus fires an alert webhook, the agent safely executes non-destructive diagnostic commands over SSH, filters out sensitive data, analyzes the root cause, and posts an incident summary to Slack with the verified rollback or fix command ready for human sign-off.",
+      "stack": [
+        "Python 3",
+        "AsyncIO",
+        "systemd",
+        "Prometheus Webhooks",
+        "Bash Automation",
+        "Claude / OpenAI APIs",
+        "Linux Diagnostics"
+      ],
+      "link": "https://github.com/syntax-error-root",
+      "linkLabel": "Inspect Agent Architecture"
+    },
+    {
       "id": "high-availability-platform",
       "category": "INFRASTRUCTURE & ORCHESTRATION",
-      "title": "High-Availability E-Commerce & CMS Cloud Platform",
+      "title": "High-Availability E-Commerce & CMS Cloud Platform (wp-saltstack)",
       "headline": "Fault-tolerant, auto-healing LAMP/LEMP platform orchestrated via wp-saltstack behind active-passive HAProxy and Nginx layer-7 ingress.",
-      "problem": "Monolithic e-commerce and CMS workloads deployed on single droplets suffered unmonitored crash loops, cascade failovers during traffic surges, and hours of configuration drift across development, staging, and production environments.",
-      "solution": "Engineered reproducible infrastructure state using SaltStack (wp-saltstack formula) with automated state enforcement across Debian/Ubuntu nodes. Ingress traffic terminates at dual HAProxy load balancers running keepalived for virtual IP failover, distributing requests to horizontally scaled Nginx + PHP-FPM worker pools with isolated MySQL replication replicas and automated Let's Encrypt TLS cycle management. Cut deployment recovery time from hours to sub-180s deterministic state convergence.",
+      "problem": "Monolithic e-commerce instances on single droplets suffered unmonitored crash loops, cascade failovers during sales surges, and configuration drift across servers.",
+      "solution": "Engineered reproducible infrastructure state using SaltStack (wp-saltstack formula) with automated state enforcement across Debian/Ubuntu nodes. Ingress terminates at dual HAProxy load balancers running keepalived for virtual IP failover, distributing traffic to horizontally scaled Nginx + PHP-FPM workers with automated Let's Encrypt TLS renewal and sub-180s recovery time.",
       "stack": [
         "SaltStack",
         "HAProxy",
         "Nginx",
         "Docker",
         "Keepalived",
-        "PHP-FPM",
         "MariaDB Galera",
-        "Let's Encrypt",
         "Ubuntu Linux"
       ],
       "link": "https://github.com/syntax-error-root/wp-saltstack",
       "linkLabel": "Inspect wp-saltstack State Engine"
     },
     {
-      "id": "observability-telemetry-hub",
-      "category": "OBSERVABILITY & SRE",
-      "title": "Observability-First Telemetry Hub & Signal Aggregator",
-      "headline": "Unified metrics, structured log pipelines, and SLO-driven alerting engine across distributed bare-metal and container fleets.",
-      "problem": "Silent disk saturations, unindexed log explosions in production instances, and blind downtime notifications arriving only after customers opened urgent support tickets.",
-      "solution": "Designed and rolled out an end-to-end monitoring fabric centered on Prometheus with Node Exporter, Blackbox Exporter, and cAdvisor daemonsets scraping sub-second kernel and container counters. Telemetry feeds Grafana dashboards configured with golden signal visualization (latency, traffic, errors, saturation) and Alertmanager routing critical P1 thresholds to Discord/Slack webhooks while silencing transient spikes. Supplemented with systemd journalctl structured syslog pipelines to audit socket states and kernel OOM signals deterministically.",
-      "stack": [
-        "Prometheus",
-        "Grafana",
-        "Alertmanager",
-        "Node Exporter",
-        "cAdvisor",
-        "systemd/journald",
-        "Bash",
-        "Linux eBPF Tracing"
-      ],
-      "link": "https://github.com/syntax-error-root",
-      "linkLabel": "Inspect Telemetry Architectures"
-    },
-    {
-      "id": "gitops-cicd-pipeline",
-      "category": "AUTOMATION & DELIVERY",
-      "title": "Zero-Downtime CI/CD & Automated Delivery Engine",
-      "headline": "Git-driven automated pipeline with multi-stage OCI image compilation, local registry caching, and rolling blue-green rollbacks.",
-      "problem": "Manual SSH deployments, untagged Docker runtime changes, broken dependencies pulled live during deployments, and absence of automated smoke tests causing production outages on code push.",
-      "solution": "Constructed an automated GitOps delivery workflow triggered by Git commits. Pipeline executes linting and security vulnerability scanning (Trivy), executes multi-stage Docker builds leveraging Buildx Layer Caching, and pushes cryptographically tagged images to a private registry. Deployment orchestrates rolling container replacements behind health-check probes; on any non-200 HTTP response or container exit within 60s, the system triggers an automatic deterministic rollback to the previous SHA.",
-      "stack": [
-        "GitHub Actions",
-        "Docker Buildx",
-        "GitOps",
-        "Trivy Scanner",
-        "Bash Automation",
-        "Nginx Reverse Proxy",
-        "Linux cgroups"
-      ],
-      "link": "https://github.com/syntax-error-root/portfolio",
-      "linkLabel": "View Delivery Infrastructure"
-    },
-    {
       "id": "serverside-tracking-pipeline",
       "category": "DATA & CONVERSION INFRASTRUCTURE",
       "title": "Server-Side Tracking & Ad-Ops Telemetry Pipeline",
       "headline": "Custom server-side GTM proxy and event broker preserving conversion telemetry through Safari ITP and ad-blocker signal loss.",
-      "problem": "Client-side tracking scripts were losing up to 35% of ad attribution and revenue telemetry due to aggressive ad-blockers, iOS privacy sandboxing, and Safari 7-day cookie expiration limits, distorting ROAS calculations.",
-      "solution": "Engineered a hardened Server-Side Google Tag Manager (sGTM) container cluster hosted on a custom first-party subdomain behind Nginx with Redis event deduplication. Client events send raw HTTP data payloads directly to the server container, which enriches, normalizes, and dispatches server-to-server calls to Meta Conversions API (CAPI) and GA4 Measurement Protocol with 99.4% event match quality and zero client CPU overhead.",
+      "problem": "Client-side tracking scripts were losing up to 35% of ad attribution and revenue telemetry due to aggressive ad-blockers, iOS privacy sandboxing, and Safari cookie limits, distorting ROAS calculations.",
+      "solution": "Engineered a hardened Server-Side Google Tag Manager (sGTM) cluster hosted on a custom first-party subdomain behind Nginx with Redis event deduplication. Client events send raw HTTP data payloads directly to the server container, which enriches, normalizes, and dispatches server-to-server calls to Meta Conversions API (CAPI) and GA4 Measurement Protocol with 99.4% event match quality and zero client CPU overhead.",
       "stack": [
         "Server-Side GTM",
         "GA4 Measurement Protocol",
@@ -145,25 +157,6 @@
       ],
       "link": "https://github.com/syntax-error-root",
       "linkLabel": "View Tracking Architecture"
-    },
-    {
-      "id": "autonomous-triage-agent",
-      "category": "PLATFORM AUTOMATION & AI",
-      "title": "Autonomous Incident Triage & Operational Runbook Agent",
-      "headline": "Event-driven Python and Bash automation pipeline parsing alert webhooks, correlating journal logs, and drafting mitigation runbooks.",
-      "problem": "On-call fatigue caused by noisy infrastructure alerts requiring engineers to manually SSH into hosts, run standard diagnostic commands (dmesg, ss -tulpn, free -m, journalctl), and correlate time series.",
-      "solution": "Implemented a lightweight event daemon that receives Alertmanager webhook payloads, triggers non-destructive diagnostic telemetry collection over SSH via parameterized Bash scripts, sanitizes PII, and correlates output against historical operational runbooks using an LLM reasoning engine. Provides on-call engineers with an instant root-cause hypothesis and validated one-line mitigation commands within 8 seconds of alert firing.",
-      "stack": [
-        "Python 3",
-        "AsyncIO",
-        "Bash / POSIX Shell",
-        "Alertmanager Webhooks",
-        "OpenAI / Claude API",
-        "Linux Syscall Tracing",
-        "Systemd"
-      ],
-      "link": "https://github.com/syntax-error-root",
-      "linkLabel": "Inspect Triage Daemon"
     }
   ],
   "contact": {

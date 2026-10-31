@@ -666,9 +666,9 @@ a {
   gap: 1.5rem;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 768px) {
   .domains-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1028,10 +1028,10 @@ fn render_page(data: &PortfolioData) -> Markup {
                     section class="section" id="projects" {
                         div class="container" {
                             div class="section__head" {
-                                span class="section__tag" { "Selected Case Studies" }
-                                h2 class="section__h2" { "Engineering Logs & Deployments" }
+                                span class="section__tag" { "Selected Work" }
+                                h2 class="section__h2" { "Production Systems & Field Notes" }
                                 p class="section__desc" {
-                                    "Concrete systems engineered for production availability, measurable conversion telemetry, and minimal operational overhead."
+                                    "Real projects where I automated server infrastructure, tuned Prometheus monitoring, fine-tuned custom AI models, or integrated autonomous agents."
                                 }
                             }
 
@@ -1049,11 +1049,11 @@ fn render_page(data: &PortfolioData) -> Markup {
 
                                         div class="case-study__body" {
                                             div {
-                                                div class="case-study__col-title" { "The Problem / Bottleneck" }
+                                                div class="case-study__col-title" { "The Challenge" }
                                                 p class="case-study__col-p" { (project.problem) }
                                             }
                                             div {
-                                                div class="case-study__col-title" { "The Architecture & Solution" }
+                                                div class="case-study__col-title" { "How I Solved It" }
                                                 p class="case-study__col-p" { (project.solution) }
                                             }
                                         }
@@ -1078,10 +1078,10 @@ fn render_page(data: &PortfolioData) -> Markup {
                     section class="section" id="skills" {
                         div class="container" {
                             div class="section__head" {
-                                span class="section__tag" { "Domains of Competency" }
-                                h2 class="section__h2" { "Technical Infrastructure & Skillset" }
+                                span class="section__tag" { "What I Do" }
+                                h2 class="section__h2" { "Core Technical Competencies" }
                                 p class="section__desc" {
-                                    "No arbitrary percentage bars. Organized by real-world operational domains and battle-tested tools."
+                                    "No arbitrary percentage bars or buzzword bingo. Just the tools, stacks, and production concepts I work with every day."
                                 }
                             }
 
@@ -1112,8 +1112,8 @@ fn render_page(data: &PortfolioData) -> Markup {
                     section class="section" id="about" {
                         div class="container" {
                             div class="section__head" {
-                                span class="section__tag" { "Engineering Principles" }
-                                h2 class="section__h2" { "Why Zero-Overhead Matters" }
+                                span class="section__tag" { "How I Work" }
+                                h2 class="section__h2" { "Engineering Principles & Philosophy" }
                             }
                             div class="about-narrative" {
                                 @for paragraph in &data.profile.about {
@@ -1128,9 +1128,9 @@ fn render_page(data: &PortfolioData) -> Markup {
                         div class="container" {
                             div class="contact-panel" {
                                 div class="contact-panel__info" {
-                                    h3 { "Let's build something durable." }
+                                    h3 { "Let's build something solid together." }
                                     p {
-                                        "Available for server platform contracts, conversion tracking audits (sGTM / GA4 / Meta CAPI), and backend infrastructure roles."
+                                        "Whether you need Terraform server automation, Prometheus monitoring setup, custom AI model training, or an autonomous agent integrated with your Linux servers — feel free to drop me a line."
                                     }
                                 }
                                 div class="contact-panel__actions" {
