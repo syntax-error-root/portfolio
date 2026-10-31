@@ -16,6 +16,8 @@ struct Profile {
     handle: String,
     role: String,
     headline: String,
+    #[serde(default)]
+    avatar: Option<String>,
     location: String,
     timezone: String,
     utc_offset: String,
@@ -69,12 +71,13 @@ struct PortfolioData {
 
 fn inline_css() -> &'static str {
     r#"
-:root{
-  --bg: #090c12;
+:root {
+  --bg: #080b11;
   --bg-surface: #0e131d;
   --bg-subtle: #141b29;
   --border: #1e2638;
   --border-focus: #384661;
+  --border-avatar: rgba(56, 189, 248, 0.25);
   --text: #f1f5f9;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
@@ -83,9 +86,9 @@ fn inline_css() -> &'static str {
   --amber: #f59e0b;
   --amber-soft: rgba(245, 158, 11, 0.12);
   --cyan: #38bdf8;
-  --cyan-soft: rgba(56, 189, 248, 0.1);
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", sans-serif;
-  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --cyan-soft: rgba(56, 189, 248, 0.12);
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 *, *::before, *::after {
@@ -102,6 +105,7 @@ html {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -109,6 +113,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-color: var(--bg);
 }
 
 a {
@@ -119,9 +124,15 @@ a {
 
 .container {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
 
 /* HEADER */
@@ -129,9 +140,9 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(9, 12, 18, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(8, 11, 17, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -140,7 +151,7 @@ a {
   align-items: center;
   justify-content: space-between;
   height: 4.25rem;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .brand {
@@ -168,7 +179,7 @@ a {
   color: var(--text-muted);
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  padding: 0.25rem 0.65rem;
+  padding: 0.28rem 0.65rem;
   border-radius: 4px;
 }
 
@@ -180,11 +191,22 @@ a {
   box-shadow: 0 0 8px var(--accent);
 }
 
+.live-badge__clock {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
 }
 
 .nav-links a {
@@ -201,24 +223,26 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.1rem;
   border-radius: 5px;
   font-size: 0.85rem;
   font-weight: 600;
   font-family: var(--font-mono);
   transition: all 0.15s ease;
   cursor: pointer;
+  text-decoration: none;
+  line-height: 1.4;
 }
 
 .btn--primary {
   background: var(--text);
-  color: #06090e;
+  color: #04070a;
   border: 1px solid var(--text);
 }
 
 .btn--primary:hover {
   background: #ffffff;
-  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.15);
 }
 
 .btn--outline {
@@ -244,9 +268,157 @@ a {
   border-color: var(--border-focus);
 }
 
+.btn--copied {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
 /* HERO */
 .hero {
-  padding: 4.5rem 0 3.5rem;
+  padding: 3rem 0 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 4.5rem 0 3.5rem;
+  }
+}
+
+.hero__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero__layout {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__layout {
+    grid-template-columns: 152px 1fr;
+    column-gap: 3rem;
+  }
+}
+
+.hero__avatar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .hero__avatar-col {
+    align-items: flex-start;
+  }
+}
+
+.avatar-frame {
+  position: relative;
+  width: 124px;
+  height: 124px;
+  border-radius: 20px;
+  padding: 2.5px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(30, 38, 56, 0.85) 50%, rgba(16, 185, 129, 0.35) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12), 0 8px 24px -4px rgba(0, 0, 0, 0.65), 0 0 24px -4px rgba(56, 189, 248, 0.18);
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .avatar-frame {
+    width: 136px;
+    height: 136px;
+    border-radius: 22px;
+  }
+}
+
+.avatar-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35), 0 12px 30px -4px rgba(0, 0, 0, 0.75), 0 0 30px -2px rgba(56, 189, 248, 0.28);
+}
+
+.avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .avatar-inner {
+    border-radius: 19px;
+  }
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--bg-surface);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.avatar-status__ping {
+  position: relative;
+  display: flex;
+  width: 7px;
+  height: 7px;
+}
+
+.avatar-status__ping-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--accent);
+  opacity: 0.75;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.avatar-status__ping-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
 }
 
 .hero__eyebrow {
@@ -261,8 +433,16 @@ a {
   margin-bottom: 1.25rem;
 }
 
+.hero__eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--amber);
+  box-shadow: 0 0 6px var(--amber);
+}
+
 .hero__title {
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-size: clamp(1.85rem, 4vw, 3.1rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.035em;
@@ -271,7 +451,7 @@ a {
 }
 
 .hero__lead {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.65;
   color: var(--text-muted);
   max-width: 780px;
@@ -612,19 +792,38 @@ a {
 
 /* TOAST FEEDBACK */
 #copy-toast {
-  display: none;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background: #10b981;
-  color: #04070a;
+  transform: translateY(120%);
+  opacity: 0;
+  visibility: hidden;
+  background: var(--bg-surface);
+  color: var(--text);
+  border: 1px solid var(--accent);
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  font-weight: 700;
-  padding: 0.6rem 1.1rem;
-  border-radius: 4px;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(16, 185, 129, 0.25);
   z-index: 100;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease, visibility 0.22s;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none;
+}
+
+#copy-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.copy-toast__icon {
+  color: var(--accent);
+  font-weight: 700;
 }
 "#
 }
@@ -642,46 +841,77 @@ fn inline_js() -> &'static str {
       var bdTime = new Date(utc + (3600000 * 6));
       var h = bdTime.getHours();
       var m = bdTime.getMinutes();
+      var s = bdTime.getSeconds();
       var ampm = h >= 12 ? 'PM' : 'AM';
       h = h % 12;
       h = h ? h : 12;
       var mStr = m < 10 ? '0' + m : m;
-      el.textContent = h + ':' + mStr + ' ' + ampm + ' UTC+6';
+      var sStr = s < 10 ? '0' + s : s;
+      el.textContent = h + ':' + mStr + ':' + sStr + ' ' + ampm + ' UTC+6';
     } catch(e) {}
   }
   updateTime();
-  setInterval(updateTime, 30000);
+  setInterval(updateTime, 1000);
 
   // Copy Email interaction with tactile toast
   var copyBtns = document.querySelectorAll('.js-copy-email');
   var toast = document.getElementById('copy-toast');
+  var toastMsg = document.getElementById('copy-toast-msg');
+  var toastTimer = null;
   var email = 'default13789@gmail.com';
+
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      triggerToast(btn);
+    } catch(err) {}
+    document.body.removeChild(ta);
+  }
+
+  function triggerToast(btn) {
+    if (!toast) return;
+    if (toastMsg) {
+      toastMsg.textContent = 'Copied ' + email;
+    }
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 2400);
+
+    if (btn) {
+      btn.classList.add('btn--copied');
+      setTimeout(function() {
+        btn.classList.remove('btn--copied');
+      }, 2000);
+    }
+  }
 
   copyBtns.forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
+      btn.style.transform = 'scale(0.97)';
+      setTimeout(function() {
+        btn.style.transform = '';
+      }, 150);
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(showToast);
+        navigator.clipboard.writeText(email).then(function() {
+          triggerToast(btn);
+        }).catch(function() {
+          fallbackCopy(email, btn);
+        });
       } else {
-        var ta = document.createElement('textarea');
-        ta.value = email;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast();
+        fallbackCopy(email, btn);
       }
     });
   });
-
-  function showToast() {
-    if (!toast) return;
-    toast.textContent = '✓ Copied ' + email;
-    toast.style.display = 'block';
-    setTimeout(function() {
-      toast.style.display = 'none';
-    }, 2400);
-  }
 })();
 "#
 }
@@ -702,7 +932,10 @@ fn render_page(data: &PortfolioData) -> Markup {
                 style { (maud::PreEscaped(inline_css())) }
             }
             body {
-                div id="copy-toast" {}
+                div id="copy-toast" role="status" aria-live="polite" {
+                    span class="copy-toast__icon" { "✓" }
+                    span id="copy-toast-msg" { "Copied email address to clipboard" }
+                }
 
                 // Header
                 header class="site-header" {
@@ -712,10 +945,10 @@ fn render_page(data: &PortfolioData) -> Markup {
                             span class="brand__tag" { "[" (data.profile.handle) "]" }
                         }
 
-                        div class="live-badge" title="Live Local Coordinates" {
+                        div class="live-badge" title="Live Local Coordinates & Current Time" {
                             span class="live-badge__dot" {}
                             span { "Bogura, BD · " }
-                            span id="live-time" { (data.profile.utc_offset) }
+                            span id="live-time" class="live-badge__clock" { (data.profile.utc_offset) }
                         }
 
                         nav class="nav-links" aria-label="Main Navigation" {
@@ -731,24 +964,45 @@ fn render_page(data: &PortfolioData) -> Markup {
                     // Hero Section
                     section class="hero" id="top" {
                         div class="container" {
-                            div class="hero__eyebrow" {
-                                "● " (data.profile.role)
-                            }
-                            h1 class="hero__title" {
-                                (data.profile.headline)
-                            }
-                            p class="hero__lead" {
-                                (data.profile.about[0]) " " (data.profile.about[1])
-                            }
-                            div class="hero__actions" {
-                                a href="#projects" class="btn btn--primary" {
-                                    "Inspect Work & Architecture ↓"
+                            div class="hero__layout" {
+                                div class="hero__avatar-col" {
+                                    div class="avatar-frame" {
+                                        div class="avatar-inner" {
+                                            @let avatar_src = data.profile.avatar.as_deref().unwrap_or("avatar.png");
+                                            img src=(avatar_src) alt="Omik — DevOps Engineer" width="136" height="136" loading="eager" class="avatar-img";
+                                        }
+                                    }
+                                    div class="avatar-status" title="Active Platform Engineer" {
+                                        span class="avatar-status__ping" {
+                                            span class="avatar-status__ping-ring" {}
+                                            span class="avatar-status__ping-dot" {}
+                                        }
+                                        span { "ONLINE / ACTIVE" }
+                                    }
                                 }
-                                button class="btn btn--copy js-copy-email" type="button" {
-                                    "Copy Coordinates: " (data.contact.email)
-                                }
-                                a href=(data.contact.github) target="_blank" rel="noopener noreferrer" class="btn btn--outline" {
-                                    "GitHub Source ↗"
+
+                                div class="hero__content" {
+                                    div class="hero__eyebrow" {
+                                        span class="hero__eyebrow-dot" {}
+                                        "SYS::ACTIVE // " (data.profile.role)
+                                    }
+                                    h1 class="hero__title" {
+                                        (data.profile.headline)
+                                    }
+                                    p class="hero__lead" {
+                                        (data.profile.about[0]) " " (data.profile.about[1])
+                                    }
+                                    div class="hero__actions" {
+                                        a href="#projects" class="btn btn--primary" {
+                                            "Inspect Work & Architecture ↓"
+                                        }
+                                        button class="btn btn--copy js-copy-email" type="button" aria-label="Copy email address" {
+                                            "Copy Coordinates: " (data.contact.email)
+                                        }
+                                        a href=(data.contact.github) target="_blank" rel="noopener noreferrer" class="btn btn--outline" {
+                                            "GitHub Source ↗"
+                                        }
+                                    }
                                 }
                             }
 

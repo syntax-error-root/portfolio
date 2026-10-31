@@ -1,10 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"><title>Omik — Systems &amp; Platform Engineer · Tracking Architect</title><meta name="description" content="I build resilient web infrastructure, automate platforms, and engineer high-precision tracking pipelines."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"><style>
-:root{
-  --bg: #090c12;
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"><title>Omik — DevOps &amp; Platform Systems Engineer</title><meta name="description" content="Engineering fault-tolerant cloud platforms, reproducible CI/CD delivery pipelines, and low-latency telemetry infrastructure."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"><style>
+:root {
+  --bg: #080b11;
   --bg-surface: #0e131d;
   --bg-subtle: #141b29;
   --border: #1e2638;
   --border-focus: #384661;
+  --border-avatar: rgba(56, 189, 248, 0.25);
   --text: #f1f5f9;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
@@ -13,9 +14,9 @@
   --amber: #f59e0b;
   --amber-soft: rgba(245, 158, 11, 0.12);
   --cyan: #38bdf8;
-  --cyan-soft: rgba(56, 189, 248, 0.1);
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", sans-serif;
-  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --cyan-soft: rgba(56, 189, 248, 0.12);
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 *, *::before, *::after {
@@ -32,6 +33,7 @@ html {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -39,6 +41,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-color: var(--bg);
 }
 
 a {
@@ -49,9 +52,15 @@ a {
 
 .container {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
 
 /* HEADER */
@@ -59,9 +68,9 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(9, 12, 18, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(8, 11, 17, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -70,7 +79,7 @@ a {
   align-items: center;
   justify-content: space-between;
   height: 4.25rem;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .brand {
@@ -98,7 +107,7 @@ a {
   color: var(--text-muted);
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  padding: 0.25rem 0.65rem;
+  padding: 0.28rem 0.65rem;
   border-radius: 4px;
 }
 
@@ -110,11 +119,22 @@ a {
   box-shadow: 0 0 8px var(--accent);
 }
 
+.live-badge__clock {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
 }
 
 .nav-links a {
@@ -131,24 +151,26 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.1rem;
   border-radius: 5px;
   font-size: 0.85rem;
   font-weight: 600;
   font-family: var(--font-mono);
   transition: all 0.15s ease;
   cursor: pointer;
+  text-decoration: none;
+  line-height: 1.4;
 }
 
 .btn--primary {
   background: var(--text);
-  color: #06090e;
+  color: #04070a;
   border: 1px solid var(--text);
 }
 
 .btn--primary:hover {
   background: #ffffff;
-  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.15);
 }
 
 .btn--outline {
@@ -174,9 +196,157 @@ a {
   border-color: var(--border-focus);
 }
 
+.btn--copied {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
 /* HERO */
 .hero {
-  padding: 4.5rem 0 3.5rem;
+  padding: 3rem 0 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 4.5rem 0 3.5rem;
+  }
+}
+
+.hero__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero__layout {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__layout {
+    grid-template-columns: 152px 1fr;
+    column-gap: 3rem;
+  }
+}
+
+.hero__avatar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .hero__avatar-col {
+    align-items: flex-start;
+  }
+}
+
+.avatar-frame {
+  position: relative;
+  width: 124px;
+  height: 124px;
+  border-radius: 20px;
+  padding: 2.5px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(30, 38, 56, 0.85) 50%, rgba(16, 185, 129, 0.35) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12), 0 8px 24px -4px rgba(0, 0, 0, 0.65), 0 0 24px -4px rgba(56, 189, 248, 0.18);
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .avatar-frame {
+    width: 136px;
+    height: 136px;
+    border-radius: 22px;
+  }
+}
+
+.avatar-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35), 0 12px 30px -4px rgba(0, 0, 0, 0.75), 0 0 30px -2px rgba(56, 189, 248, 0.28);
+}
+
+.avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .avatar-inner {
+    border-radius: 19px;
+  }
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--bg-surface);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.avatar-status__ping {
+  position: relative;
+  display: flex;
+  width: 7px;
+  height: 7px;
+}
+
+.avatar-status__ping-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--accent);
+  opacity: 0.75;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.avatar-status__ping-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
 }
 
 .hero__eyebrow {
@@ -191,8 +361,16 @@ a {
   margin-bottom: 1.25rem;
 }
 
+.hero__eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--amber);
+  box-shadow: 0 0 6px var(--amber);
+}
+
 .hero__title {
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-size: clamp(1.85rem, 4vw, 3.1rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.035em;
@@ -201,7 +379,7 @@ a {
 }
 
 .hero__lead {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.65;
   color: var(--text-muted);
   max-width: 780px;
@@ -542,21 +720,40 @@ a {
 
 /* TOAST FEEDBACK */
 #copy-toast {
-  display: none;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background: #10b981;
-  color: #04070a;
+  transform: translateY(120%);
+  opacity: 0;
+  visibility: hidden;
+  background: var(--bg-surface);
+  color: var(--text);
+  border: 1px solid var(--accent);
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  font-weight: 700;
-  padding: 0.6rem 1.1rem;
-  border-radius: 4px;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(16, 185, 129, 0.25);
   z-index: 100;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease, visibility 0.22s;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none;
 }
-</style></head><body><div id="copy-toast"></div><header class="site-header"><div class="container site-header__inner"><div class="brand"><a href="#">Omik</a><span class="brand__tag">[syntax-error-root]</span></div><div class="live-badge" title="Live Local Coordinates"><span class="live-badge__dot"></span><span>Bogura, BD · </span><span id="live-time">UTC+6</span></div><nav class="nav-links" aria-label="Main Navigation"><a href="#projects">Work</a><a href="#skills">Capabilities</a><a href="#about">Philosophy</a><a href="#contact">Contact</a></nav></div></header><main><section class="hero" id="top"><div class="container"><div class="hero__eyebrow">● Systems &amp; Platform Engineer · Tracking Architect</div><h1 class="hero__title">I build resilient web infrastructure, automate platforms, and engineer high-precision tracking pipelines.</h1><p class="hero__lead">I am an engineer focused on the intersection of infrastructure reliability, automated deployment, and full-stack measurement pipelines. Rather than relying on bloated frameworks and guesswork, I build systems designed for determinism: reproducible server state through SaltStack and Docker, fast and resilient ingress through Nginx and HAProxy, and server-side tracking pipelines (GTM, GA4, Meta CAPI) that preserve conversion data through browser cookie crackdowns.</p><div class="hero__actions"><a href="#projects" class="btn btn--primary">Inspect Work &amp; Architecture ↓</a><button class="btn btn--copy js-copy-email" type="button">Copy Coordinates: default13789@gmail.com</button><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">GitHub Source ↗</a></div><div class="now-grid"><div class="now-card"><div class="now-card__lbl">Current Engineering Focus</div><p class="now-card__text">Building reproducible infrastructure stacks, Rust compile-time generators, and automated server-side tracking pipelines.</p></div><div class="now-card"><div class="now-card__lbl">Deep-Dive Topics</div><p class="now-card__text">Linux networking internals, socket buffers, and event-driven workflow automation.</p></div><div class="now-card"><div class="now-card__lbl">Availability &amp; Location</div><p class="now-card__text">Available for Select Contracts &amp; Engineering Roles — Bogura, Bangladesh (UTC+6) — operating globally across distributed teams.</p></div></div></div></section><section class="section" id="projects"><div class="container"><div class="section__head"><span class="section__tag">Selected Case Studies</span><h2 class="section__h2">Engineering Logs &amp; Deployments</h2><p class="section__desc">Concrete systems engineered for production availability, measurable conversion telemetry, and minimal operational overhead.</p></div><div class="case-studies"><article class="case-study" id="tracking-analytics"><div class="case-study__meta"><span class="case-study__cat">CONVERSION OPS</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Full-Stack Ad-Ops &amp; Attribution Tracking Pipeline</h3><p class="case-study__lead">Server-side GTM + GA4 + Meta CAPI pipeline turning raw click traffic into verified ROAS telemetry.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Client-side tracking was suffering from 25-40% signal loss due to ad-blockers, Safari ITP cookie expiration, and iOS privacy controls, causing degraded ad optimization and blind ad spend.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Architected a dual-delivery tracking pipeline: client dataLayer feeds a custom Server-Side GTM proxy on a custom subdomain. Event data is deduplicated with unique Event IDs and dispatched directly to Meta Conversions API and GA4 Measurement Protocol, backed by Looker Studio reports.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Server-Side GTM</span><span class="pill">GA4</span><span class="pill">Meta CAPI</span><span class="pill">Looker Studio</span><span class="pill">Google AdSense</span><span class="pill">Redis</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="case-study__link">Inspect Tracking Architecture ↗</a></div></article><article class="case-study" id="headless-ecommerce"><div class="case-study__meta"><span class="case-study__cat">INFRASTRUCTURE</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">High-Availability E-Commerce &amp; CMS Cloud Platform</h3><p class="case-study__lead">Decoupled headless React frontend with WooCommerce backend provisioned via wp-saltstack.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Monolithic WordPress instances suffered severe latency spikes during sales spikes and lacked automated, reproducible provisioning across bare-metal and cloud servers.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Decoupled the architecture: high-speed React storefront communicating via cached REST endpoints to a WooCommerce engine. Servers are provisioned idempotently with SaltStack (wp-saltstack) behind HAProxy/Nginx load balancing with automatic SSL renewal.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">WordPress REST API</span><span class="pill">React</span><span class="pill">HAProxy</span><span class="pill">Nginx</span><span class="pill">SaltStack</span><span class="pill">Ubuntu Linux</span></div><a href="https://github.com/syntax-error-root/wp-saltstack" target="_blank" rel="noopener noreferrer" class="case-study__link">View wp-saltstack on GitHub ↗</a></div></article><article class="case-study" id="rag-assistant"><div class="case-study__meta"><span class="case-study__cat">AI ENGINEERING</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Domain-Specific Knowledge Base with RAG</h3><p class="case-study__lead">Retrieval-augmented chatbot ensuring source-verified, hallucination-free technical responses.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Generic LLMs frequently hallucinated API signatures and company-specific operational procedures when queried by technical users.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Built a Python FastAPI service that ingests documentation markdown, generates embeddings into a vector store, performs semantic top-k retrieval with reranking, and injects verified source snippets into the prompt context.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">Vector Embeddings</span><span class="pill">OpenAI API</span><span class="pill">React UI</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="case-study__link">Inspect Source Code ↗</a></div></article><article class="case-study" id="rust-portfolio"><div class="case-study__meta"><span class="case-study__cat">SYSTEMS ARCHITECTURE</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Rust Compile-Time Zero-Overhead Portfolio Engine</h3><p class="case-study__lead">Maud macro pre-renderer producing a single-pass ~20KB payload with zero initial JS execution.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Modern developer portfolios bloated with 1MB+ of React/Next.js JS bundles, taking 800ms+ on mobile devices and requiring complex runtime servers for simple static portfolios.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Engineered a native Rust CLI compiler that type-checks data schemas with Serde and renders inlined critical CSS with Maud macros. Result: 100/100 Lighthouse performance, sub-30ms edge paint, and zero client hydration penalty.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Rust</span><span class="pill">Maud</span><span class="pill">GitHub Pages</span><span class="pill">Fastly Edge CDN</span><span class="pill">CI/CD</span></div><a href="https://github.com/syntax-error-root/portfolio" target="_blank" rel="noopener noreferrer" class="case-study__link">View Generator on GitHub ↗</a></div></article></div></div></section><section class="section" id="skills"><div class="container"><div class="section__head"><span class="section__tag">Domains of Competency</span><h2 class="section__h2">Technical Infrastructure &amp; Skillset</h2><p class="section__desc">No arbitrary percentage bars. Organized by real-world operational domains and battle-tested tools.</p></div><div class="domains-grid"><div class="domain-card"><div><h3 class="domain-card__title">Systems &amp; Platform Infrastructure</h3><p class="domain-card__summary">Hardened Linux environments, containerized services, and resilient reverse proxy topologies.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>Linux Administration</span></div><p class="skill-item__note">Kernel tuning, systemd unit design, cgroups, journalctl tracing</p></div><div class="skill-item"><div class="skill-item__head"><span>Containers &amp; Pods</span></div><p class="skill-item__note">Docker multi-stage builds, rootless containers, Docker Compose</p></div><div class="skill-item"><div class="skill-item__head"><span>Web Ingress &amp; SSL</span></div><p class="skill-item__note">Nginx, HAProxy, Caddy, automated Let's Encrypt TLS renewal</p></div><div class="skill-item"><div class="skill-item__head"><span>IaC &amp; Automation</span></div><p class="skill-item__note">SaltStack state formulas (wp-saltstack), idempotent provisioning</p></div><div class="skill-item"><div class="skill-item__head"><span>Telemetry &amp; Monitoring</span></div><p class="skill-item__note">Prometheus metric scraping, Grafana dashboards, alert thresholds</p></div></div></div></div><div class="domain-card"><div><h3 class="domain-card__title">Analytics &amp; Conversion Tracking Ops</h3><p class="domain-card__summary">Full-funnel measurement pipelines connecting paid acquisition directly to verified revenue telemetry.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>Google Tag Manager</span></div><p class="skill-item__note">Server-side GTM (sGTM) containers &amp; client-side custom dataLayer schemas</p></div><div class="skill-item"><div class="skill-item__head"><span>Google Analytics 4</span></div><p class="skill-item__note">Custom event definitions, purchase parameter validation, BigQuery export</p></div><div class="skill-item"><div class="skill-item__head"><span>Meta Pixel &amp; CAPI</span></div><p class="skill-item__note">Server-to-server Conversions API, event ID deduplication, match quality</p></div><div class="skill-item"><div class="skill-item__head"><span>Looker Studio &amp; BI</span></div><p class="skill-item__note">Executive ROAS dashboards, multi-source blended attribution models</p></div><div class="skill-item"><div class="skill-item__head"><span>AdSense Optimization</span></div><p class="skill-item__note">Monetization architecture, high-CTR placement, layout shift compliance</p></div></div></div></div><div class="domain-card"><div><h3 class="domain-card__title">Scripting, Full-Stack &amp; AI Tooling</h3><p class="domain-card__summary">Pragmatic software engineering spanning backend microservices, modern frontends, and AI pipelines.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>POSIX Shell Scripting</span></div><p class="skill-item__note">Robust Bash automation, incident mitigation scripts, cron supervision</p></div><div class="skill-item"><div class="skill-item__head"><span>Python Systems</span></div><p class="skill-item__note">FastAPI services, asynchronous REST scraping, automation scripts</p></div><div class="skill-item"><div class="skill-item__head"><span>Rust Systems</span></div><p class="skill-item__note">Compile-time HTML pre-rendering with Maud, zero-overhead static generation</p></div><div class="skill-item"><div class="skill-item__head"><span>TypeScript &amp; React</span></div><p class="skill-item__note">Decoupled headless frontends, state orchestration, responsive layouts</p></div><div class="skill-item"><div class="skill-item__head"><span>RAG &amp; LLM Tooling</span></div><p class="skill-item__note">Vector similarity search, prompt grounding, autonomous triage agents</p></div></div></div></div></div></div></section><section class="section" id="about"><div class="container"><div class="section__head"><span class="section__tag">Engineering Principles</span><h2 class="section__h2">Why Zero-Overhead Matters</h2></div><div class="about-narrative"><p>I am an engineer focused on the intersection of infrastructure reliability, automated deployment, and full-stack measurement pipelines.</p><p>Rather than relying on bloated frameworks and guesswork, I build systems designed for determinism: reproducible server state through SaltStack and Docker, fast and resilient ingress through Nginx and HAProxy, and server-side tracking pipelines (GTM, GA4, Meta CAPI) that preserve conversion data through browser cookie crackdowns.</p><p>This portfolio itself is compiled directly in Rust using Maud macros with inlined critical CSS, delivering a single-pass ~20KB payload with zero render-blocking JavaScript and sub-30ms first contentful paint.</p></div></div></section><section class="section" id="contact"><div class="container"><div class="contact-panel"><div class="contact-panel__info"><h3>Let's build something durable.</h3><p>Available for server platform contracts, conversion tracking audits (sGTM / GA4 / Meta CAPI), and backend infrastructure roles.</p></div><div class="contact-panel__actions"><a href="mailto:default13789@gmail.com" class="btn btn--primary">Dispatch Email ↗</a><button class="btn btn--copy js-copy-email" type="button">Copy Address</button><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">GitHub ↗</a><a href="https://linkedin.com/in/omik-dev" target="_blank" rel="noopener noreferrer" class="btn btn--outline">LinkedIn ↗</a></div></div></div></section></main><footer class="site-footer"><div class="container site-footer__inner"><div>© 2026 Omik — Bogura, Bangladesh</div><div>Rust + Maud Native Compiler · Zero Client Hydration · Sub-30ms FCP</div></div></footer><script>
+
+#copy-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.copy-toast__icon {
+  color: var(--accent);
+  font-weight: 700;
+}
+</style></head><body><div id="copy-toast" role="status" aria-live="polite"><span class="copy-toast__icon">✓</span><span id="copy-toast-msg">Copied email address to clipboard</span></div><header class="site-header"><div class="container site-header__inner"><div class="brand"><a href="#">Omik</a><span class="brand__tag">[syntax-error-root]</span></div><div class="live-badge" title="Live Local Coordinates &amp; Current Time"><span class="live-badge__dot"></span><span>Bogura, BD · </span><span id="live-time" class="live-badge__clock">UTC+6</span></div><nav class="nav-links" aria-label="Main Navigation"><a href="#projects">Work</a><a href="#skills">Capabilities</a><a href="#about">Philosophy</a><a href="#contact">Contact</a></nav></div></header><main><section class="hero" id="top"><div class="container"><div class="hero__layout"><div class="hero__avatar-col"><div class="avatar-frame"><div class="avatar-inner"><img src="avatar.png" alt="Omik — DevOps Engineer" width="136" height="136" loading="eager" class="avatar-img"></div></div><div class="avatar-status" title="Active Platform Engineer"><span class="avatar-status__ping"><span class="avatar-status__ping-ring"></span><span class="avatar-status__ping-dot"></span></span><span>ONLINE / ACTIVE</span></div></div><div class="hero__content"><div class="hero__eyebrow"><span class="hero__eyebrow-dot"></span>SYS::ACTIVE // DevOps &amp; Platform Systems Engineer</div><h1 class="hero__title">Engineering fault-tolerant cloud platforms, reproducible CI/CD delivery pipelines, and low-latency telemetry infrastructure.</h1><p class="hero__lead">I am a DevOps and Platform Systems Engineer operating from Bogura, Bangladesh (UTC+6). My engineering work centers on eliminating single points of failure, turning infrastructure into deterministic code, and designing systems that survive production stress without manual intervention. Rather than relying on brittle cloud consoles and opaque managed services, I build platforms from the kernel and network up: reproducible state via SaltStack and Docker, hardened Layer-4/Layer-7 ingress with HAProxy and Nginx, robust CI/CD delivery pipelines, and deep observability stacks (Prometheus, Grafana, Alertmanager) that surface failure signals before users notice.</p><div class="hero__actions"><a href="#projects" class="btn btn--primary">Inspect Work &amp; Architecture ↓</a><button class="btn btn--copy js-copy-email" type="button" aria-label="Copy email address">Copy Coordinates: default13789@gmail.com</button><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">GitHub Source ↗</a></div></div></div><div class="now-grid"><div class="now-card"><div class="now-card__lbl">Current Engineering Focus</div><p class="now-card__text">Automating zero-downtime container deployments, expanding SaltStack state formulas (wp-saltstack), and building automated incident triage agents.</p></div><div class="now-card"><div class="now-card__lbl">Deep-Dive Topics</div><p class="now-card__text">Linux networking internals, TCP socket buffer starvation under high concurrency, and eBPF tracing with bpftool.</p></div><div class="now-card"><div class="now-card__lbl">Availability &amp; Location</div><p class="now-card__text">Available for Platform Engineering, SRE Contracts &amp; Infrastructure Migrations — Bogura, Bangladesh (UTC+6) — operating globally across distributed remote engineering teams.</p></div></div></div></section><section class="section" id="projects"><div class="container"><div class="section__head"><span class="section__tag">Selected Case Studies</span><h2 class="section__h2">Engineering Logs &amp; Deployments</h2><p class="section__desc">Concrete systems engineered for production availability, measurable conversion telemetry, and minimal operational overhead.</p></div><div class="case-studies"><article class="case-study" id="high-availability-platform"><div class="case-study__meta"><span class="case-study__cat">INFRASTRUCTURE &amp; ORCHESTRATION</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">High-Availability E-Commerce &amp; CMS Cloud Platform</h3><p class="case-study__lead">Fault-tolerant, auto-healing LAMP/LEMP platform orchestrated via wp-saltstack behind active-passive HAProxy and Nginx layer-7 ingress.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Monolithic e-commerce and CMS workloads deployed on single droplets suffered unmonitored crash loops, cascade failovers during traffic surges, and hours of configuration drift across development, staging, and production environments.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Engineered reproducible infrastructure state using SaltStack (wp-saltstack formula) with automated state enforcement across Debian/Ubuntu nodes. Ingress traffic terminates at dual HAProxy load balancers running keepalived for virtual IP failover, distributing requests to horizontally scaled Nginx + PHP-FPM worker pools with isolated MySQL replication replicas and automated Let's Encrypt TLS cycle management. Cut deployment recovery time from hours to sub-180s deterministic state convergence.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">SaltStack</span><span class="pill">HAProxy</span><span class="pill">Nginx</span><span class="pill">Docker</span><span class="pill">Keepalived</span><span class="pill">PHP-FPM</span><span class="pill">MariaDB Galera</span><span class="pill">Let's Encrypt</span><span class="pill">Ubuntu Linux</span></div><a href="https://github.com/syntax-error-root/wp-saltstack" target="_blank" rel="noopener noreferrer" class="case-study__link">Inspect wp-saltstack State Engine ↗</a></div></article><article class="case-study" id="observability-telemetry-hub"><div class="case-study__meta"><span class="case-study__cat">OBSERVABILITY &amp; SRE</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Observability-First Telemetry Hub &amp; Signal Aggregator</h3><p class="case-study__lead">Unified metrics, structured log pipelines, and SLO-driven alerting engine across distributed bare-metal and container fleets.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Silent disk saturations, unindexed log explosions in production instances, and blind downtime notifications arriving only after customers opened urgent support tickets.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Designed and rolled out an end-to-end monitoring fabric centered on Prometheus with Node Exporter, Blackbox Exporter, and cAdvisor daemonsets scraping sub-second kernel and container counters. Telemetry feeds Grafana dashboards configured with golden signal visualization (latency, traffic, errors, saturation) and Alertmanager routing critical P1 thresholds to Discord/Slack webhooks while silencing transient spikes. Supplemented with systemd journalctl structured syslog pipelines to audit socket states and kernel OOM signals deterministically.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Prometheus</span><span class="pill">Grafana</span><span class="pill">Alertmanager</span><span class="pill">Node Exporter</span><span class="pill">cAdvisor</span><span class="pill">systemd/journald</span><span class="pill">Bash</span><span class="pill">Linux eBPF Tracing</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="case-study__link">Inspect Telemetry Architectures ↗</a></div></article><article class="case-study" id="gitops-cicd-pipeline"><div class="case-study__meta"><span class="case-study__cat">AUTOMATION &amp; DELIVERY</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Zero-Downtime CI/CD &amp; Automated Delivery Engine</h3><p class="case-study__lead">Git-driven automated pipeline with multi-stage OCI image compilation, local registry caching, and rolling blue-green rollbacks.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Manual SSH deployments, untagged Docker runtime changes, broken dependencies pulled live during deployments, and absence of automated smoke tests causing production outages on code push.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Constructed an automated GitOps delivery workflow triggered by Git commits. Pipeline executes linting and security vulnerability scanning (Trivy), executes multi-stage Docker builds leveraging Buildx Layer Caching, and pushes cryptographically tagged images to a private registry. Deployment orchestrates rolling container replacements behind health-check probes; on any non-200 HTTP response or container exit within 60s, the system triggers an automatic deterministic rollback to the previous SHA.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">GitHub Actions</span><span class="pill">Docker Buildx</span><span class="pill">GitOps</span><span class="pill">Trivy Scanner</span><span class="pill">Bash Automation</span><span class="pill">Nginx Reverse Proxy</span><span class="pill">Linux cgroups</span></div><a href="https://github.com/syntax-error-root/portfolio" target="_blank" rel="noopener noreferrer" class="case-study__link">View Delivery Infrastructure ↗</a></div></article><article class="case-study" id="serverside-tracking-pipeline"><div class="case-study__meta"><span class="case-study__cat">DATA &amp; CONVERSION INFRASTRUCTURE</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Server-Side Tracking &amp; Ad-Ops Telemetry Pipeline</h3><p class="case-study__lead">Custom server-side GTM proxy and event broker preserving conversion telemetry through Safari ITP and ad-blocker signal loss.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Client-side tracking scripts were losing up to 35% of ad attribution and revenue telemetry due to aggressive ad-blockers, iOS privacy sandboxing, and Safari 7-day cookie expiration limits, distorting ROAS calculations.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Engineered a hardened Server-Side Google Tag Manager (sGTM) container cluster hosted on a custom first-party subdomain behind Nginx with Redis event deduplication. Client events send raw HTTP data payloads directly to the server container, which enriches, normalizes, and dispatches server-to-server calls to Meta Conversions API (CAPI) and GA4 Measurement Protocol with 99.4% event match quality and zero client CPU overhead.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Server-Side GTM</span><span class="pill">GA4 Measurement Protocol</span><span class="pill">Meta CAPI</span><span class="pill">Redis</span><span class="pill">Nginx Ingress</span><span class="pill">Looker Studio</span><span class="pill">Docker</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="case-study__link">View Tracking Architecture ↗</a></div></article><article class="case-study" id="autonomous-triage-agent"><div class="case-study__meta"><span class="case-study__cat">PLATFORM AUTOMATION &amp; AI</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Autonomous Incident Triage &amp; Operational Runbook Agent</h3><p class="case-study__lead">Event-driven Python and Bash automation pipeline parsing alert webhooks, correlating journal logs, and drafting mitigation runbooks.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">On-call fatigue caused by noisy infrastructure alerts requiring engineers to manually SSH into hosts, run standard diagnostic commands (dmesg, ss -tulpn, free -m, journalctl), and correlate time series.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Implemented a lightweight event daemon that receives Alertmanager webhook payloads, triggers non-destructive diagnostic telemetry collection over SSH via parameterized Bash scripts, sanitizes PII, and correlates output against historical operational runbooks using an LLM reasoning engine. Provides on-call engineers with an instant root-cause hypothesis and validated one-line mitigation commands within 8 seconds of alert firing.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Python 3</span><span class="pill">AsyncIO</span><span class="pill">Bash / POSIX Shell</span><span class="pill">Alertmanager Webhooks</span><span class="pill">OpenAI / Claude API</span><span class="pill">Linux Syscall Tracing</span><span class="pill">Systemd</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="case-study__link">Inspect Triage Daemon ↗</a></div></article></div></div></section><section class="section" id="skills"><div class="container"><div class="section__head"><span class="section__tag">Domains of Competency</span><h2 class="section__h2">Technical Infrastructure &amp; Skillset</h2><p class="section__desc">No arbitrary percentage bars. Organized by real-world operational domains and battle-tested tools.</p></div><div class="domains-grid"><div class="domain-card"><div><h3 class="domain-card__title">Infrastructure &amp; Linux Systems</h3><p class="domain-card__summary">Low-level Linux systems administration, kernel parameter optimization, storage layout, and resilient ingress architecture.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>Kernel &amp; Sysctl Tuning</span></div><p class="skill-item__note">TCP window scaling, somaxconn backlog buffers, file-max limits, vm.swappiness, dirty page writeback tuning.</p></div><div class="skill-item"><div class="skill-item__head"><span>Linux Storage &amp; Filesystems</span></div><p class="skill-item__note">LVM volume management, ext4/XFS filesystem tuning, I/O schedulers, disk saturation troubleshooting with iostat.</p></div><div class="skill-item"><div class="skill-item__head"><span>systemd &amp; Service Isolation</span></div><p class="skill-item__note">Custom unit definitions, watchdog supervision, cgroups v2 resource quotas, slice-based process isolation.</p></div><div class="skill-item"><div class="skill-item__head"><span>Reverse Proxies &amp; Ingress</span></div><p class="skill-item__note">Nginx edge caching, HAProxy Layer-4/Layer-7 load balancing, keepalived VIP failover, Let's Encrypt automated ACME renewal.</p></div><div class="skill-item"><div class="skill-item__head"><span>Hardening &amp; Access Control</span></div><p class="skill-item__note">Strict firewall rules via nftables/UFW, SSH key infrastructure with Ed25519, fail2ban rate-limiting, least-privilege Unix permissions.</p></div></div></div></div><div class="domain-card"><div><h3 class="domain-card__title">Containers &amp; Orchestration</h3><p class="domain-card__summary">Deterministic container packaging, runtime isolation, minimal base images, and service mesh connectivity.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>Docker Engine &amp; Multi-Stage Builds</span></div><p class="skill-item__note">Scratch/Alpine minimal footprint images, BuildKit layer caching, reproducible OCI container artifacts.</p></div><div class="skill-item"><div class="skill-item__head"><span>Container Security &amp; Isolation</span></div><p class="skill-item__note">Rootless container execution, read-only root filesystems, Linux capabilities dropping, Trivy CVE scanning.</p></div><div class="skill-item"><div class="skill-item__head"><span>Docker Compose &amp; Local Stacks</span></div><p class="skill-item__note">Declarative multi-container topologies, custom bridge networks, volume persistence, healthcheck dependencies.</p></div><div class="skill-item"><div class="skill-item__head"><span>Podman &amp; OCI Standards</span></div><p class="skill-item__note">Daemonless container runtime execution, systemd quadlet integration, container-to-host socket delegation.</p></div><div class="skill-item"><div class="skill-item__head"><span>Registry &amp; Image Lifecycle</span></div><p class="skill-item__note">Self-hosted private registry instances, image retention policies, immutable semantic digest tagging.</p></div></div></div></div><div class="domain-card"><div><h3 class="domain-card__title">Automation &amp; Delivery (CI/CD &amp; IaC)</h3><p class="domain-card__summary">Idempotent state provisioning, automated build pipelines, and deterministic deployment rollbacks.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>SaltStack Configuration Management</span></div><p class="skill-item__note">Declarative SLS state formulas (wp-saltstack), pillar encryption, idempotent node convergence across bare-metal fleets.</p></div><div class="skill-item"><div class="skill-item__head"><span>CI/CD Pipeline Engineering</span></div><p class="skill-item__note">GitHub Actions workflow automation, automated lint/build/test stages, conditional matrix deployment pipelines.</p></div><div class="skill-item"><div class="skill-item__head"><span>POSIX Shell &amp; Script Automation</span></div><p class="skill-item__note">Defensive Bash scripting (set -euo pipefail), automated database dump rotations, automated DR restore verification.</p></div><div class="skill-item"><div class="skill-item__head"><span>GitOps &amp; Version-Controlled State</span></div><p class="skill-item__note">Everything-as-code: infrastructure topologies, proxy definitions, environment templates, and reproducible manifests.</p></div><div class="skill-item"><div class="skill-item__head"><span>Zero-Downtime Deployment Strategies</span></div><p class="skill-item__note">Blue-green container swapping, canary traffic routing, pre-flight healthcheck verification with instant automated rollback.</p></div></div></div></div><div class="domain-card"><div><h3 class="domain-card__title">Observability, Telemetry &amp; SRE</h3><p class="domain-card__summary">Golden-signals metrics scraping, structured log correlation, SLO enforcement, and low-latency incident response.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>Prometheus &amp; Exporters</span></div><p class="skill-item__note">Node Exporter, cAdvisor, custom Prometheus metric instrumentations, PromQL aggregation rules.</p></div><div class="skill-item"><div class="skill-item__head"><span>Grafana Dashboards &amp; Visualization</span></div><p class="skill-item__note">Real-time node saturation matrices, request latency distributions, visual alerting panels.</p></div><div class="skill-item"><div class="skill-item__head"><span>Alertmanager &amp; Incident Routing</span></div><p class="skill-item__note">Alert deduplication, route trees, notification dispatch to Slack/Discord/webhook receivers, flapping alert inhibition.</p></div><div class="skill-item"><div class="skill-item__head"><span>Log Aggregation &amp; Kernel Tracing</span></div><p class="skill-item__note">Structured journald log ingestion, syslog forwarding, strace/perf diagnostics, socket inspection with ss.</p></div><div class="skill-item"><div class="skill-item__head"><span>Server-Side Tracking Telemetry</span></div><p class="skill-item__note">Server-side GTM containers, GA4 Measurement Protocol, Meta CAPI event deduplication, Redis payload buffering.</p></div></div></div></div></div></div></section><section class="section" id="about"><div class="container"><div class="section__head"><span class="section__tag">Engineering Principles</span><h2 class="section__h2">Why Zero-Overhead Matters</h2></div><div class="about-narrative"><p>I am a DevOps and Platform Systems Engineer operating from Bogura, Bangladesh (UTC+6). My engineering work centers on eliminating single points of failure, turning infrastructure into deterministic code, and designing systems that survive production stress without manual intervention.</p><p>Rather than relying on brittle cloud consoles and opaque managed services, I build platforms from the kernel and network up: reproducible state via SaltStack and Docker, hardened Layer-4/Layer-7 ingress with HAProxy and Nginx, robust CI/CD delivery pipelines, and deep observability stacks (Prometheus, Grafana, Alertmanager) that surface failure signals before users notice.</p><p>This portfolio itself is compiled directly in Rust using Maud macros with inlined critical CSS — delivering a single-pass ~27KB payload with zero render-blocking JavaScript and sub-30ms first contentful paint.</p></div></div></section><section class="section" id="contact"><div class="container"><div class="contact-panel"><div class="contact-panel__info"><h3>Let's build something durable.</h3><p>Available for server platform contracts, conversion tracking audits (sGTM / GA4 / Meta CAPI), and backend infrastructure roles.</p></div><div class="contact-panel__actions"><a href="mailto:default13789@gmail.com" class="btn btn--primary">Dispatch Email ↗</a><button class="btn btn--copy js-copy-email" type="button">Copy Address</button><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">GitHub ↗</a><a href="https://linkedin.com/in/omik-dev" target="_blank" rel="noopener noreferrer" class="btn btn--outline">LinkedIn ↗</a></div></div></div></section></main><footer class="site-footer"><div class="container site-footer__inner"><div>© 2026 Omik — Bogura, Bangladesh</div><div>Rust + Maud Native Compiler · Zero Client Hydration · Sub-30ms FCP</div></div></footer><script>
 (function() {
   // Live Clock for Bogura, BD (UTC+6)
   function updateTime() {
@@ -568,45 +765,76 @@ a {
       var bdTime = new Date(utc + (3600000 * 6));
       var h = bdTime.getHours();
       var m = bdTime.getMinutes();
+      var s = bdTime.getSeconds();
       var ampm = h >= 12 ? 'PM' : 'AM';
       h = h % 12;
       h = h ? h : 12;
       var mStr = m < 10 ? '0' + m : m;
-      el.textContent = h + ':' + mStr + ' ' + ampm + ' UTC+6';
+      var sStr = s < 10 ? '0' + s : s;
+      el.textContent = h + ':' + mStr + ':' + sStr + ' ' + ampm + ' UTC+6';
     } catch(e) {}
   }
   updateTime();
-  setInterval(updateTime, 30000);
+  setInterval(updateTime, 1000);
 
   // Copy Email interaction with tactile toast
   var copyBtns = document.querySelectorAll('.js-copy-email');
   var toast = document.getElementById('copy-toast');
+  var toastMsg = document.getElementById('copy-toast-msg');
+  var toastTimer = null;
   var email = 'default13789@gmail.com';
+
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      triggerToast(btn);
+    } catch(err) {}
+    document.body.removeChild(ta);
+  }
+
+  function triggerToast(btn) {
+    if (!toast) return;
+    if (toastMsg) {
+      toastMsg.textContent = 'Copied ' + email;
+    }
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 2400);
+
+    if (btn) {
+      btn.classList.add('btn--copied');
+      setTimeout(function() {
+        btn.classList.remove('btn--copied');
+      }, 2000);
+    }
+  }
 
   copyBtns.forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
+      btn.style.transform = 'scale(0.97)';
+      setTimeout(function() {
+        btn.style.transform = '';
+      }, 150);
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(showToast);
+        navigator.clipboard.writeText(email).then(function() {
+          triggerToast(btn);
+        }).catch(function() {
+          fallbackCopy(email, btn);
+        });
       } else {
-        var ta = document.createElement('textarea');
-        ta.value = email;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast();
+        fallbackCopy(email, btn);
       }
     });
   });
-
-  function showToast() {
-    if (!toast) return;
-    toast.textContent = '✓ Copied ' + email;
-    toast.style.display = 'block';
-    setTimeout(function() {
-      toast.style.display = 'none';
-    }, 2400);
-  }
 })();
 </script></body></html>
