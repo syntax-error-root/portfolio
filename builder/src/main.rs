@@ -946,10 +946,6 @@ fn render_page(data: &PortfolioData) -> Markup {
                                 }
 
                                 div class="hero__content" {
-                                    div class="hero__eyebrow" {
-                                        span class="hero__eyebrow-dot" {}
-                                        "SYS::ACTIVE // " (data.profile.role)
-                                    }
                                     h1 class="hero__title" {
                                         (data.profile.headline)
                                     }
