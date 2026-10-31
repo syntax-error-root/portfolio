@@ -18,6 +18,8 @@ struct Profile {
     headline: String,
     #[serde(default)]
     avatar: Option<String>,
+    #[serde(default)]
+    hero_lead: Option<String>,
     location: String,
     timezone: String,
     utc_offset: String,
@@ -950,7 +952,11 @@ fn render_page(data: &PortfolioData) -> Markup {
                                         (data.profile.headline)
                                     }
                                     p class="hero__lead" {
-                                        (data.profile.about[0]) " " (data.profile.about[1])
+                                        @if let Some(ref lead) = data.profile.hero_lead {
+                                            (lead)
+                                        } @else {
+                                            (data.profile.about[0])
+                                        }
                                     }
                                     div class="hero__actions" {
                                         a href="#projects" class="btn btn--primary" {
