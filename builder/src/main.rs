@@ -920,7 +920,6 @@ fn render_page(data: &PortfolioData) -> Markup {
                     div class="container site-header__inner" {
                         div class="brand" {
                             a href="#" { (data.profile.name) }
-                            span class="brand__tag" { "[" (data.profile.handle) "]" }
                         }
 
                         nav class="nav-links" aria-label="Main Navigation" {
