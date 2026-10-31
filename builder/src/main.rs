@@ -831,28 +831,6 @@ a {
 fn inline_js() -> &'static str {
     r#"
 (function() {
-  // Live Clock for Bogura, BD (UTC+6)
-  function updateTime() {
-    var el = document.getElementById('live-time');
-    if (!el) return;
-    try {
-      var d = new Date();
-      var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-      var bdTime = new Date(utc + (3600000 * 6));
-      var h = bdTime.getHours();
-      var m = bdTime.getMinutes();
-      var s = bdTime.getSeconds();
-      var ampm = h >= 12 ? 'PM' : 'AM';
-      h = h % 12;
-      h = h ? h : 12;
-      var mStr = m < 10 ? '0' + m : m;
-      var sStr = s < 10 ? '0' + s : s;
-      el.textContent = h + ':' + mStr + ':' + sStr + ' ' + ampm + ' UTC+6';
-    } catch(e) {}
-  }
-  updateTime();
-  setInterval(updateTime, 1000);
-
   // Copy Email interaction with tactile toast
   var copyBtns = document.querySelectorAll('.js-copy-email');
   var toast = document.getElementById('copy-toast');
@@ -943,12 +921,6 @@ fn render_page(data: &PortfolioData) -> Markup {
                         div class="brand" {
                             a href="#" { (data.profile.name) }
                             span class="brand__tag" { "[" (data.profile.handle) "]" }
-                        }
-
-                        div class="live-badge" title="Live Local Coordinates & Current Time" {
-                            span class="live-badge__dot" {}
-                            span { "Bogura, BD · " }
-                            span id="live-time" class="live-badge__clock" { (data.profile.utc_offset) }
                         }
 
                         nav class="nav-links" aria-label="Main Navigation" {
