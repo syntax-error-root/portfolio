@@ -943,13 +943,6 @@ fn render_page(data: &PortfolioData) -> Markup {
                                             img src=(avatar_src) alt="Omik — DevOps Engineer" width="136" height="136" loading="eager" class="avatar-img";
                                         }
                                     }
-                                    div class="avatar-status" title="Active Platform Engineer" {
-                                        span class="avatar-status__ping" {
-                                            span class="avatar-status__ping-ring" {}
-                                            span class="avatar-status__ping-dot" {}
-                                        }
-                                        span { "ONLINE / ACTIVE" }
-                                    }
                                 }
 
                                 div class="hero__content" {
