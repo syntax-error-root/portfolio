@@ -1,0 +1,5 @@
+/target/
+builder/target/
+dist/
+*.log
+.DS_Store

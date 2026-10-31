@@ -1,0 +1,99 @@
+{
+  "profile": {
+    "name": "Omik",
+    "handle": "syntax-error-root",
+    "role": "Systems & Platform Engineer / AI Builder",
+    "tagline": "Engineering the invisible · Zero-overhead architectures · Automated reliability",
+    "location": "Bogura, Bangladesh",
+    "availability": "Available for High-Impact Roles & Remote Infrastructure Projects",
+    "bio": "Specializing in resilient systems, automated continuous delivery, and high-performance pre-rendered web infrastructure. Focused on deterministic architectures, observability, and AI tooling that eliminate operational friction.",
+    "stats": [
+      { "label": "ARCHITECTURE", "value": "Rust Pre-Rendered" },
+      { "label": "FIRST LOAD", "value": "< 30ms (Edge CDN)" },
+      { "label": "PAYLOAD", "value": "~15 KB Raw Wire" },
+      { "label": "RUNTIME CPU", "value": "0.0% Overhead" }
+    ]
+  },
+  "projects": [
+    {
+      "title": "Social Media Analytics",
+      "badge": "PRODUCTION",
+      "description": "Full-stack tracking & ad-ops toolkit: GTM with GA4 dashboards, Looker Studio reports, AdSense + Meta Pixel & CAPI pipelines that turn raw data into ROAS.",
+      "tags": ["React", "D3.js", "Node.js", "Redis", "GA4", "GTM"],
+      "link": "https://github.com/syntax-error-root"
+    },
+    {
+      "title": "High-Performance E-Commerce Engine",
+      "badge": "INFRASTRUCTURE",
+      "description": "Decoupled headless architecture with React frontend, WooCommerce backend, and custom REST APIs for scalable product catalogs, secure checkout flows, and real-time order management. Deployed on Ubuntu behind production load balancing (HAProxy/Nginx) and provisioned with wp-saltstack.",
+      "tags": ["WordPress", "React", "HAProxy", "Nginx", "SaltStack"],
+      "link": "https://github.com/syntax-error-root/wp-saltstack"
+    },
+    {
+      "title": "AI Chat Assistant with RAG",
+      "badge": "AI & SYSTEMS",
+      "description": "Advanced AI chatbot using Retrieval-Augmented Generation (RAG) with domain-specific knowledge bases to answer targeted questions with source-backed deterministic accuracy.",
+      "tags": ["Python", "OpenAI", "FastAPI", "React", "Vector DB"],
+      "link": "https://github.com/syntax-error-root"
+    },
+    {
+      "title": "Collaborative Task Platform",
+      "badge": "WEB APPLICATION",
+      "description": "Real-time task orchestration application featuring optimistic updates, team workspace synchronization, and fine-grained progress metrics.",
+      "tags": ["Vue.js", "Firebase", "TailwindCSS"],
+      "link": "https://github.com/syntax-error-root"
+    },
+    {
+      "title": "Dynamic Portfolio Builder",
+      "badge": "FULL STACK",
+      "description": "Customizable portfolio builder with instant schema-driven preview, relational PostgreSQL persistence, and type-safe data access.",
+      "tags": ["Next.js", "Prisma", "PostgreSQL"],
+      "link": "https://github.com/syntax-error-root"
+    },
+    {
+      "title": "Real-Time Telemetry Dashboard",
+      "badge": "OBSERVABILITY",
+      "description": "Atmospheric data telemetry and metrics engine featuring low-latency radar mapping, location-based services, and automated time-series forecasting.",
+      "tags": ["TypeScript", "React", "Prometheus", "Rest APIs"],
+      "link": "https://github.com/syntax-error-root"
+    }
+  ],
+  "skill_categories": [
+    {
+      "name": "DevOps & Infrastructure",
+      "skills": [
+        { "name": "Linux Kernel Internals", "level": "85%" },
+        { "name": "Docker & Containers", "level": "85%" },
+        { "name": "Git & GitOps", "level": "85%" },
+        { "name": "Prometheus & Grafana", "level": "85%" },
+        { "name": "Caddy, Nginx & Reverse Proxies", "level": "85%" },
+        { "name": "SaltStack / IaC", "level": "80%" }
+      ]
+    },
+    {
+      "name": "Scripting & Systems Programming",
+      "skills": [
+        { "name": "Rust (Zero-Cost Pre-rendering)", "level": "85%" },
+        { "name": "Bash & POSIX Shell", "level": "80%" },
+        { "name": "Python Systems SDKs", "level": "75%" },
+        { "name": "Node.js & TypeScript", "level": "75%" },
+        { "name": "Hermes Automation", "level": "70%" }
+      ]
+    },
+    {
+      "name": "Support, Reliability & Incident Response",
+      "skills": [
+        { "name": "System Diagnostics & Profiling", "level": "85%" },
+        { "name": "Network & Socket Telemetry", "level": "85%" },
+        { "name": "Zero-Downtime Recovery", "level": "80%" },
+        { "name": "Structured Journalctl / Log Aggregation", "level": "80%" }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "default13789@gmail.com",
+    "github": "https://github.com/syntax-error-root",
+    "linkedin": "https://linkedin.com/in/omik-dev",
+    "twitter": "https://x.com"
+  }
+}
