@@ -2,92 +2,102 @@
   "profile": {
     "name": "Omik",
     "handle": "syntax-error-root",
-    "role": "Systems & Platform Engineer / AI Builder",
-    "tagline": "Engineering the invisible · Zero-overhead architectures · Automated reliability",
+    "role": "Systems & Platform Engineer · Tracking Architect",
+    "headline": "I build resilient web infrastructure, automate platforms, and engineer high-precision tracking pipelines.",
     "location": "Bogura, Bangladesh",
-    "availability": "Available for High-Impact Roles & Remote Infrastructure Projects",
-    "bio": "Specializing in resilient systems, automated continuous delivery, and high-performance pre-rendered web infrastructure. Focused on deterministic architectures, observability, and AI tooling that eliminate operational friction.",
-    "stats": [
-      { "label": "ARCHITECTURE", "value": "Rust Pre-Rendered" },
-      { "label": "FIRST LOAD", "value": "< 30ms (Edge CDN)" },
-      { "label": "PAYLOAD", "value": "~15 KB Raw Wire" },
-      { "label": "RUNTIME CPU", "value": "0.0% Overhead" }
-    ]
+    "timezone": "Asia/Dhaka",
+    "utc_offset": "UTC+6",
+    "status": "Available for Select Contracts & Engineering Roles",
+    "about": [
+      "I am an engineer focused on the intersection of infrastructure reliability, automated deployment, and full-stack measurement pipelines.",
+      "Rather than relying on bloated frameworks and guesswork, I build systems designed for determinism: reproducible server state through SaltStack and Docker, fast and resilient ingress through Nginx and HAProxy, and server-side tracking pipelines (GTM, GA4, Meta CAPI) that preserve conversion data through browser cookie crackdowns.",
+      "This portfolio itself is compiled directly in Rust using Maud macros with inlined critical CSS, delivering a single-pass ~20KB payload with zero render-blocking JavaScript and sub-30ms first contentful paint."
+    ],
+    "now": {
+      "focus": "Building reproducible infrastructure stacks, Rust compile-time generators, and automated server-side tracking pipelines.",
+      "reading": "Linux networking internals, socket buffers, and event-driven workflow automation.",
+      "location_note": "Bogura, Bangladesh (UTC+6) — operating globally across distributed teams."
+    }
   },
-  "projects": [
+  "domains": [
     {
-      "title": "Social Media Analytics",
-      "badge": "PRODUCTION",
-      "description": "Full-stack tracking & ad-ops toolkit: GTM with GA4 dashboards, Looker Studio reports, AdSense + Meta Pixel & CAPI pipelines that turn raw data into ROAS.",
-      "tags": ["React", "D3.js", "Node.js", "Redis", "GA4", "GTM"],
-      "link": "https://github.com/syntax-error-root"
+      "title": "Systems & Platform Infrastructure",
+      "summary": "Hardened Linux environments, containerized services, and resilient reverse proxy topologies.",
+      "skills": [
+        { "name": "Linux Administration", "note": "Kernel tuning, systemd unit design, cgroups, journalctl tracing" },
+        { "name": "Containers & Pods", "note": "Docker multi-stage builds, rootless containers, Docker Compose" },
+        { "name": "Web Ingress & SSL", "note": "Nginx, HAProxy, Caddy, automated Let's Encrypt TLS renewal" },
+        { "name": "IaC & Automation", "note": "SaltStack state formulas (wp-saltstack), idempotent provisioning" },
+        { "name": "Telemetry & Monitoring", "note": "Prometheus metric scraping, Grafana dashboards, alert thresholds" }
+      ]
     },
     {
-      "title": "High-Performance E-Commerce Engine",
-      "badge": "INFRASTRUCTURE",
-      "description": "Decoupled headless architecture with React frontend, WooCommerce backend, and custom REST APIs for scalable product catalogs, secure checkout flows, and real-time order management. Deployed on Ubuntu behind production load balancing (HAProxy/Nginx) and provisioned with wp-saltstack.",
-      "tags": ["WordPress", "React", "HAProxy", "Nginx", "SaltStack"],
-      "link": "https://github.com/syntax-error-root/wp-saltstack"
+      "title": "Analytics & Conversion Tracking Ops",
+      "summary": "Full-funnel measurement pipelines connecting paid acquisition directly to verified revenue telemetry.",
+      "skills": [
+        { "name": "Google Tag Manager", "note": "Server-side GTM (sGTM) containers & client-side custom dataLayer schemas" },
+        { "name": "Google Analytics 4", "note": "Custom event definitions, purchase parameter validation, BigQuery export" },
+        { "name": "Meta Pixel & CAPI", "note": "Server-to-server Conversions API, event ID deduplication, match quality" },
+        { "name": "Looker Studio & BI", "note": "Executive ROAS dashboards, multi-source blended attribution models" },
+        { "name": "AdSense Optimization", "note": "Monetization architecture, high-CTR placement, layout shift compliance" }
+      ]
     },
     {
-      "title": "AI Chat Assistant with RAG",
-      "badge": "AI & SYSTEMS",
-      "description": "Advanced AI chatbot using Retrieval-Augmented Generation (RAG) with domain-specific knowledge bases to answer targeted questions with source-backed deterministic accuracy.",
-      "tags": ["Python", "OpenAI", "FastAPI", "React", "Vector DB"],
-      "link": "https://github.com/syntax-error-root"
-    },
-    {
-      "title": "Collaborative Task Platform",
-      "badge": "WEB APPLICATION",
-      "description": "Real-time task orchestration application featuring optimistic updates, team workspace synchronization, and fine-grained progress metrics.",
-      "tags": ["Vue.js", "Firebase", "TailwindCSS"],
-      "link": "https://github.com/syntax-error-root"
-    },
-    {
-      "title": "Dynamic Portfolio Builder",
-      "badge": "FULL STACK",
-      "description": "Customizable portfolio builder with instant schema-driven preview, relational PostgreSQL persistence, and type-safe data access.",
-      "tags": ["Next.js", "Prisma", "PostgreSQL"],
-      "link": "https://github.com/syntax-error-root"
-    },
-    {
-      "title": "Real-Time Telemetry Dashboard",
-      "badge": "OBSERVABILITY",
-      "description": "Atmospheric data telemetry and metrics engine featuring low-latency radar mapping, location-based services, and automated time-series forecasting.",
-      "tags": ["TypeScript", "React", "Prometheus", "Rest APIs"],
-      "link": "https://github.com/syntax-error-root"
+      "title": "Scripting, Full-Stack & AI Tooling",
+      "summary": "Pragmatic software engineering spanning backend microservices, modern frontends, and AI pipelines.",
+      "skills": [
+        { "name": "POSIX Shell Scripting", "note": "Robust Bash automation, incident mitigation scripts, cron supervision" },
+        { "name": "Python Systems", "note": "FastAPI services, asynchronous REST scraping, automation scripts" },
+        { "name": "Rust Systems", "note": "Compile-time HTML pre-rendering with Maud, zero-overhead static generation" },
+        { "name": "TypeScript & React", "note": "Decoupled headless frontends, state orchestration, responsive layouts" },
+        { "name": "RAG & LLM Tooling", "note": "Vector similarity search, prompt grounding, autonomous triage agents" }
+      ]
     }
   ],
-  "skill_categories": [
+  "projects": [
     {
-      "name": "DevOps & Infrastructure",
-      "skills": [
-        { "name": "Linux Kernel Internals", "level": "85%" },
-        { "name": "Docker & Containers", "level": "85%" },
-        { "name": "Git & GitOps", "level": "85%" },
-        { "name": "Prometheus & Grafana", "level": "85%" },
-        { "name": "Caddy, Nginx & Reverse Proxies", "level": "85%" },
-        { "name": "SaltStack / IaC", "level": "80%" }
-      ]
+      "id": "tracking-analytics",
+      "category": "CONVERSION OPS",
+      "title": "Full-Stack Ad-Ops & Attribution Tracking Pipeline",
+      "headline": "Server-side GTM + GA4 + Meta CAPI pipeline turning raw click traffic into verified ROAS telemetry.",
+      "problem": "Client-side tracking was suffering from 25-40% signal loss due to ad-blockers, Safari ITP cookie expiration, and iOS privacy controls, causing degraded ad optimization and blind ad spend.",
+      "solution": "Architected a dual-delivery tracking pipeline: client dataLayer feeds a custom Server-Side GTM proxy on a custom subdomain. Event data is deduplicated with unique Event IDs and dispatched directly to Meta Conversions API and GA4 Measurement Protocol, backed by Looker Studio reports.",
+      "stack": ["Server-Side GTM", "GA4", "Meta CAPI", "Looker Studio", "Google AdSense", "Redis"],
+      "link": "https://github.com/syntax-error-root",
+      "linkLabel": "Inspect Tracking Architecture"
     },
     {
-      "name": "Scripting & Systems Programming",
-      "skills": [
-        { "name": "Rust (Zero-Cost Pre-rendering)", "level": "85%" },
-        { "name": "Bash & POSIX Shell", "level": "80%" },
-        { "name": "Python Systems SDKs", "level": "75%" },
-        { "name": "Node.js & TypeScript", "level": "75%" },
-        { "name": "Hermes Automation", "level": "70%" }
-      ]
+      "id": "headless-ecommerce",
+      "category": "INFRASTRUCTURE",
+      "title": "High-Availability E-Commerce & CMS Cloud Platform",
+      "headline": "Decoupled headless React frontend with WooCommerce backend provisioned via wp-saltstack.",
+      "problem": "Monolithic WordPress instances suffered severe latency spikes during sales spikes and lacked automated, reproducible provisioning across bare-metal and cloud servers.",
+      "solution": "Decoupled the architecture: high-speed React storefront communicating via cached REST endpoints to a WooCommerce engine. Servers are provisioned idempotently with SaltStack (wp-saltstack) behind HAProxy/Nginx load balancing with automatic SSL renewal.",
+      "stack": ["WordPress REST API", "React", "HAProxy", "Nginx", "SaltStack", "Ubuntu Linux"],
+      "link": "https://github.com/syntax-error-root/wp-saltstack",
+      "linkLabel": "View wp-saltstack on GitHub"
     },
     {
-      "name": "Support, Reliability & Incident Response",
-      "skills": [
-        { "name": "System Diagnostics & Profiling", "level": "85%" },
-        { "name": "Network & Socket Telemetry", "level": "85%" },
-        { "name": "Zero-Downtime Recovery", "level": "80%" },
-        { "name": "Structured Journalctl / Log Aggregation", "level": "80%" }
-      ]
+      "id": "rag-assistant",
+      "category": "AI ENGINEERING",
+      "title": "Domain-Specific Knowledge Base with RAG",
+      "headline": "Retrieval-augmented chatbot ensuring source-verified, hallucination-free technical responses.",
+      "problem": "Generic LLMs frequently hallucinated API signatures and company-specific operational procedures when queried by technical users.",
+      "solution": "Built a Python FastAPI service that ingests documentation markdown, generates embeddings into a vector store, performs semantic top-k retrieval with reranking, and injects verified source snippets into the prompt context.",
+      "stack": ["Python", "FastAPI", "Vector Embeddings", "OpenAI API", "React UI"],
+      "link": "https://github.com/syntax-error-root",
+      "linkLabel": "Inspect Source Code"
+    },
+    {
+      "id": "rust-portfolio",
+      "category": "SYSTEMS ARCHITECTURE",
+      "title": "Rust Compile-Time Zero-Overhead Portfolio Engine",
+      "headline": "Maud macro pre-renderer producing a single-pass ~20KB payload with zero initial JS execution.",
+      "problem": "Modern developer portfolios bloated with 1MB+ of React/Next.js JS bundles, taking 800ms+ on mobile devices and requiring complex runtime servers for simple static portfolios.",
+      "solution": "Engineered a native Rust CLI compiler that type-checks data schemas with Serde and renders inlined critical CSS with Maud macros. Result: 100/100 Lighthouse performance, sub-30ms edge paint, and zero client hydration penalty.",
+      "stack": ["Rust", "Maud", "GitHub Pages", "Fastly Edge CDN", "CI/CD"],
+      "link": "https://github.com/syntax-error-root/portfolio",
+      "linkLabel": "View Generator on GitHub"
     }
   ],
   "contact": {

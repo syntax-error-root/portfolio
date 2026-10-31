@@ -1,77 +1,612 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"><title>Omik — Systems &amp; Platform Engineer / AI Builder</title><meta name="description" content="Engineering the invisible · Zero-overhead architectures · Automated reliability"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"><style>
-:root{--bg:#06090e;--bg-card:#0c121d;--bg-card-hover:#111927;--border:#1b2537;--border-bright:#2a3a55;--text:#f1f5f9;--text-muted:#8b9bb4;--accent:#22c55e;--accent-glow:rgba(34,197,94,0.15);--cyan:#38bdf8;--font-sans:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,&quot;Inter&quot;,sans-serif;--font-mono:ui-monospace,&quot;JetBrains Mono&quot;,&quot;SF Mono&quot;,Menlo,monospace}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-body{min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
-a{color:inherit;text-decoration:none;transition:color .2s ease}
-.container{width:100%;max-width:1120px;margin:0 auto;padding:0 1.5rem}
-.header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(6,9,14,0.85);border-bottom:1px solid var(--border)}
-.header__inner{display:flex;align-items:center;justify-content:space-between;height:4.25rem}
-.logo{font-family:var(--font-mono);font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
-.logo span{color:var(--accent)}
-.nav{display:flex;align-items:center;gap:2rem}
-.nav a{font-size:.9rem;color:var(--text-muted);font-weight:500}
-.nav a:hover{color:var(--text)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.55rem 1.25rem;border-radius:6px;font-size:.875rem;font-weight:600;transition:all .2s ease;cursor:pointer}
-.btn--primary{background:var(--accent);color:#04070a;border:1px solid var(--accent)}
-.btn--primary:hover{background:#16a34a;box-shadow:0 0 16px var(--accent-glow)}
-.btn--outline{background:transparent;color:var(--text);border:1px solid var(--border-bright)}
-.btn--outline:hover{background:var(--bg-card);border-color:var(--cyan);color:var(--cyan)}
-.badge{display:inline-flex;align-items:center;gap:.5rem;padding:.25rem .75rem;border-radius:9999px;font-family:var(--font-mono);font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
-.badge--pulse{background:rgba(34,197,94,0.1);color:var(--accent);border:1px solid rgba(34,197,94,0.3)}
-.badge--pulse::before{content:&quot;&quot;;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.hero{padding:5rem 0 3.5rem}
-.hero__grid{display:grid;grid-template-columns:1fr;gap:2.5rem}
-@media(min-width:768px){.hero__grid{grid-template-columns:1.2fr .8fr;align-items:center}}
-.hero__title{font-size:clamp(2.25rem,5vw,3.75rem);font-weight:800;line-height:1.15;letter-spacing:-.03em;margin:1rem 0}
-.hero__role{font-family:var(--font-mono);color:var(--cyan);font-size:1.1rem;font-weight:600}
-.hero__desc{font-size:1.1rem;color:var(--text-muted);max-width:580px;margin-bottom:2rem}
-.hero__actions{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem}
-.telemetry-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
-.telemetry-card__header{display:flex;align-items:center;justify-content:space-between;padding-bottom:.75rem;border-bottom:1px solid var(--border);margin-bottom:1rem;font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted)}
-.telemetry-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-.telemetry-item__val{font-family:var(--font-mono);font-size:1rem;font-weight:700;color:var(--text)}
-.telemetry-item__lbl{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}
-.section{padding:4.5rem 0;border-top:1px solid var(--border)}
-.section__header{margin-bottom:3rem}
-.section__eyebrow{font-family:var(--font-mono);font-size:.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
-.section__title{font-size:2rem;font-weight:700;letter-spacing:-.02em}
-.projects-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
-@media(min-width:768px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.projects-grid{grid-template-columns:repeat(3,1fr)}}
-.project-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;transition:all .2s ease}
-.project-card:hover{border-color:var(--border-bright);background:var(--bg-card-hover);transform:translateY(-2px)}
-.project-card__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
-.project-card__badge{font-family:var(--font-mono);font-size:.7rem;padding:.2rem .5rem;border-radius:4px;background:rgba(56,189,248,0.1);color:var(--cyan);border:1px solid rgba(56,189,248,0.2)}
-.project-card__title{font-size:1.2rem;font-weight:700;margin-bottom:.75rem}
-.project-card__desc{font-size:.9rem;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.55;flex-grow:1}
-.project-card__tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
-.tag{font-family:var(--font-mono);font-size:.75rem;color:#94a3b8;background:#06090e;padding:.2rem .55rem;border-radius:4px;border:1px solid var(--border)}
-.project-card__link{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;color:var(--accent)}
-.project-card__link:hover{text-decoration:underline}
-.skills-grid{display:grid;grid-template-columns:1fr;gap:1.75rem}
-@media(min-width:768px){.skills-grid{grid-template-columns:repeat(3,1fr)}}
-.skill-box{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
-.skill-box__title{font-size:1.05rem;font-weight:700;margin-bottom:1.25rem;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:.5rem}
-.skill-list{display:flex;flex-direction:column;gap:.9rem}
-.skill-row{display:flex;justify-content:space-between;font-size:.875rem}
-.skill-bar{height:4px;width:100%;background:#06090e;border-radius:2px;overflow:hidden;margin-top:.35rem}
-.skill-bar__fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--accent))}
-.contact-box{background:linear-gradient(180deg,var(--bg-card) 0%,rgba(12,18,29,0.5) 100%);border:1px solid var(--border);border-radius:12px;padding:3rem 2rem;text-align:center}
-.contact-box h2{font-size:2.25rem;margin-bottom:1rem;font-weight:800}
-.contact-box p{color:var(--text-muted);max-width:540px;margin:0 auto 2rem;font-size:1.05rem}
-.contact-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem}
-.footer{padding:2.5rem 0;border-top:1px solid var(--border);font-size:.85rem;color:var(--text-muted)}
-.footer__inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.mobile-btn{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:.5rem}
-@media(max-width:767px){.nav{display:none}.mobile-btn{display:block}}
-</style></head><body><header class="header"><div class="container header__inner"><a href="#" class="logo"><span>&lt;</span>omik<span>/&gt;</span></a><nav class="nav" aria-label="Main Navigation"><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav><div><a href="#" class="btn btn--primary" data-b64-email="ZGVmYXVsdDEzNzg5QGdtYWlsLmNvbQ==">Get in Touch</a></div></div></header><main><section class="hero" id="hero"><div class="container hero__grid"><div><div class="badge badge--pulse">Available for High-Impact Roles &amp; Remote Infrastructure Projects</div><h1 class="hero__title">Omik</h1><div class="hero__role">Systems &amp; Platform Engineer / AI Builder</div><p class="hero__desc">Engineering the invisible · Zero-overhead architectures · Automated reliability</p><div class="hero__actions"><a href="#projects" class="btn btn--primary">Explore Deployments</a><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">GitHub Source</a></div></div><div class="telemetry-card"><div class="telemetry-card__header"><span>RUNTIME STATUS // TELEMETRY</span><span style="color:var(--accent)">ONLINE</span></div><div class="telemetry-grid"><div class="telemetry-item"><div class="telemetry-item__val">Rust Pre-Rendered</div><div class="telemetry-item__lbl">ARCHITECTURE</div></div><div class="telemetry-item"><div class="telemetry-item__val">&lt; 30ms (Edge CDN)</div><div class="telemetry-item__lbl">FIRST LOAD</div></div><div class="telemetry-item"><div class="telemetry-item__val">~15 KB Raw Wire</div><div class="telemetry-item__lbl">PAYLOAD</div></div><div class="telemetry-item"><div class="telemetry-item__val">0.0% Overhead</div><div class="telemetry-item__lbl">RUNTIME CPU</div></div></div></div></div></section><section class="section" id="about"><div class="container"><div class="section__header"><div class="section__eyebrow">ENGINEERING MINDSET</div><h2 class="section__title">Architectural Philosophy</h2></div><p style="max-width:760px;color:var(--text-muted);font-size:1.1rem;line-height:1.7;">Specializing in resilient systems, automated continuous delivery, and high-performance pre-rendered web infrastructure. Focused on deterministic architectures, observability, and AI tooling that eliminate operational friction.</p></div></section><section class="section" id="projects"><div class="container"><div class="section__header"><div class="section__eyebrow">DEPLOYED WORK</div><h2 class="section__title">Featured Projects &amp; Architecture</h2></div><div class="projects-grid"><article class="project-card"><div><div class="project-card__top"><span class="project-card__badge">PRODUCTION</span></div><h3 class="project-card__title">Social Media Analytics</h3><p class="project-card__desc">Full-stack tracking &amp; ad-ops toolkit: GTM with GA4 dashboards, Looker Studio reports, AdSense + Meta Pixel &amp; CAPI pipelines that turn raw data into ROAS.</p></div><div><div class="project-card__tags"><span class="tag">React</span><span class="tag">D3.js</span><span class="tag">Node.js</span><span class="tag">Redis</span><span class="tag">GA4</span><span class="tag">GTM</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="project-card__link">Inspect Architecture →</a></div></article><article class="project-card"><div><div class="project-card__top"><span class="project-card__badge">INFRASTRUCTURE</span></div><h3 class="project-card__title">High-Performance E-Commerce Engine</h3><p class="project-card__desc">Decoupled headless architecture with React frontend, WooCommerce backend, and custom REST APIs for scalable product catalogs, secure checkout flows, and real-time order management. Deployed on Ubuntu behind production load balancing (HAProxy/Nginx) and provisioned with wp-saltstack.</p></div><div><div class="project-card__tags"><span class="tag">WordPress</span><span class="tag">React</span><span class="tag">HAProxy</span><span class="tag">Nginx</span><span class="tag">SaltStack</span></div><a href="https://github.com/syntax-error-root/wp-saltstack" target="_blank" rel="noopener noreferrer" class="project-card__link">Inspect Architecture →</a></div></article><article class="project-card"><div><div class="project-card__top"><span class="project-card__badge">AI &amp; SYSTEMS</span></div><h3 class="project-card__title">AI Chat Assistant with RAG</h3><p class="project-card__desc">Advanced AI chatbot using Retrieval-Augmented Generation (RAG) with domain-specific knowledge bases to answer targeted questions with source-backed deterministic accuracy.</p></div><div><div class="project-card__tags"><span class="tag">Python</span><span class="tag">OpenAI</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Vector DB</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="project-card__link">Inspect Architecture →</a></div></article><article class="project-card"><div><div class="project-card__top"><span class="project-card__badge">WEB APPLICATION</span></div><h3 class="project-card__title">Collaborative Task Platform</h3><p class="project-card__desc">Real-time task orchestration application featuring optimistic updates, team workspace synchronization, and fine-grained progress metrics.</p></div><div><div class="project-card__tags"><span class="tag">Vue.js</span><span class="tag">Firebase</span><span class="tag">TailwindCSS</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="project-card__link">Inspect Architecture →</a></div></article><article class="project-card"><div><div class="project-card__top"><span class="project-card__badge">FULL STACK</span></div><h3 class="project-card__title">Dynamic Portfolio Builder</h3><p class="project-card__desc">Customizable portfolio builder with instant schema-driven preview, relational PostgreSQL persistence, and type-safe data access.</p></div><div><div class="project-card__tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="project-card__link">Inspect Architecture →</a></div></article><article class="project-card"><div><div class="project-card__top"><span class="project-card__badge">OBSERVABILITY</span></div><h3 class="project-card__title">Real-Time Telemetry Dashboard</h3><p class="project-card__desc">Atmospheric data telemetry and metrics engine featuring low-latency radar mapping, location-based services, and automated time-series forecasting.</p></div><div><div class="project-card__tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Prometheus</span><span class="tag">Rest APIs</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="project-card__link">Inspect Architecture →</a></div></article></div></div></section><section class="section" id="skills"><div class="container"><div class="section__header"><div class="section__eyebrow">COMPETENCY MATRIX</div><h2 class="section__title">Technical Stack &amp; Infrastructure</h2></div><div class="skills-grid"><div class="skill-box"><h4 class="skill-box__title">DevOps &amp; Infrastructure</h4><div class="skill-list"><div><div class="skill-row"><span>Linux Kernel Internals</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>Docker &amp; Containers</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>Git &amp; GitOps</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>Prometheus &amp; Grafana</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>Caddy, Nginx &amp; Reverse Proxies</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>SaltStack / IaC</span><span style="font-family:var(--font-mono);color:var(--accent)">80%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:80%"></div></div></div></div></div><div class="skill-box"><h4 class="skill-box__title">Scripting &amp; Systems Programming</h4><div class="skill-list"><div><div class="skill-row"><span>Rust (Zero-Cost Pre-rendering)</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>Bash &amp; POSIX Shell</span><span style="font-family:var(--font-mono);color:var(--accent)">80%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:80%"></div></div></div><div><div class="skill-row"><span>Python Systems SDKs</span><span style="font-family:var(--font-mono);color:var(--accent)">75%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:75%"></div></div></div><div><div class="skill-row"><span>Node.js &amp; TypeScript</span><span style="font-family:var(--font-mono);color:var(--accent)">75%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:75%"></div></div></div><div><div class="skill-row"><span>Hermes Automation</span><span style="font-family:var(--font-mono);color:var(--accent)">70%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:70%"></div></div></div></div></div><div class="skill-box"><h4 class="skill-box__title">Support, Reliability &amp; Incident Response</h4><div class="skill-list"><div><div class="skill-row"><span>System Diagnostics &amp; Profiling</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>Network &amp; Socket Telemetry</span><span style="font-family:var(--font-mono);color:var(--accent)">85%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:85%"></div></div></div><div><div class="skill-row"><span>Zero-Downtime Recovery</span><span style="font-family:var(--font-mono);color:var(--accent)">80%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:80%"></div></div></div><div><div class="skill-row"><span>Structured Journalctl / Log Aggregation</span><span style="font-family:var(--font-mono);color:var(--accent)">80%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="width:80%"></div></div></div></div></div></div></div></section><section class="section" id="contact"><div class="container"><div class="contact-box"><h2>Initiate Secure Communication</h2><p>Ready to engineer scalable platforms, optimize cold-start bottlenecks, or deploy automated infrastructure.</p><div class="contact-actions"><a href="#" class="btn btn--primary" data-b64-email="ZGVmYXVsdDEzNzg5QGdtYWlsLmNvbQ==">Dispatch Email</a><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">Review GitHub</a><a href="https://linkedin.com/in/omik-dev" target="_blank" rel="noopener noreferrer" class="btn btn--outline">Connect on LinkedIn</a></div></div></div></section></main><footer class="footer"><div class="container footer__inner"><p>© 2026 Omik — Bogura, Bangladesh 🇧🇩</p><p style="font-family:var(--font-mono);font-size:.75rem;">Built with Rust &amp; Maud · Zero-JS Initial Render</p></div></footer><script>
-(function(){
-  document.querySelectorAll('[data-b64-email]').forEach(function(el){
-    var decoded = atob(el.getAttribute('data-b64-email'));
-    el.setAttribute('href', 'mailto:' + decoded);
-    el.removeAttribute('data-b64-email');
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"><title>Omik — Systems &amp; Platform Engineer · Tracking Architect</title><meta name="description" content="I build resilient web infrastructure, automate platforms, and engineer high-precision tracking pipelines."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"><style>
+:root{
+  --bg: #090c12;
+  --bg-surface: #0e131d;
+  --bg-subtle: #141b29;
+  --border: #1e2638;
+  --border-focus: #384661;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent: #10b981;
+  --accent-soft: rgba(16, 185, 129, 0.12);
+  --amber: #f59e0b;
+  --amber-soft: rgba(245, 158, 11, 0.12);
+  --cyan: #38bdf8;
+  --cyan-soft: rgba(56, 189, 248, 0.1);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* HEADER */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(9, 12, 18, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.25rem;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand__tag {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-dim);
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+}
+
+.live-badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--text);
+  color: #06090e;
+  border: 1px solid var(--text);
+}
+
+.btn--primary:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn--outline:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-focus);
+}
+
+.btn--copy {
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+
+.btn--copy:hover {
+  color: var(--text);
+  border-color: var(--border-focus);
+}
+
+/* HERO */
+.hero {
+  padding: 4.5rem 0 3.5rem;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.hero__title {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.5rem;
+  max-width: 860px;
+}
+
+.hero__lead {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 780px;
+  margin-bottom: 2rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+/* NOW SECTION */
+.now-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2.5rem 0 4rem;
+}
+
+@media (min-width: 768px) {
+  .now-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.now-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+.now-card__lbl {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.now-card__text {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* SECTIONS */
+.section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.section__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2.75rem;
+}
+
+.section__tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.section__h2 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.section__desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 640px;
+}
+
+/* CASE STUDIES / PROJECTS */
+.case-studies {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.case-study {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.case-study:hover {
+  border-color: var(--border-focus);
+  background: var(--bg-subtle);
+}
+
+.case-study__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.case-study__cat {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: var(--cyan-soft);
+  color: var(--cyan);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.case-study__title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.case-study__lead {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.case-study__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .case-study__body {
+    grid-template-columns: 1fr 1.3fr;
+  }
+}
+
+.case-study__col-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+
+.case-study__col-p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.case-study__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.case-study__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.case-study__link:hover {
+  text-decoration: underline;
+}
+
+/* DOMAINS & SKILLS */
+.domains-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 860px) {
+  .domains-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.domain-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.domain-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.domain-card__summary {
+  font-size: 0.825rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.skill-item__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.skill-item__note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-top: 0.15rem;
+}
+
+/* ABOUT NARRATIVE */
+.about-narrative {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.about-narrative strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* CONTACT */
+.contact-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .contact-panel {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.contact-panel__info h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.contact-panel__info p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 520px;
+}
+
+.contact-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* FOOTER */
+.site-footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* TOAST FEEDBACK */
+#copy-toast {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #10b981;
+  color: #04070a;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.6rem 1.1rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  z-index: 100;
+}
+</style></head><body><div id="copy-toast"></div><header class="site-header"><div class="container site-header__inner"><div class="brand"><a href="#">Omik</a><span class="brand__tag">[syntax-error-root]</span></div><div class="live-badge" title="Live Local Coordinates"><span class="live-badge__dot"></span><span>Bogura, BD · </span><span id="live-time">UTC+6</span></div><nav class="nav-links" aria-label="Main Navigation"><a href="#projects">Work</a><a href="#skills">Capabilities</a><a href="#about">Philosophy</a><a href="#contact">Contact</a></nav></div></header><main><section class="hero" id="top"><div class="container"><div class="hero__eyebrow">● Systems &amp; Platform Engineer · Tracking Architect</div><h1 class="hero__title">I build resilient web infrastructure, automate platforms, and engineer high-precision tracking pipelines.</h1><p class="hero__lead">I am an engineer focused on the intersection of infrastructure reliability, automated deployment, and full-stack measurement pipelines. Rather than relying on bloated frameworks and guesswork, I build systems designed for determinism: reproducible server state through SaltStack and Docker, fast and resilient ingress through Nginx and HAProxy, and server-side tracking pipelines (GTM, GA4, Meta CAPI) that preserve conversion data through browser cookie crackdowns.</p><div class="hero__actions"><a href="#projects" class="btn btn--primary">Inspect Work &amp; Architecture ↓</a><button class="btn btn--copy js-copy-email" type="button">Copy Coordinates: default13789@gmail.com</button><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">GitHub Source ↗</a></div><div class="now-grid"><div class="now-card"><div class="now-card__lbl">Current Engineering Focus</div><p class="now-card__text">Building reproducible infrastructure stacks, Rust compile-time generators, and automated server-side tracking pipelines.</p></div><div class="now-card"><div class="now-card__lbl">Deep-Dive Topics</div><p class="now-card__text">Linux networking internals, socket buffers, and event-driven workflow automation.</p></div><div class="now-card"><div class="now-card__lbl">Availability &amp; Location</div><p class="now-card__text">Available for Select Contracts &amp; Engineering Roles — Bogura, Bangladesh (UTC+6) — operating globally across distributed teams.</p></div></div></div></section><section class="section" id="projects"><div class="container"><div class="section__head"><span class="section__tag">Selected Case Studies</span><h2 class="section__h2">Engineering Logs &amp; Deployments</h2><p class="section__desc">Concrete systems engineered for production availability, measurable conversion telemetry, and minimal operational overhead.</p></div><div class="case-studies"><article class="case-study" id="tracking-analytics"><div class="case-study__meta"><span class="case-study__cat">CONVERSION OPS</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Full-Stack Ad-Ops &amp; Attribution Tracking Pipeline</h3><p class="case-study__lead">Server-side GTM + GA4 + Meta CAPI pipeline turning raw click traffic into verified ROAS telemetry.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Client-side tracking was suffering from 25-40% signal loss due to ad-blockers, Safari ITP cookie expiration, and iOS privacy controls, causing degraded ad optimization and blind ad spend.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Architected a dual-delivery tracking pipeline: client dataLayer feeds a custom Server-Side GTM proxy on a custom subdomain. Event data is deduplicated with unique Event IDs and dispatched directly to Meta Conversions API and GA4 Measurement Protocol, backed by Looker Studio reports.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Server-Side GTM</span><span class="pill">GA4</span><span class="pill">Meta CAPI</span><span class="pill">Looker Studio</span><span class="pill">Google AdSense</span><span class="pill">Redis</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="case-study__link">Inspect Tracking Architecture ↗</a></div></article><article class="case-study" id="headless-ecommerce"><div class="case-study__meta"><span class="case-study__cat">INFRASTRUCTURE</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">High-Availability E-Commerce &amp; CMS Cloud Platform</h3><p class="case-study__lead">Decoupled headless React frontend with WooCommerce backend provisioned via wp-saltstack.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Monolithic WordPress instances suffered severe latency spikes during sales spikes and lacked automated, reproducible provisioning across bare-metal and cloud servers.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Decoupled the architecture: high-speed React storefront communicating via cached REST endpoints to a WooCommerce engine. Servers are provisioned idempotently with SaltStack (wp-saltstack) behind HAProxy/Nginx load balancing with automatic SSL renewal.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">WordPress REST API</span><span class="pill">React</span><span class="pill">HAProxy</span><span class="pill">Nginx</span><span class="pill">SaltStack</span><span class="pill">Ubuntu Linux</span></div><a href="https://github.com/syntax-error-root/wp-saltstack" target="_blank" rel="noopener noreferrer" class="case-study__link">View wp-saltstack on GitHub ↗</a></div></article><article class="case-study" id="rag-assistant"><div class="case-study__meta"><span class="case-study__cat">AI ENGINEERING</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Domain-Specific Knowledge Base with RAG</h3><p class="case-study__lead">Retrieval-augmented chatbot ensuring source-verified, hallucination-free technical responses.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Generic LLMs frequently hallucinated API signatures and company-specific operational procedures when queried by technical users.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Built a Python FastAPI service that ingests documentation markdown, generates embeddings into a vector store, performs semantic top-k retrieval with reranking, and injects verified source snippets into the prompt context.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">Vector Embeddings</span><span class="pill">OpenAI API</span><span class="pill">React UI</span></div><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="case-study__link">Inspect Source Code ↗</a></div></article><article class="case-study" id="rust-portfolio"><div class="case-study__meta"><span class="case-study__cat">SYSTEMS ARCHITECTURE</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">PROD // DEPLOYED</span></div><h3 class="case-study__title">Rust Compile-Time Zero-Overhead Portfolio Engine</h3><p class="case-study__lead">Maud macro pre-renderer producing a single-pass ~20KB payload with zero initial JS execution.</p><div class="case-study__body"><div><div class="case-study__col-title">The Problem / Bottleneck</div><p class="case-study__col-p">Modern developer portfolios bloated with 1MB+ of React/Next.js JS bundles, taking 800ms+ on mobile devices and requiring complex runtime servers for simple static portfolios.</p></div><div><div class="case-study__col-title">The Architecture &amp; Solution</div><p class="case-study__col-p">Engineered a native Rust CLI compiler that type-checks data schemas with Serde and renders inlined critical CSS with Maud macros. Result: 100/100 Lighthouse performance, sub-30ms edge paint, and zero client hydration penalty.</p></div></div><div class="case-study__footer"><div class="pills"><span class="pill">Rust</span><span class="pill">Maud</span><span class="pill">GitHub Pages</span><span class="pill">Fastly Edge CDN</span><span class="pill">CI/CD</span></div><a href="https://github.com/syntax-error-root/portfolio" target="_blank" rel="noopener noreferrer" class="case-study__link">View Generator on GitHub ↗</a></div></article></div></div></section><section class="section" id="skills"><div class="container"><div class="section__head"><span class="section__tag">Domains of Competency</span><h2 class="section__h2">Technical Infrastructure &amp; Skillset</h2><p class="section__desc">No arbitrary percentage bars. Organized by real-world operational domains and battle-tested tools.</p></div><div class="domains-grid"><div class="domain-card"><div><h3 class="domain-card__title">Systems &amp; Platform Infrastructure</h3><p class="domain-card__summary">Hardened Linux environments, containerized services, and resilient reverse proxy topologies.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>Linux Administration</span></div><p class="skill-item__note">Kernel tuning, systemd unit design, cgroups, journalctl tracing</p></div><div class="skill-item"><div class="skill-item__head"><span>Containers &amp; Pods</span></div><p class="skill-item__note">Docker multi-stage builds, rootless containers, Docker Compose</p></div><div class="skill-item"><div class="skill-item__head"><span>Web Ingress &amp; SSL</span></div><p class="skill-item__note">Nginx, HAProxy, Caddy, automated Let's Encrypt TLS renewal</p></div><div class="skill-item"><div class="skill-item__head"><span>IaC &amp; Automation</span></div><p class="skill-item__note">SaltStack state formulas (wp-saltstack), idempotent provisioning</p></div><div class="skill-item"><div class="skill-item__head"><span>Telemetry &amp; Monitoring</span></div><p class="skill-item__note">Prometheus metric scraping, Grafana dashboards, alert thresholds</p></div></div></div></div><div class="domain-card"><div><h3 class="domain-card__title">Analytics &amp; Conversion Tracking Ops</h3><p class="domain-card__summary">Full-funnel measurement pipelines connecting paid acquisition directly to verified revenue telemetry.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>Google Tag Manager</span></div><p class="skill-item__note">Server-side GTM (sGTM) containers &amp; client-side custom dataLayer schemas</p></div><div class="skill-item"><div class="skill-item__head"><span>Google Analytics 4</span></div><p class="skill-item__note">Custom event definitions, purchase parameter validation, BigQuery export</p></div><div class="skill-item"><div class="skill-item__head"><span>Meta Pixel &amp; CAPI</span></div><p class="skill-item__note">Server-to-server Conversions API, event ID deduplication, match quality</p></div><div class="skill-item"><div class="skill-item__head"><span>Looker Studio &amp; BI</span></div><p class="skill-item__note">Executive ROAS dashboards, multi-source blended attribution models</p></div><div class="skill-item"><div class="skill-item__head"><span>AdSense Optimization</span></div><p class="skill-item__note">Monetization architecture, high-CTR placement, layout shift compliance</p></div></div></div></div><div class="domain-card"><div><h3 class="domain-card__title">Scripting, Full-Stack &amp; AI Tooling</h3><p class="domain-card__summary">Pragmatic software engineering spanning backend microservices, modern frontends, and AI pipelines.</p><div class="skill-items"><div class="skill-item"><div class="skill-item__head"><span>POSIX Shell Scripting</span></div><p class="skill-item__note">Robust Bash automation, incident mitigation scripts, cron supervision</p></div><div class="skill-item"><div class="skill-item__head"><span>Python Systems</span></div><p class="skill-item__note">FastAPI services, asynchronous REST scraping, automation scripts</p></div><div class="skill-item"><div class="skill-item__head"><span>Rust Systems</span></div><p class="skill-item__note">Compile-time HTML pre-rendering with Maud, zero-overhead static generation</p></div><div class="skill-item"><div class="skill-item__head"><span>TypeScript &amp; React</span></div><p class="skill-item__note">Decoupled headless frontends, state orchestration, responsive layouts</p></div><div class="skill-item"><div class="skill-item__head"><span>RAG &amp; LLM Tooling</span></div><p class="skill-item__note">Vector similarity search, prompt grounding, autonomous triage agents</p></div></div></div></div></div></div></section><section class="section" id="about"><div class="container"><div class="section__head"><span class="section__tag">Engineering Principles</span><h2 class="section__h2">Why Zero-Overhead Matters</h2></div><div class="about-narrative"><p>I am an engineer focused on the intersection of infrastructure reliability, automated deployment, and full-stack measurement pipelines.</p><p>Rather than relying on bloated frameworks and guesswork, I build systems designed for determinism: reproducible server state through SaltStack and Docker, fast and resilient ingress through Nginx and HAProxy, and server-side tracking pipelines (GTM, GA4, Meta CAPI) that preserve conversion data through browser cookie crackdowns.</p><p>This portfolio itself is compiled directly in Rust using Maud macros with inlined critical CSS, delivering a single-pass ~20KB payload with zero render-blocking JavaScript and sub-30ms first contentful paint.</p></div></div></section><section class="section" id="contact"><div class="container"><div class="contact-panel"><div class="contact-panel__info"><h3>Let's build something durable.</h3><p>Available for server platform contracts, conversion tracking audits (sGTM / GA4 / Meta CAPI), and backend infrastructure roles.</p></div><div class="contact-panel__actions"><a href="mailto:default13789@gmail.com" class="btn btn--primary">Dispatch Email ↗</a><button class="btn btn--copy js-copy-email" type="button">Copy Address</button><a href="https://github.com/syntax-error-root" target="_blank" rel="noopener noreferrer" class="btn btn--outline">GitHub ↗</a><a href="https://linkedin.com/in/omik-dev" target="_blank" rel="noopener noreferrer" class="btn btn--outline">LinkedIn ↗</a></div></div></div></section></main><footer class="site-footer"><div class="container site-footer__inner"><div>© 2026 Omik — Bogura, Bangladesh</div><div>Rust + Maud Native Compiler · Zero Client Hydration · Sub-30ms FCP</div></div></footer><script>
+(function() {
+  // Live Clock for Bogura, BD (UTC+6)
+  function updateTime() {
+    var el = document.getElementById('live-time');
+    if (!el) return;
+    try {
+      var d = new Date();
+      var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+      var bdTime = new Date(utc + (3600000 * 6));
+      var h = bdTime.getHours();
+      var m = bdTime.getMinutes();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      var mStr = m < 10 ? '0' + m : m;
+      el.textContent = h + ':' + mStr + ' ' + ampm + ' UTC+6';
+    } catch(e) {}
+  }
+  updateTime();
+  setInterval(updateTime, 30000);
+
+  // Copy Email interaction with tactile toast
+  var copyBtns = document.querySelectorAll('.js-copy-email');
+  var toast = document.getElementById('copy-toast');
+  var email = 'default13789@gmail.com';
+
+  copyBtns.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showToast);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = email;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast();
+      }
+    });
   });
+
+  function showToast() {
+    if (!toast) return;
+    toast.textContent = '✓ Copied ' + email;
+    toast.style.display = 'block';
+    setTimeout(function() {
+      toast.style.display = 'none';
+    }, 2400);
+  }
 })();
 </script></body></html>
