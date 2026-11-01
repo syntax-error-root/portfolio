@@ -1581,10 +1581,7 @@ fn render_page(data: &PortfolioData) -> Markup {
 
                         div class="footer-bottom" {
                             div {
-                                "© 2026 " (data.profile.name) " — Bogura, Bangladesh. Designed with high-performance native architecture."
-                            }
-                            div {
-                                "Rust + Maud Native Compiler · Zero Client Hydration · Sub-30ms FCP"
+                                "© 2026 " (data.profile.name) " — Bogura, Bangladesh."
                             }
                         }
                     }
