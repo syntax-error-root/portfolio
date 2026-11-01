@@ -1310,7 +1310,7 @@ fn render_page(data: &PortfolioData) -> Markup {
                             div class="hero__grid" {
                                 div class="hero__text" {
                                     div class="hero__eyebrow" {
-                                        span { "Hi, i’m " (data.profile.name) "," }
+                                        span { "Hi, i’m" }
                                     }
 
                                     h1 class="hero__title" {
