@@ -1300,12 +1300,6 @@ fn render_page(data: &PortfolioData) -> Markup {
                             a href="#philosophy" class="nav-link" { "Philosophy" }
                             a href="#contact" class="nav-link" { "Contact" }
                         }
-
-                        div {
-                            button class="nav-cta js-copy-email" type="button" aria-label="Copy Coordinates" {
-                                span { "Copy Coordinates" }
-                            }
-                        }
                     }
                 }
 
