@@ -103,7 +103,7 @@ pub fn render_cta_tile(contact: &Contact) -> Markup {
                         span { "Dispatch Email ↗" }
                     }
                     button class="btn-pill btn-pill--subtle js-copy-email" type="button" {
-                        span { "Copy Coordinates" }
+                        span { "Copy Email" }
                     }
                     a href=(contact.github) target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill--subtle" {
                         span { "GitHub ↗" }

@@ -129,6 +129,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 a {
@@ -798,26 +800,24 @@ dialog.project-drawer::backdrop {
   color: var(--ink-primary);
 }
 
-/* Responsive Grid Breakpoints */
+/* ==========================================================================
+   RESPONSIVE DESIGN SYSTEM (Desktop -> Tablet -> Mobile -> Micro)
+   ========================================================================== */
+
 @media (max-width: 1024px) {
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
-  .tile--hero {
-    grid-column: span 2;
-  }
-  .tile--visual {
-    grid-column: span 2;
-  }
-  .tile--case-primary, .tile--case-secondary, .tile--case-tertiary, .tile--case-quaternary, .tile--case-quinary {
-    grid-column: span 2;
-  }
-  .tile--skills {
-    grid-column: span 2;
-  }
-  .tile--now {
-    grid-column: span 2;
-  }
+  .tile--hero,
+  .tile--visual,
+  .tile--case-primary,
+  .tile--case-secondary,
+  .tile--case-tertiary,
+  .tile--case-quaternary,
+  .tile--case-quinary,
+  .tile--skills,
+  .tile--now,
   .tile--cta {
     grid-column: span 2;
   }
@@ -827,20 +827,263 @@ dialog.project-drawer::backdrop {
   }
 }
 
+@media (max-width: 768px) {
+  .site-nav__inner {
+    height: 3.75rem;
+  }
+  .site-brand {
+    font-size: 1.05rem;
+  }
+  .nav-menu {
+    gap: 1rem;
+  }
+  .nav-link {
+    font-size: 0.85rem;
+  }
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
 @media (max-width: 640px) {
+  /* Layout & Containers */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .bento-section {
+    padding: 1.25rem 0 2.5rem;
+  }
   .bento-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  .tile--hero, .tile--visual, .tile--case-primary, .tile--case-secondary, .tile--case-tertiary, .tile--case-quaternary, .tile--case-quinary, .tile--skills, .tile--now, .tile--cta {
+  .bento-tile {
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+  .tile--hero,
+  .tile--visual,
+  .tile--case-primary,
+  .tile--case-secondary,
+  .tile--case-tertiary,
+  .tile--case-quaternary,
+  .tile--case-quinary,
+  .tile--skills,
+  .tile--now,
+  .tile--cta {
     grid-column: span 1;
   }
+
+  /* Navigation Bar */
+  .site-nav__inner {
+    height: 3.5rem;
+  }
+  .nav-menu {
+    gap: 0.75rem;
+  }
+  .nav-link {
+    font-size: 0.82rem;
+  }
+  .theme-toggle-btn {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  /* Hero Section */
+  .hero__name {
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
+  }
+  .hero__lead {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 1.35rem;
+  }
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.65rem;
+  }
+  .hero__actions .btn-pill {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  /* Visual Tile */
+  .tile--visual {
+    padding: 1.5rem 1rem;
+  }
+  .photo-avatar {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 0.85rem;
+  }
+
+  /* Case Study Cards */
+  .card-title {
+    font-size: 1.18rem;
+    margin-bottom: 0.5rem;
+  }
+  .card-lead {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 1.1rem;
+  }
+  .metrics-row {
+    gap: 0.45rem;
+    margin-bottom: 1.1rem;
+  }
+  .metric-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .card-stack {
+    gap: 0.35rem;
+    margin-bottom: 1.1rem;
+  }
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.45rem;
+  }
+  .card-actions {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: space-between;
+  }
+  .btn-drawer-trigger {
+    font-size: 0.82rem;
+  }
+  .btn-source-link {
+    font-size: 0.82rem;
+  }
+
+  /* Capabilities Grid */
   .skills-domains {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .skill-domain__title {
+    font-size: 0.98rem;
+  }
+  .skill-item__name {
+    font-size: 0.85rem;
+  }
+  .skill-item__note {
+    font-size: 0.78rem;
+  }
+
+  /* CTA Tile */
+  .cta-title {
+    font-size: 1.35rem;
+  }
+  .cta-desc {
+    font-size: 0.88rem;
+  }
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.65rem;
+  }
+  .cta-actions .btn-pill {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Bottom-Sheet Project Drawer */
+  dialog.project-drawer {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 90vh;
+    border-radius: 20px 20px 0 0;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    padding: 1.5rem 1.25rem 2rem;
+    margin: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+  dialog.project-drawer[open] {
+    transform: translateY(0);
+  }
+  .drawer-title {
+    font-size: 1.25rem;
+  }
+  .drawer-close {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .drawer-section {
+    margin-bottom: 1.15rem;
+  }
+  .drawer-text {
+    font-size: 0.88rem;
+  }
+
+  /* Toast Notification */
+  #copy-toast {
+    left: 50%;
+    right: auto;
+    bottom: 1.25rem;
+    transform: translateX(-50%) translateY(12px) scale(0.95);
+    max-width: calc(100vw - 2rem);
+    font-size: 0.78rem;
+    padding: 0.65rem 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #copy-toast.show {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 2rem 0;
   }
   .footer-inner {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     text-align: center;
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-nav__inner {
+    height: 3.25rem;
+  }
+  .nav-menu {
+    gap: 0.55rem;
+  }
+  .nav-link {
+    font-size: 0.78rem;
+  }
+  .site-brand {
+    font-size: 0.95rem;
+  }
+  .hero__name {
+    font-size: 1.9rem;
+  }
+  .card-title {
+    font-size: 1.1rem;
   }
 }
 "#
