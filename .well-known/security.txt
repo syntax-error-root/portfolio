@@ -1,0 +1,4 @@
+Contact: mailto:default13789@gmail.com
+Expires: 2027-06-28T23:59:59Z
+Acknowledgements: https://omik.pro.bd/
+Preferred-Languages: en, bn
