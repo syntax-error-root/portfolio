@@ -9,11 +9,6 @@ pub fn render_hero(profile: &Profile, contact: &Contact) -> Markup {
         // Hero Information Tile
         article class="bento-tile tile--hero" id="overview" {
             div {
-                div class="hero__eyebrow" {
-                    span class="beacon" {}
-                    span class="role-tag" { (profile.role) }
-                }
-
                 h1 class="hero__name" {
                     (profile.name)
                 }
